@@ -30,12 +30,12 @@ class ContactFormController extends Controller
             ];
 
             Log::info('Попытка отправки письма', [
-                'to' => 'dr.chencova@gmail.com',
+                'to' => 'mail@dr-chenkova.com',
                 'data' => $data
             ]);
 
             Mail::send('emails.contact-form', $data, function($message) {
-                $message->to('dr.chencova@gmail.com')
+                $message->to('mail@dr-chenkova.com')
                         ->subject('Новая заявка на обучение');
             });
 

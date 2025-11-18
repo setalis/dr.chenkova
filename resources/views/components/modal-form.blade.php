@@ -89,7 +89,7 @@
         submitButton.textContent = 'Отправка...';
         
         try {
-            const response = await fetch('{{ route("contact.send") }}', {
+            const response = await fetch('{{ route_locale("contact.send") }}', {
                 method: 'POST',
                 body: formData,
                 headers: {

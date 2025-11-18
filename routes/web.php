@@ -8,39 +8,97 @@ use App\Livewire\TestWizard;
 use App\Livewire\TestResult;
 use App\Http\Controllers\TestResultController;
 use App\Http\Controllers\ContactFormController;
+use App\Http\Controllers\BookOrderController;
 
-
+// Редирект с корня на русскую версию по умолчанию
 Route::get('/', function () {
-    return view('home');
-})->name('home');
+    return redirect('/ru');
+});
 
-Route::get('/acne', function () {
-    return view('acne');
-})->name('acne');
+// Группа роутов с локализацией
+Route::prefix('{locale}')->where(['locale' => 'ru|uk'])->middleware('locale')->group(function () {
+    
+    // Основные страницы
+    Route::get('/', function ($locale) {
+        return view_locale('home');
+    })->name('home');
+    
+    Route::get('/acne', function ($locale) {
+        return view_locale('acne');
+    })->name('acne');
+    
+    Route::get('/webinar', function ($locale) {
+        return view_locale('webinar');
+    })->name('webinar');
+    
+    Route::get('/lessons', function ($locale) {
+        return view_locale('lessons');
+    })->name('lessons');
+    
+    Route::get('/guide', function ($locale) {
+        return view_locale('guide');
+    })->name('guide');
+    
+    Route::get('/about', function ($locale) {
+        return view_locale('about');
+    })->name('about');
+    
+    Route::get('/book', function ($locale) {
+        return view_locale('book');
+    })->name('book');
 
-Route::get('/webinar', function () {
-    return view('webinar');
-})->name('webinar');
+    Route::get('/book/excerpt-pdf', function ($locale) {
+        return view_locale('excerpt-pdf');
+    })->name('book.excerpt-pdf');
+    
+    Route::get('/book/excerpt', [BookOrderController::class, 'viewExcerpt'])->name('book.excerpt');
+    
+    Route::get('/book/return-policy', function ($locale) {
+        return view_locale('return-policy');
+    })->name('book.return-policy');
+    
+    Route::get('/animate-book', function ($locale) {
+        return view_locale('animate-book');
+    })->name('animate-book');
+    
+    // Заказы бумажных книг
+    Route::prefix('book-order')->name('book-order.')->group(function () {
+        Route::get('/create', [BookOrderController::class, 'create'])->name('create');
+        Route::post('/store', [BookOrderController::class, 'store'])->name('store');
+        Route::get('/payment-success', [BookOrderController::class, 'paymentSuccess'])->name('payment-success');
+    });
+    
+    // Заказы электронных книг
+    Route::prefix('ebook-order')->name('ebook-order.')->group(function () {
+        Route::get('/create', [BookOrderController::class, 'showEbookForm'])->name('create');
+        Route::post('/store', [BookOrderController::class, 'createEbook'])->name('store');
+        Route::get('/payment-success', [BookOrderController::class, 'ebookPaymentSuccess'])->name('payment-success');
+        Route::get('/download', [BookOrderController::class, 'downloadEbook'])->name('download');
+        Route::get('/download-pdf', [BookOrderController::class, 'downloadEbookPdf'])->name('download-pdf');
+        Route::get('/download-pdf-file', [BookOrderController::class, 'downloadEbookPdfFile'])->name('download-pdf-file');
+    });
+    
+    // Тест определения типа кожи
+    Route::get('test', TestWizard::class)->name('test');
+    Route::get('result/{session}', TestResult::class)->name('test.result');
+    Route::get('pdf/{session}', [TestResultController::class, 'downloadPdf'])->name('pdf.download');
+    
+    Route::get('/test/results/{session}', function ($locale, App\Models\TestSession $session) {
+        return view_locale('test-results', ['session' => $session]);
+    })->name('test.results');
+    
+    // Контактная форма
+    Route::post('/send-contact-form', [ContactFormController::class, 'send'])->name('contact.send');
+});
 
-Route::get('/lessons', function () {
-    return view('lessons');
-})->name('lessons');
+// Webhook маршруты без локализации (вызываются внешними сервисами)
+Route::post('/book-order/webhook', [BookOrderController::class, 'webhook'])->name('book-order.webhook');
+Route::post('/ebook-order/webhook', [BookOrderController::class, 'ebookWebhook'])->name('ebook-order.webhook');
 
-Route::get('/about', function () {
-    return view('about');
-})->name('about');
-
+// Роуты без локализации (для внутренних систем)
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
-
-Route::get('test', TestWizard::class)->name('test');
-Route::get('result/{session}', TestResult::class)->name('test.result');
-Route::get('pdf/{session}', [TestResultController::class, 'downloadPdf'])->name('pdf.download');
-
-Route::get('/test/results/{session}', function (App\Models\TestSession $session) {
-    return view('test-results', ['session' => $session]);
-})->name('test.results');
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
@@ -49,7 +107,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('settings/password', Password::class)->name('settings.password');
     Route::get('settings/appearance', Appearance::class)->name('settings.appearance');
 });
-
-Route::post('/send-contact-form', [ContactFormController::class, 'send'])->name('contact.send');
 
 require __DIR__.'/auth.php';

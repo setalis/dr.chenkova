@@ -25,12 +25,12 @@
                 <div class="text-left bg-white/80 backdrop-blur-xs rounded-2xl p-10 flex flex-col h-auto md:h-[550px] relative overflow-hidden">
                     <div class="relative z-10">
                         <h1 class="text-6xl md:text-7xl xl:text-8xl font-bold text-teal-600 leading-tight">On Line</h1>
-                        <h2 class="text-2xl md:text-4xl xl:text-5xl text-gray-700 -mt-3">консультации</h2>
-                        <p class="text-gray-600 max-w-lg text-lg mt-8 mb-8">Разберем типы и состояние кожи и получите рекомендации по образу жизни. Объясню механизм формирования заболевания (если есть). Составим карту по лечению или бьюти протокол. Дам письменные рекомендации по наружному лечению, протокол процедур и прием внутрь препаратов (при необходимости). </p>
+                        <h2 class="text-2xl md:text-4xl xl:text-5xl text-gray-700 -mt-3">консультації</h2>
+                        <p class="text-gray-600 max-w-lg text-lg mt-8 mb-8">Розберемо типи та стан шкіри і отримаєте рекомендації щодо способу життя. Поясню механізм формування захворювання (якщо є). Складемо карту з лікування або б'юті протокол. Дам письмові рекомендації щодо зовнішнього лікування, протокол процедур та прийом всередину препаратів (за потреби). </p>
                     </div>
                     <div class="mt-auto relative z-10">
                         <a href="https://t.me/Alina_Chenkova" target="_blank" class="bg-teal-600 text-white px-8 py-4 rounded-full hover:bg-teal-700 transition-all text-lg">
-                            Записаться
+                            Записатися
                         </a>
                     </div>
                 </div>
@@ -38,12 +38,12 @@
                 <div class="text-right bg-white/80 backdrop-blur-xs rounded-2xl p-10 flex flex-col h-auto md:h-[550px] relative overflow-hidden">
                     <div class="relative z-10">
                         <h1 class="text-6xl md:text-7xl xl:text-8xl font-bold text-[#214992] leading-tight">Off Line</h1>
-                        <h2 class="text-2xl md:text-4xl xl:text-5xl text-gray-700 -mt-3">прием</h2>
-                        <p class="text-[#214992] max-w-lg ml-auto text-lg mt-8 mb-8">На приеме вы можете получить космологическую и дерматологическую консультацию, а также при необходимости проводим дерматоскопию и ультразвуковое исследование кожи. Запись возможно только через администратора в клиники.</p>
+                        <h2 class="text-2xl md:text-4xl xl:text-5xl text-gray-700 -mt-3">прийом</h2>
+                        <p class="text-[#214992] max-w-lg ml-auto text-lg mt-8 mb-8">На прийомі ви можете отримати косметологічну та дерматологічну консультацію, а також за потреби проводимо дерматоскопію та ультразвукове дослідження шкіри. Запис можливий лише через адміністратора в клініці.</p>
                     </div>
                     <div class="mt-auto relative z-10">
                         <a href="https://t.me/+995557673280" target="_blank" class="bg-[#214992] text-white px-8 py-4 rounded-full hover:bg-[#214992]/80 transition-all text-lg">
-                            Записаться
+                            Записатися
 </a>
                     </div>
                 </div>
@@ -60,11 +60,11 @@
         <div class="container mx-auto px-4">
             <div class="grid md:grid-cols-3 gap-4 items-center">
                 <div class="md:col-span-2 flex flex-col items-center md:items-start">
-                    <h2 class="text-5xl font-bold text-center md:text-left  text-[#214992] mb-12">Пройди тест на состояние кожи</h2>
-                    <p class="md:max-w-[90%] text-center md:text-left text-lg mb-8 text-gray-600">Заполни анкету из четырех тестов для определения состояния кожи. После прохождения теста, вы сможете сохранить результат и в далальнейшем получить консультацию и рекомендации по образу жизни, выполнив запись на прием.</p>
+                    <h2 class="text-5xl font-bold text-center md:text-left  text-[#214992] mb-12">Пройди тест на стан шкіри</h2>
+                    <p class="md:max-w-[90%] text-center md:text-left text-lg mb-8 text-gray-600">Заповни анкету з чотирьох тестів для визначення стану шкіри. Після проходження тесту ви зможете зберегти результат і надалі отримати консультацію та рекомендації щодо способу життя, виконавши запис на прийом.</p>
                     <a href="{{ route_locale('test') }}" class="bg-[#214992] text-center margin-auto md:text-left text-white px-8 py-4 rounded-full hover:bg-[#214992]/80 transition-all text-lg">
                         Пройти тест
-                    </button></a>
+                    </a>
                 </div>
                 <div class="max-w-full md:col-span-1 flex justify-center pt-4">
                     <img src="{{ asset('storage/images/3813830.png') }}" alt="Test" class="w-full h-full object-cover rounded-2xl">
@@ -75,36 +75,36 @@
     <!-- Doctors Section -->
     <section class="py-16 ">
         <div class="container mx-auto px-4">
-            <h2 class="text-5xl font-bold text-center text-teal-600  mb-12">Докторам</h2>
+            <h2 class="text-5xl font-bold text-center text-teal-600  mb-12">Лікарям</h2>
             <div class="grid md:grid-cols-2 gap-8">                            
                 <div class="w-full text-center space-y-4">
                     <img src="{{ asset('storage/images/webinar-save.jpg') }}" alt="Doctor" class="w-[250px] h-auto object-cover rounded-2xl mx-auto p-4 border-green-300 border">
-                    <h3 class="text-xl font-semibold">Записи вебинаров</h3>
-                    <p class="text-gray-600 mb-8">Для пациентов и докторов я провожу обучающие вебинары и прямые эфиры, весь архив видео вы можете посмотреть по кнопке ниже.</p>
+                    <h3 class="text-xl font-semibold">Записи вебінарів</h3>
+                    <p class="text-gray-600 mb-8">Для пацієнтів та лікарів я проводжу навчальні вебінари та прямі ефіри, весь архів відео ви можете переглянути за кнопкою нижче.</p>
                 
                     <a href="{{ route_locale('webinar') }}" class="bg-[#214992] text-white px-6 py-4 rounded-full hover:bg-blue-700 transition-all">
-                    Просмотреть
+                    Переглянути
                     </a>
                 </div>
                 <div class="text-center space-y-4">
                     <img src="{{ asset('storage/images/individual_training.jpg') }}" alt="Doctor" class="w-[250px] h-auto object-cover rounded-2xl mx-auto p-4 border-green-300 border">
-                    <h3 class="text-xl font-semibold">Индивидуальное обучение</h3>
-                    <p class="text-gray-600">Этот формат подходит для практикующих специалистов и докторов. 
-                        Возможность в течении 2 дней получить как теоретические, так и практические знания в таких темах:                                    
+                    <h3 class="text-xl font-semibold">Індивідуальне навчання</h3>
+                    <p class="text-gray-600">Цей формат підходить для практикуючих спеціалістів та лікарів. 
+                        Можливість протягом 2 днів отримати як теоретичні, так і практичні знання з таких тем:                                    
                     </p>
                     <div class="w-80 mx-auto mb-8">
                         <ul class="list-disc list-inside text-left text-gray-600">
-                            <li>Дерматология в косметологии.</li>
-                            <li>Лечение акне в кабинете косметолога;</li>
-                            <li>Ботулинотерапия;</li>
+                            <li>Дерматологія в косметології.</li>
+                            <li>Лікування акне в кабінеті косметолога;</li>
+                            <li>Ботулінотерапія;</li>
                             <li>Постановка руки - канюля;</li>
                             <li>Radiesse;</li>
-                            <li>Сочетание аппаратных методик;</li>
-                            <li>УЗ диагностика в косметологии.</li>
+                            <li>Поєднання апаратних методик;</li>
+                            <li>УЗ діагностика в косметології.</li>
                         </ul>
                     </div>
                     <a href="{{ route_locale('lessons') }}" class="bg-teal-600 text-white px-6 py-4 rounded-full hover:bg-teal-700 transition-all">
-                        Подробнее
+                        Детальніше
                     </a>
                 </div>
         </div>

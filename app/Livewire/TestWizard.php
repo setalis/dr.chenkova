@@ -370,7 +370,7 @@ class TestWizard extends Component
                 'skin_type_code' => $this->session->skin_type_code
             ]);
             
-            return redirect()->route('test.result', ['session' => $this->session->id]);
+            return redirect()->route_locale('test.result', ['session' => $this->session->id]);
         }
     }
 

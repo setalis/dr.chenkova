@@ -17,7 +17,7 @@
                     Работаю с пациентами из разных стран. Помогаю не просто «улучшить лицо», а разобраться с причинами, увидеть прогресс и почувствовать уверенность в себе.</p>
 
                     <p class="text-base text-gray-700 mb-6">  Если вам откликается сочетание науки и эстетики — добро пожаловать.</p>
-                    <a href="{{ route('webinar') }}" class="bg-[#4BAE37] hover:bg-[#3c952a] md:w-96 w-full py-3 text-white rounded-xl mx-auto block uppercase font-bold text-base cursor-pointer mb-6 text-center">
+                    <a href="{{ route_locale('webinar') }}" class="bg-[#4BAE37] hover:bg-[#3c952a] md:w-96 w-full py-3 text-white rounded-xl mx-auto block uppercase font-bold text-base cursor-pointer mb-6 text-center">
                             Посмотреть мои вебинары
                     </a>
                 </div>

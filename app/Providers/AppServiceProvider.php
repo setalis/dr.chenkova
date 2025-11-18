@@ -19,6 +19,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Helper функции определены в app/helpers.php и загружаются через composer.json
     }
 }
