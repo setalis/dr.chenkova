@@ -20,6 +20,11 @@
   - `about-uk.blade.php`
   - `book-order/create-uk.blade.php`
 
+- **Грузинский язык:**
+  - `home-ka.blade.php`
+  - `about-ka.blade.php`
+  - `book-order/create-ka.blade.php`
+
 ## Важно!
 
 1. **Используйте дефис `-`, а не подчеркивание `_`**
@@ -59,9 +64,11 @@ resources/views/
 ├── home.blade.php          ← Оригинал (fallback)
 ├── home-ru.blade.php       ← Русская версия
 ├── home-uk.blade.php       ← Украинская версия
+├── home-ka.blade.php       ← Грузинская версия
 ├── about.blade.php
 ├── about-ru.blade.php
 ├── about-uk.blade.php
+├── about-ka.blade.php
 └── ...
 ```
 
@@ -73,17 +80,19 @@ resources/views/
     ├── create.blade.php      ← Оригинал
     ├── create-ru.blade.php   ← Русская версия
     ├── create-uk.blade.php   ← Украинская версия
+    ├── create-ka.blade.php   ← Грузинская версия
     ├── success.blade.php
     ├── success-ru.blade.php
-    └── success-uk.blade.php
+    ├── success-uk.blade.php
+    └── success-ka.blade.php
 ```
 
 ## Как это работает
 
 Когда вызывается `view_locale('home')`:
 
-1. Система определяет текущую локаль (например, `uk`)
-2. Ищет файл `home-uk.blade.php`
+1. Система определяет текущую локаль (например, `ka`)
+2. Ищет файл `home-ka.blade.php`
 3. Если найден → использует его
 4. Если не найден → использует оригинальный `home.blade.php` (fallback)
 
@@ -107,7 +116,7 @@ public function index()
 ## Чеклист при создании локализованного файла
 
 - [ ] Файл назван с дефисом: `{имя}-{локаль}.blade.php`
-- [ ] Использован код `ru` для русского или `uk` для украинского
+- [ ] Использован код `ru` для русского, `uk` для украинского или `ka` для грузинского
 - [ ] Файл находится в той же папке, что и оригинал
 - [ ] Все ссылки в файле используют `route_locale()` вместо `route()`
 - [ ] Весь текст переведен на соответствующий язык
@@ -130,6 +139,8 @@ mv resources/views/home_ua.blade.php resources/views/home-uk.blade.php
 2. **`uk` вместо `ua`** - стандартный ISO код локали, используется в URL (`/uk/`)
 3. **В той же папке** - проще поддерживать, не нужно менять пути в коде
 4. **Fallback на оригинал** - если локализованная версия не найдена, используется оригинал
+
+
 
 
 

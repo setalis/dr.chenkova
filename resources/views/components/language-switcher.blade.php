@@ -1,6 +1,6 @@
 @php
     $currentLocale = app()->getLocale();
-    $availableLocales = ['ru' => 'Рус', 'uk' => 'Укр'];
+    $availableLocales = ['ru' => 'Рус', 'uk' => 'Укр', 'ka' => 'ქარ'];
     
     // Получаем текущий роут и параметры
     try {

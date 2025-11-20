@@ -11,9 +11,11 @@ resources/views/
 ├── home.blade.php          # Оригинал (fallback)
 ├── home-ru.blade.php       # Русская версия
 ├── home-uk.blade.php       # Украинская версия
+├── home-ka.blade.php       # Грузинская версия
 ├── about.blade.php
 ├── about-ru.blade.php
 ├── about-uk.blade.php
+├── about-ka.blade.php
 └── ...
 ```
 
@@ -23,6 +25,7 @@ resources/views/
 
 - Русский: `/ru/`, `/ru/about`, `/ru/book`, и т.д.
 - Украинский: `/uk/`, `/uk/about`, `/uk/book`, и т.д.
+- Грузинский: `/ka/`, `/ka/about`, `/ka/book`, и т.д.
 - Корень `/` автоматически редиректит на `/ru`
 
 ## Использование в коде
@@ -74,11 +77,13 @@ public function index()
 # Пример для страницы home
 cp resources/views/home.blade.php resources/views/home-ru.blade.php
 cp resources/views/home.blade.php resources/views/home-uk.blade.php
+cp resources/views/home.blade.php resources/views/home-ka.blade.php
 ```
 
 ### Шаг 2: Переведите контент
 
 Откройте файл `home-uk.blade.php` и переведите весь текст на украинский язык.
+Откройте файл `home-ka.blade.php` и переведите весь текст на грузинский язык.
 
 ### Шаг 3: Обновите ссылки
 
@@ -128,6 +133,15 @@ Middleware `SetLocale` автоматически:
 </x-layouts.main>
 ```
 
+**home-ka.blade.php:**
+```blade
+<x-layouts.main>
+    <h1>მთავარი გვერდი</h1>
+    <p>კეთილი იყოს თქვენი მობრძანება!</p>
+    <a href="{{ route_locale('about') }}">ჩვენ შესახებ</a>
+</x-layouts.main>
+```
+
 ### Страница с данными из контроллера
 
 **Контроллер:**
@@ -155,9 +169,11 @@ public function show($id)
 
 - [ ] Создать файл `{view}-ru.blade.php`
 - [ ] Создать файл `{view}-uk.blade.php`
+- [ ] Создать файл `{view}-ka.blade.php`
 - [ ] Перевести весь текст в украинской версии
+- [ ] Перевести весь текст в грузинской версии
 - [ ] Заменить все `route()` на `route_locale()`
-- [ ] Проверить работу на `/ru/{page}` и `/uk/{page}`
+- [ ] Проверить работу на `/ru/{page}`, `/uk/{page}` и `/ka/{page}`
 - [ ] Добавить переключатель языка в header/footer
 
 ## Важные замечания
@@ -170,10 +186,12 @@ public function show($id)
 ## Миграция существующих страниц
 
 1. Определите, какие страницы нужно локализовать
-2. Создайте копии с суффиксами `-ru` и `-uk`
+2. Создайте копии с суффиксами `-ru`, `-uk` и `-ka`
 3. Переведите контент
 4. Обновите ссылки на `route_locale()`
-5. Протестируйте на обоих языках
+5. Протестируйте на всех языках
+
+
 
 
 

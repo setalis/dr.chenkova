@@ -18,7 +18,7 @@ class SetLocale
         $locale = $request->route('locale', 'ru'); // По умолчанию русский
         
         // Валидация локали
-        if (!in_array($locale, ['ru', 'uk'])) {
+        if (!in_array($locale, ['ru', 'uk', 'ka'])) {
             $locale = 'ru'; // Fallback на русский
         }
         
