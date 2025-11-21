@@ -2,13 +2,13 @@
     <div class="bg-gradient-to-r from-indigo-500/20 from-10% via-50% to-emerald-500/20 to-90% min-h-screen h-full pb-8 pt-20 px-4">
         <div class="container max-w-4xl mx-auto px-8 bg-white rounded-2xl py-8 gap-6">
             <div class="mb-8">
-                <h1 class="text-4xl font-black uppercase text-center text-[#4BAE37] mb-4">📘 Умови повернення книги</h1>
+                <h1 class="text-4xl font-black uppercase text-center text-[#4BAE37] mb-4">📘 წიგნის დაბრუნების პირობები</h1>
             </div>
 
             <div class="prose prose-lg max-w-none">
                 <!-- Раздел 1 -->
                 <section class="mb-8">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">1. Загальні положення</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">1. ზოგადი დებულებები</h2>
                     <p class="text-gray-700 mb-4">
                         Повернення та обмін товару здійснюється відповідно до <strong>Закону України «Про захист прав споживачів»</strong>.
                     </p>
@@ -19,7 +19,7 @@
 
                 <!-- Раздел 2 -->
                 <section class="mb-8">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">2. Повернення друкованої книги</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">2. ბეჭდური წიგნის დაბრუნება</h2>
                     <p class="text-gray-700 mb-4">
                         Відповідно до ст. 9 Закону України «Про захист прав споживачів», книги належать до товарів, які можна повернути, якщо вони не використовувалися та збережено товарний вигляд.
                     </p>
@@ -54,7 +54,7 @@
 
                 <!-- Раздел 3 -->
                 <section class="mb-8">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">3. Повернення електронної книги (PDF, ePub та ін.)</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">3. ელექტრონული წიგნის დაბრუნება (PDF, ePub და სხვა)</h2>
                     <p class="text-gray-700 mb-4">
                         Відповідно до законодавства України, <strong>цифровий контент, який було доставлено покупцю, поверненню НЕ підлягає</strong>.
                     </p>
@@ -72,7 +72,7 @@
 
                 <!-- Раздел 4 -->
                 <section class="mb-8">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">4. Порядок повернення коштів</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">4. თანხის დაბრუნების წესი</h2>
                     <p class="text-gray-700 mb-4">
                         Для оформлення повернення необхідно написати на email підтримки: <a href="mailto:reklama.vc@gmail.com" class="text-[#4BAE37] hover:underline font-semibold">reklama.vc@gmail.com</a>
                     </p>
@@ -98,7 +98,7 @@
 
                 <!-- Раздел 5 -->
                 <section class="mb-8">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">5. Обмін товару</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">5. საქონლის გაცვლა</h2>
                     <p class="text-gray-700 mb-2 font-semibold">Обмін можливий, якщо:</p>
                     <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4 mb-4">
                         <li>книга прийшла з виробничим дефектом;</li>
@@ -114,7 +114,7 @@
 
                 <!-- Раздел 6 -->
                 <section class="mb-8">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">6. Контакти підтримки</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">6. მხარდაჭერის კონტაქტები</h2>
                     <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
                         <p class="text-gray-700 mb-2">З питань повернення та обміну:</p>
                         <p class="text-lg">
@@ -128,7 +128,7 @@
 
             <div class="mt-8 text-center">
                 <a href="{{ route_locale('book') }}" class="inline-block bg-[#4BAE37] hover:bg-[#3c952a] text-white px-8 py-3 rounded-full uppercase font-bold transition-all">
-                    Повернутися до книги
+                    წიგნზე დაბრუნება
                 </a>
             </div>
         </div>

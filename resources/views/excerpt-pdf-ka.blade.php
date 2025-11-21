@@ -6,8 +6,8 @@
 
         <div class="container max-w-5xl mx-auto px-8 bg-white rounded-2xl py-6 gap-6">
             <div class="mb-6">
-                <h1 class="text-4xl font-black uppercase text-center text-[#4BAE37] mb-4">Уривок з книги</h1>
-                <p class="text-lg text-gray-700 text-center">Попередній перегляд книги "Шкіра на все життя"</p>
+                <h1 class="text-4xl font-black uppercase text-center text-[#4BAE37] mb-4">წიგნის ნაწყვეტი</h1>
+                <p class="text-lg text-gray-700 text-center">წიგნის წინასწარი გადახედვა "კანი მთელი ცხოვრებისთვის"</p>
             </div>
 
             <!-- Контейнер для PDF -->
@@ -22,7 +22,7 @@
 
             <div class="mt-6 text-center">
                 <a href="{{ route_locale('book') }}" class="inline-block bg-[#4BAE37] hover:bg-[#3c952a] text-white px-8 py-3 rounded-full uppercase font-bold transition-all shadow-lg hover:shadow-xl">
-                    Повернутися до книги
+                    წიგნზე დაბრუნება
                 </a>
             </div>
         </div>

@@ -191,3 +191,4 @@ echo "4. Проверьте логи: tail -f storage/logs/laravel.log\n";
 
 
 
+
