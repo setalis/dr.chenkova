@@ -31,6 +31,9 @@
                         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                         placeholder="Введите ваш контакт">
                 </div>
+                
+                <x-privacy-checkbox />
+                
                 <div class="flex justify-end space-x-3">
                     <button type="button" onclick="closeModal()"
                         class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">Отмена</button>
@@ -82,6 +85,13 @@
 
     document.getElementById('contactForm').addEventListener('submit', async function(e) {
         e.preventDefault();
+        
+        // Проверка чекбокса согласия
+        const privacyCheckbox = this.querySelector('input[name="privacy_agreement"]');
+        if (!privacyCheckbox || !privacyCheckbox.checked) {
+            alert('Необходимо согласие на обработку персональных данных.');
+            return;
+        }
         
         const formData = new FormData(this);
         const submitButton = this.querySelector('button[type="submit"]');

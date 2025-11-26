@@ -43,6 +43,8 @@
                 </div>
             @enderror
 
+            <x-privacy-checkbox />
+
             <div class="flex gap-4">
                 <button type="submit" 
                         class="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 font-medium">

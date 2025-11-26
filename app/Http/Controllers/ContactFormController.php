@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class ContactFormController extends Controller
 {
@@ -18,6 +18,7 @@ class ContactFormController extends Controller
                 'phone' => 'required|string|max:20',
                 'messenger' => 'required|string|in:telegram,whatsapp,viber,instagram',
                 'messengerContact' => 'required|string|max:255',
+                'privacy_agreement' => 'required|accepted',
             ]);
 
             Log::info('Данные валидированы успешно', $validated);
@@ -31,12 +32,12 @@ class ContactFormController extends Controller
 
             Log::info('Попытка отправки письма', [
                 'to' => 'mail@dr-chenkova.com',
-                'data' => $data
+                'data' => $data,
             ]);
 
-            Mail::send('emails.contact-form', $data, function($message) {
+            Mail::send('emails.contact-form', $data, function ($message) {
                 $message->to('mail@dr-chenkova.com')
-                        ->subject('Новая заявка на обучение');
+                    ->subject('Новая заявка на обучение');
             });
 
             Log::info('Письмо успешно отправлено');
@@ -46,12 +47,12 @@ class ContactFormController extends Controller
             Log::error('Ошибка при отправке формы', [
                 'error' => $e->getMessage(),
                 'trace' => $e->getTraceAsString(),
-                'request_data' => $request->all()
+                'request_data' => $request->all(),
             ]);
 
             return response()->json([
-                'message' => 'Ошибка при отправке: ' . $e->getMessage()
+                'message' => 'Ошибка при отправке: '.$e->getMessage(),
             ], 500);
         }
     }
-} 
+}

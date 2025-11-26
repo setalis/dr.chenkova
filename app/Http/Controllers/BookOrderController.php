@@ -64,7 +64,7 @@ class BookOrderController extends Controller
                 'body' => $response->body(),
             ]);
 
-            throw new \RuntimeException('Ошибка при создании инвойса в Monobank: ' . $response->body());
+            throw new \RuntimeException('Ошибка при создании инвойса в Monobank: '.$response->body());
         } catch (\Exception $e) {
             Log::error('Monobank API exception', [
                 'message' => $e->getMessage(),
@@ -104,7 +104,7 @@ class BookOrderController extends Controller
                 'body' => $response->body(),
             ]);
 
-            throw new \RuntimeException('Ошибка при проверке статуса инвойса в Monobank: ' . $response->body());
+            throw new \RuntimeException('Ошибка при проверке статуса инвойса в Monobank: '.$response->body());
         } catch (\Exception $e) {
             Log::error('Monobank API exception - status check', [
                 'invoice_id' => $invoiceId,
@@ -119,41 +119,43 @@ class BookOrderController extends Controller
     {
         // ДИАГНОСТИЧЕСКИЙ РЕЖИМ - пошаговое тестирование
         // Раскомментируйте нужный шаг для диагностики на продакшене
-        
+
         // ШАГ 1: Простейший тест - возвращаем текст
         // Если это работает, значит контроллер и роут работают
         // return response('TEST: BookOrderController работает!', 200);
-        
+
         // ШАГ 2: Простой view без компонентов (файл test-simple.blade.php уже создан)
         // return view('test-simple');
-        
+
         // ШАГ 3: Проверка view с компонентом (текущий вариант)
         try {
             Log::info('BookOrderController::create called - START');
-            
+
             // Проверяем существование view файла
             $viewPath = resource_path('views/book-order/create.blade.php');
-            if (!file_exists($viewPath)) {
+            if (! file_exists($viewPath)) {
                 Log::error('View file not found', ['path' => $viewPath]);
-                return response('Ошибка: файл представления не найден: ' . $viewPath, 500);
+
+                return response('Ошибка: файл представления не найден: '.$viewPath, 500);
             }
-            
+
             Log::info('View file exists', ['path' => $viewPath, 'size' => filesize($viewPath)]);
-            
+
             // Проверяем существование компонента main
             $componentPath = resource_path('views/components/layouts/main.blade.php');
-            if (!file_exists($componentPath)) {
+            if (! file_exists($componentPath)) {
                 Log::error('Component file not found', ['path' => $componentPath]);
-                return response('Ошибка: компонент main не найден: ' . $componentPath, 500);
+
+                return response('Ошибка: компонент main не найден: '.$componentPath, 500);
             }
-            
+
             Log::info('Component file exists', ['path' => $componentPath]);
-            
+
             // Пробуем загрузить view с учетом локали
             Log::info('Attempting to create view object', ['locale' => app()->getLocale()]);
             $view = view_locale('book-order.create');
             Log::info('View object created successfully');
-            
+
             return $view;
         } catch (\Exception $e) {
             Log::error('Error in BookOrderController::create', [
@@ -167,9 +169,9 @@ class BookOrderController extends Controller
                     'line' => $e->getPrevious()->getLine(),
                 ] : null,
             ]);
-            
+
             // Возвращаем ошибку в читаемом виде для диагностики
-            return response('Ошибка: ' . $e->getMessage() . ' в файле ' . $e->getFile() . ':' . $e->getLine(), 500);
+            return response('Ошибка: '.$e->getMessage().' в файле '.$e->getFile().':'.$e->getLine(), 500);
         }
     }
 
@@ -186,6 +188,7 @@ class BookOrderController extends Controller
             Log::error('Currency not found in config', [
                 'currency' => $currency,
             ]);
+
             return redirect()
                 ->back()
                 ->withInput()
@@ -246,7 +249,7 @@ class BookOrderController extends Controller
                 'session_data' => $orderData,
                 'request_params' => $request->all(),
             ]);
-            
+
             return view_locale('book-order.error', [
                 'message' => 'Данные заказа не найдены. Если оплата была успешной, мы свяжемся с вами в ближайшее время.',
             ]);
@@ -276,9 +279,9 @@ class BookOrderController extends Controller
                             'status' => 'success',
                         ], function ($message) {
                             $message->to('mail@dr-chenkova.com')
-                                    ->subject('Новый заказ бумажной книги');
+                                ->subject('Новый заказ бумажной книги');
                         });
-                        
+
                         Log::info('Order email sent successfully', [
                             'invoice_id' => $invoiceId,
                         ]);
@@ -288,10 +291,10 @@ class BookOrderController extends Controller
                             'error' => $e->getMessage(),
                         ]);
                     }
-                    
+
                     // Очищаем сессию после успешной обработки
                     session()->forget('book_order');
-                    
+
                     return view_locale('book-order.success', [
                         'order' => $orderData,
                     ]);
@@ -304,7 +307,7 @@ class BookOrderController extends Controller
 
                     // Очищаем сессию
                     session()->forget('book_order');
-                    
+
                     return view_locale('book-order.success', [
                         'order' => [
                             'invoice_id' => $invoiceId,
@@ -354,10 +357,10 @@ class BookOrderController extends Controller
     private function getErrorMessage(array $invoiceStatus): string
     {
         // Проверяем различные варианты названий полей с кодом ошибки
-        $errCode = $invoiceStatus['errCode'] 
-            ?? $invoiceStatus['errorCode'] 
-            ?? $invoiceStatus['error_code'] 
-            ?? $invoiceStatus['code'] 
+        $errCode = $invoiceStatus['errCode']
+            ?? $invoiceStatus['errorCode']
+            ?? $invoiceStatus['error_code']
+            ?? $invoiceStatus['code']
             ?? null;
 
         $status = $invoiceStatus['status'] ?? 'unknown';
@@ -447,7 +450,8 @@ class BookOrderController extends Controller
                 'errCode' => $errCodeInt,
                 'invoice_status' => $invoiceStatus,
             ]);
-            return 'Оплата не прошла (код ошибки: ' . $errCodeInt . '). Пожалуйста, попробуйте еще раз или свяжитесь с поддержкой.';
+
+            return 'Оплата не прошла (код ошибки: '.$errCodeInt.'). Пожалуйста, попробуйте еще раз или свяжитесь с поддержкой.';
         }
 
         // Проверяем статус
@@ -481,13 +485,24 @@ class BookOrderController extends Controller
     {
         $request->validate([
             'email' => 'required|email|max:255',
+            'privacy_agreement' => 'required|accepted',
         ], [
-            'email.required' => app()->getLocale() === 'uk' 
-                ? 'Email обов\'язковий для заповнення.' 
+            'email.required' => app()->getLocale() === 'uk'
+                ? 'Email обов\'язковий для заповнення.'
                 : 'Email обязателен для заполнения.',
             'email.email' => app()->getLocale() === 'uk'
                 ? 'Будь ласка, введіть коректний email адрес.'
                 : 'Пожалуйста, введите корректный email адрес.',
+            'privacy_agreement.required' => app()->getLocale() === 'uk'
+                ? 'Необхідна згода на обробку персональних даних.'
+                : (app()->getLocale() === 'ka'
+                    ? 'საჭიროა თანხმობა პერსონალური მონაცემების დამუშავებაზე.'
+                    : 'Необходимо согласие на обработку персональных данных.'),
+            'privacy_agreement.accepted' => app()->getLocale() === 'uk'
+                ? 'Необхідна згода на обробку персональних даних.'
+                : (app()->getLocale() === 'ka'
+                    ? 'საჭიროა თანხმობა პერსონალური მონაცემების დამუშავებაზე.'
+                    : 'Необходимо согласие на обработку персональных данных.'),
         ]);
 
         $currency = config('monobank.default_currency', 'UAH');
@@ -499,10 +514,11 @@ class BookOrderController extends Controller
             Log::error('Currency not found in config', [
                 'currency' => $currency,
             ]);
+
             return redirect()
                 ->back()
                 ->withInput()
-                ->withErrors(['payment' => app()->getLocale() === 'uk' 
+                ->withErrors(['payment' => app()->getLocale() === 'uk'
                     ? 'Помилка конфігурації валюти. Будь ласка, зв\'яжіться з підтримкою.'
                     : 'Ошибка конфигурации валюты. Пожалуйста, свяжитесь с поддержкой.']);
         }
@@ -578,55 +594,55 @@ class BookOrderController extends Controller
                 if (isset($orderData['email'])) {
                     try {
                         $locale = app()->getLocale();
-                        $subject = $locale === 'uk' 
-                            ? 'Ваші файли електронної книги' 
+                        $subject = $locale === 'uk'
+                            ? 'Ваші файли електронної книги'
                             : 'Ваши файлы электронной книги';
-                        
+
                         // Определяем имя view для email
                         $emailView = 'emails.ebook-files';
                         if ($locale === 'uk' && view()->exists('emails.ebook-files-uk')) {
                             $emailView = 'emails.ebook-files-uk';
                         }
-                        
+
                         Mail::send($emailView, [
                             'order' => $orderData,
                             'locale' => $locale,
                         ], function ($message) use ($orderData, $subject) {
                             $message->to($orderData['email'])
-                                    ->subject($subject);
-                            
+                                ->subject($subject);
+
                             // Прикрепляем файлы книги в 4 форматах
                             $filesDir = storage_path('app/public/files/');
-                            
+
                             // EPUB
                             $epubFile = config('monobank.ebook.file_name', 'Kozha_na_vsiu_zhizn_Sovriemie_Alina_Valientinovna_Chienkova_1.epub');
-                            $epubPath = $filesDir . $epubFile;
+                            $epubPath = $filesDir.$epubFile;
                             if (file_exists($epubPath)) {
                                 $message->attach($epubPath, ['as' => $epubFile]);
                             }
-                            
+
                             // PDF
                             $pdfFile = config('monobank.ebook.pdf_file_name', 'Kozha_na_vsiu_zhizn_Sovriemie_Alina_Valientinovna_Chienkova_1.pdf');
-                            $pdfPath = $filesDir . $pdfFile;
+                            $pdfPath = $filesDir.$pdfFile;
                             if (file_exists($pdfPath)) {
                                 $message->attach($pdfPath, ['as' => $pdfFile]);
                             }
-                            
+
                             // MOBI
                             $mobiFile = config('monobank.ebook.mobi_file_name', 'Kozha_na_vsiu_zhizn_Sovriemie_Alina_Valientinovna_Chienkova_1.mobi');
-                            $mobiPath = $filesDir . $mobiFile;
+                            $mobiPath = $filesDir.$mobiFile;
                             if (file_exists($mobiPath)) {
                                 $message->attach($mobiPath, ['as' => $mobiFile]);
                             }
-                            
+
                             // FB2
                             $fb2File = config('monobank.ebook.fb2_file_name', 'Kozha_na_vsiu_zhizn_Sovriemie_Alina_Valientinovna_Chienkova_1.fb2');
-                            $fb2Path = $filesDir . $fb2File;
+                            $fb2Path = $filesDir.$fb2File;
                             if (file_exists($fb2Path)) {
                                 $message->attach($fb2Path, ['as' => $fb2File]);
                             }
                         });
-                        
+
                         Log::info('Ebook files email sent successfully', [
                             'email' => $orderData['email'],
                             'invoice_id' => $orderData['invoice_id'],
@@ -639,10 +655,10 @@ class BookOrderController extends Controller
                         ]);
                     }
                 }
-                
+
                 // Сохраняем данные заказа в сессию для скачивания файла (на случай если email не отправился)
                 session(['ebook_order_download' => $orderData]);
-                
+
                 // Показываем страницу успеха с информацией об отправке email
                 return view_locale('ebook-order.success', [
                     'order' => $orderData,
@@ -696,7 +712,7 @@ class BookOrderController extends Controller
         // Проверяем статус платежа еще раз для безопасности
         try {
             $invoiceStatus = $this->getInvoiceStatus($orderData['invoice_id']);
-            
+
             if (($invoiceStatus['status'] ?? null) !== 'success') {
                 return redirect()
                     ->route('book')
@@ -707,20 +723,20 @@ class BookOrderController extends Controller
                 'invoice_id' => $orderData['invoice_id'],
                 'error' => $e->getMessage(),
             ]);
-            
+
             return redirect()
                 ->route('book')
                 ->withErrors(['download' => 'Не удалось проверить статус платежа.']);
         }
 
         $fileName = config('monobank.ebook.file_name', 'Kozha_na_vsiu_zhizn_Sovriemie_Alina_Valientinovna_Chienkova_1.epub');
-        $filePath = storage_path('app/public/files/' . $fileName);
+        $filePath = storage_path('app/public/files/'.$fileName);
 
         if (! file_exists($filePath)) {
             Log::error('Ebook file not found', [
                 'path' => $filePath,
             ]);
-            
+
             return redirect()
                 ->route('book')
                 ->withErrors(['download' => 'Файл не найден. Пожалуйста, свяжитесь с поддержкой.']);
@@ -743,7 +759,7 @@ class BookOrderController extends Controller
         // Проверяем статус платежа еще раз для безопасности
         try {
             $invoiceStatus = $this->getInvoiceStatus($orderData['invoice_id']);
-            
+
             if (($invoiceStatus['status'] ?? null) !== 'success') {
                 return redirect()
                     ->route('book')
@@ -754,20 +770,20 @@ class BookOrderController extends Controller
                 'invoice_id' => $orderData['invoice_id'],
                 'error' => $e->getMessage(),
             ]);
-            
+
             return redirect()
                 ->route('book')
                 ->withErrors(['download' => 'Не удалось проверить статус платежа.']);
         }
 
         $fileName = config('monobank.ebook.pdf_file_name', 'Kozha_na_vsiu_zhizn_Sovriemie_Alina_Valientinovna_Chienkova_1.pdf');
-        $filePath = storage_path('app/public/files/' . $fileName);
+        $filePath = storage_path('app/public/files/'.$fileName);
 
         if (! file_exists($filePath)) {
             Log::error('Ebook PDF file not found', [
                 'path' => $filePath,
             ]);
-            
+
             return redirect()
                 ->route('book')
                 ->withErrors(['download' => 'PDF файл не найден. Пожалуйста, свяжитесь с поддержкой.']);
@@ -775,7 +791,7 @@ class BookOrderController extends Controller
 
         // Проверяем, запрошено ли принудительное скачивание через JavaScript (для Instagram браузера)
         $forceDownload = $request->boolean('force', false);
-        
+
         if ($forceDownload) {
             // Возвращаем промежуточную страницу с JavaScript для принудительного скачивания
             return view_locale('ebook-order.force-download-pdf', [
@@ -787,13 +803,13 @@ class BookOrderController extends Controller
         // Принудительное скачивание для Instagram браузера и других мобильных браузеров
         // Используем явные заголовки для гарантированного скачивания файла
         // Instagram браузер может игнорировать стандартные заголовки, поэтому используем более строгие настройки
-        
+
         return response()->download(
-            $filePath, 
+            $filePath,
             $fileName,
             [
                 'Content-Type' => 'application/pdf',
-                'Content-Disposition' => 'attachment; filename="' . addslashes($fileName) . '"',
+                'Content-Disposition' => 'attachment; filename="'.addslashes($fileName).'"',
                 'Content-Transfer-Encoding' => 'binary',
                 'Cache-Control' => 'no-cache, no-store, must-revalidate',
                 'Pragma' => 'no-cache',
@@ -817,7 +833,7 @@ class BookOrderController extends Controller
         // Проверяем статус платежа еще раз для безопасности
         try {
             $invoiceStatus = $this->getInvoiceStatus($orderData['invoice_id']);
-            
+
             if (($invoiceStatus['status'] ?? null) !== 'success') {
                 return response('Платеж не был завершен успешно', 403);
             }
@@ -826,25 +842,25 @@ class BookOrderController extends Controller
                 'invoice_id' => $orderData['invoice_id'],
                 'error' => $e->getMessage(),
             ]);
-            
+
             return response('Не удалось проверить статус платежа', 500);
         }
 
         $fileName = config('monobank.ebook.pdf_file_name', 'Kozha_na_vsiu_zhizn_Sovriemie_Alina_Valientinovna_Chienkova_1.pdf');
-        $filePath = storage_path('app/public/files/' . $fileName);
+        $filePath = storage_path('app/public/files/'.$fileName);
 
         if (! file_exists($filePath)) {
             Log::error('Ebook PDF file not found', [
                 'path' => $filePath,
             ]);
-            
+
             return response('PDF файл не найден', 404);
         }
 
         // Возвращаем файл с заголовками для прямого доступа через JavaScript fetch
         return response()->file($filePath, [
             'Content-Type' => 'application/pdf',
-            'Content-Disposition' => 'inline; filename="' . addslashes($fileName) . '"',
+            'Content-Disposition' => 'inline; filename="'.addslashes($fileName).'"',
             'Cache-Control' => 'no-cache, no-store, must-revalidate',
             'Pragma' => 'no-cache',
             'Expires' => '0',
@@ -859,25 +875,25 @@ class BookOrderController extends Controller
         // Сначала проверяем наличие файла отрывка, если его нет - используем полный PDF
         $excerptFileName = config('monobank.ebook.excerpt_file_name', 'excerpt-book.pdf');
         $pdfFileName = config('monobank.ebook.pdf_file_name', 'Kozha_na_vsiu_zhizn_Sovriemie_Alina_Valientinovna_Chienkova_1.pdf');
-        
+
         // Логируем значения конфига для отладки
         Log::info('viewExcerpt called', [
             'excerpt_file_name' => $excerptFileName,
             'pdf_file_name' => $pdfFileName,
             'locale' => $locale,
         ]);
-        
+
         // Если указан файл отрывка и он не пустой, проверяем его существование
-        if ($excerptFileName && !empty($excerptFileName) && $excerptFileName !== 'null') {
-            $excerptFilePath = storage_path('app/public/files/' . $excerptFileName);
-            
+        if ($excerptFileName && ! empty($excerptFileName) && $excerptFileName !== 'null') {
+            $excerptFilePath = storage_path('app/public/files/'.$excerptFileName);
+
             Log::info('Checking excerpt file', [
                 'excerpt_file' => $excerptFileName,
                 'excerpt_path' => $excerptFilePath,
                 'file_exists' => file_exists($excerptFilePath),
                 'is_readable' => is_readable($excerptFilePath),
             ]);
-            
+
             if (file_exists($excerptFilePath) && is_readable($excerptFilePath)) {
                 // Файл отрывка существует и доступен для чтения, используем его
                 Log::info('Using excerpt file', [
@@ -885,10 +901,10 @@ class BookOrderController extends Controller
                     'path' => $excerptFilePath,
                     'size' => filesize($excerptFilePath),
                 ]);
-                
+
                 return response()->file($excerptFilePath, [
                     'Content-Type' => 'application/pdf',
-                    'Content-Disposition' => 'inline; filename="' . addslashes($excerptFileName) . '"',
+                    'Content-Disposition' => 'inline; filename="'.addslashes($excerptFileName).'"',
                     'Cache-Control' => 'public, max-age=3600',
                 ]);
             } else {
@@ -904,25 +920,25 @@ class BookOrderController extends Controller
                 'excerpt_file_name' => $excerptFileName,
             ]);
         }
-        
+
         // Используем полный PDF (fallback)
-        $filePath = storage_path('app/public/files/' . $pdfFileName);
-        
+        $filePath = storage_path('app/public/files/'.$pdfFileName);
+
         Log::info('Checking full PDF file', [
             'pdf_file' => $pdfFileName,
             'pdf_path' => $filePath,
             'file_exists' => file_exists($filePath),
             'is_readable' => is_readable($filePath),
         ]);
-        
-        if (! file_exists($filePath) || !is_readable($filePath)) {
+
+        if (! file_exists($filePath) || ! is_readable($filePath)) {
             Log::error('Book PDF file not found or not readable', [
                 'path' => $filePath,
                 'excerpt_file' => $excerptFileName,
                 'file_exists' => file_exists($filePath),
                 'is_readable' => is_readable($filePath),
             ]);
-            
+
             abort(404, 'Файл книги не найден. Пожалуйста, свяжитесь с администратором.');
         }
 
@@ -932,10 +948,10 @@ class BookOrderController extends Controller
             'path' => $filePath,
             'size' => filesize($filePath),
         ]);
-        
+
         return response()->file($filePath, [
             'Content-Type' => 'application/pdf',
-            'Content-Disposition' => 'inline; filename="' . addslashes($pdfFileName) . '"',
+            'Content-Disposition' => 'inline; filename="'.addslashes($pdfFileName).'"',
             'Cache-Control' => 'public, max-age=3600',
         ]);
     }

@@ -25,6 +25,7 @@ class StoreBookOrderRequest extends FormRequest
             'address_2' => ['nullable', 'string', 'max:500'],
             'zip' => ['required', 'string', 'max:20'],
             'phone' => ['required', 'string', 'max:20'],
+            'privacy_agreement' => ['required', 'accepted'],
         ];
     }
 
@@ -58,6 +59,8 @@ class StoreBookOrderRequest extends FormRequest
             'phone.required' => 'Номер телефона обязателен для заполнения.',
             'phone.string' => 'Номер телефона должен быть строкой.',
             'phone.max' => 'Номер телефона не должен превышать 20 символов.',
+            'privacy_agreement.required' => 'Необходимо согласие на обработку персональных данных.',
+            'privacy_agreement.accepted' => 'Необходимо согласие на обработку персональных данных.',
         ];
     }
 }
