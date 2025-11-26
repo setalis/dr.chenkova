@@ -1,12 +1,29 @@
 <footer>
-    <div class="container mx-auto px-4 py-3 flex justify-between items-center pb-4">
-        <div class="text-gray-600 font-bold">
-            <span class="text-teal-600">Dr.</span>Chenkova
+    <div class="container mx-auto px-4 py-3">
+        <!-- Ссылки на страницы -->
+        <div class="flex flex-wrap justify-center gap-4 mb-4 text-sm">
+            <a href="{{ route_locale('contact') }}" class="text-gray-600 hover:text-gray-900 transition-all">
+                {{ app()->getLocale() === 'uk' ? 'Контакти' : (app()->getLocale() === 'ka' ? 'კონტაქტები' : 'Контакты') }}
+            </a>
+            <span class="text-gray-400">|</span>
+            <a href="{{ route_locale('privacy-policy') }}" class="text-gray-600 hover:text-gray-900 transition-all">
+                {{ app()->getLocale() === 'uk' ? 'Політика конфіденційності' : (app()->getLocale() === 'ka' ? 'კონფიდენციალურობის პოლიტიკა' : 'Политика конфиденциальности') }}
+            </a>
+            <span class="text-gray-400">|</span>
+            <a href="{{ route_locale('legal-info') }}" class="text-gray-600 hover:text-gray-900 transition-all">
+                {{ app()->getLocale() === 'uk' ? 'Умови обміну та повернення' : (app()->getLocale() === 'ka' ? 'გაცვლისა და დაბრუნების პირობები' : 'Условия обмена и возврата') }}
+            </a>
         </div>
-        <div class="text-gray-600 hidden md:block">
-            2025 All Right Reserved
-        </div>
-        <div class="flex md:flex items-center space-x-4 text-gray-900">
+        
+        <!-- Основной контент футера -->
+        <div class="flex justify-between items-center pb-4">
+            <div class="text-gray-600 font-bold">
+                <span class="text-teal-600">Dr.</span>Chenkova
+            </div>
+            <div class="text-gray-600 hidden md:block">
+                2025 All Right Reserved
+            </div>
+            <div class="flex md:flex items-center space-x-4 text-gray-900">
             <a href="tel:+995555954169" class="text-gray-900 hover:text-gray-900 drop-shadow-[0_0_15px_rgba(255,255,255,0.9)] hover:drop-shadow-[0_0_25px_rgba(255,255,255,1)] transition-all">
                 <svg class="w-5 h-5" fill="#214992" viewBox="0 0 20 20">
                     <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
