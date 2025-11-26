@@ -51,6 +51,10 @@ Route::prefix('{locale}')->where(['locale' => 'ru|uk|ka'])->middleware('locale')
         return view_locale('legal-info');
     })->name('legal-info');
 
+    Route::get('/privacy-policy', function ($locale) {
+        return view_locale('privacy-policy');
+    })->name('privacy-policy');
+
     Route::get('/book', function ($locale) {
         return view_locale('book');
     })->name('book');
