@@ -35,11 +35,15 @@ return [
 
     'paper_book' => [
         'price' => env('MONOBANK_PAPER_BOOK_PRICE', 3500), // в копейках
+        'price_gel' => env('MONOBANK_PAPER_BOOK_PRICE_GEL', 100), // цена в грузинских лари
+        'price_usd' => env('MONOBANK_PAPER_BOOK_PRICE_USD', 35), // цена в долларах США
         'name' => env('MONOBANK_PAPER_BOOK_NAME', 'Бумажная книга'),
     ],
 
     'ebook' => [
         'price' => env('MONOBANK_EBOOK_PRICE', 1700), // в копейках
+        'price_gel' => env('MONOBANK_EBOOK_PRICE_GEL', 50), // цена в грузинских лари
+        'price_usd' => env('MONOBANK_EBOOK_PRICE_USD', 17), // цена в долларах США
         'name' => env('MONOBANK_EBOOK_NAME', 'Электронная книга'),
         'file_name' => env('MONOBANK_EBOOK_FILE_NAME', 'Kozha_na_vsiu_zhizn_Sovriemie_Alina_Valientinovna_Chienkova_1.epub'),
         'pdf_file_name' => env('MONOBANK_EBOOK_PDF_FILE_NAME', 'Kozha_na_vsiu_zhizn_Sovriemie_Alina_Valientinovna_Chienkova_1.pdf'),

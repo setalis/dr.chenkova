@@ -56,10 +56,11 @@
                         <h2 class="text-2xl font-bold text-gray-700">"კანი მთელი ცხოვრებისთვის"</h2>
                         <p class="text-gray-700">«კანი მთელი ცხოვრებისთვის» — ეს არის სამეცნიერო-პოპულარული და ამავე დროს ღრმად პირადი წიგნი ექიმ-დერმატოლოგის, რომელიც აბრუნებს კანის მოვლის შესახებ წარმოდგენებს. მასში გაერთიანებულია დასაბუთებული მედიცინა, პირადი პროფესიონალური გამოცდილება და ადამიანური ისტორიები — ყველაფერი იმისთვის, რომ ვუპასუხოთ მთავარ კითხვას: როგორ შევინარჩუნოთ კანის ჯანმრთელობა და სილამაზე დიდი წლების განმავლობაში?</p>
                         @php
-                            $currency = config('monobank.default_currency', 'UAH');
-                            $currencySymbol = config("monobank.currencies.{$currency}.symbol", '₴');
-                            $paperBookPrice = config('monobank.paper_book.price', 50000) / 100;
-                            $ebookPrice = config('monobank.ebook.price', 30000) / 100;
+                            // Цены в грузинских лари и долларах из конфига
+                            $paperBookPriceGEL = config('monobank.paper_book.price_gel', 100);
+                            $paperBookPriceUSD = config('monobank.paper_book.price_usd', 35);
+                            $ebookPriceGEL = config('monobank.ebook.price_gel', 50);
+                            $ebookPriceUSD = config('monobank.ebook.price_usd', 17);
                         @endphp
                         <div class="flex flex-col md:flex-row gap-4 mb-2">
                             <div class="flex-1 bg-gradient-to-br from-cyan-50 to-blue-50 border border-cyan-200 rounded-xl p-4 shadow-sm flex flex-col">
@@ -70,8 +71,8 @@
                                     </svg>
                                 </div>
                                 <div class="flex items-baseline gap-1 mb-4">
-                                    <span class="text-3xl font-bold text-gray-800">{{ number_format($paperBookPrice, 0, ',', ' ') }}</span>
-                                    <span class="text-lg font-semibold text-gray-600">{{ $currencySymbol }}</span>
+                                    <span class="text-3xl font-bold text-gray-800">{{ number_format($paperBookPriceGEL, 0, ',', ' ') }} ₾</span>
+                                    <span class="text-lg font-semibold text-gray-600">/ ${{ number_format($paperBookPriceUSD, 0, ',', ' ') }}</span>
                                 </div>
                                 <a href="{{route_locale('book-order.create')}}" class="mt-auto">
                                     <button class="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white px-4 py-2 rounded-full w-full uppercase font-bold cursor-pointer transition-all">
@@ -92,8 +93,8 @@
                                     </svg>
                                 </div>
                                 <div class="flex items-baseline gap-1 mb-4">
-                                    <span class="text-3xl font-bold text-gray-800">{{ number_format($ebookPrice, 0, ',', ' ') }}</span>
-                                    <span class="text-lg font-semibold text-gray-600">{{ $currencySymbol }}</span>
+                                    <span class="text-3xl font-bold text-gray-800">{{ number_format($ebookPriceGEL, 0, ',', ' ') }} ₾</span>
+                                    <span class="text-lg font-semibold text-gray-600">/ ${{ number_format($ebookPriceUSD, 0, ',', ' ') }}</span>
                                 </div>
                                 <a href="{{ route_locale('ebook-order.create') }}" class="mt-auto">
                                     <button class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 py-2 rounded-full w-full uppercase font-bold cursor-pointer transition-all">
