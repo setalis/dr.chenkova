@@ -36,16 +36,16 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=844632501297813&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
-</head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-42K2YBZVM0"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-42K2YBZVM0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-  gtag('config', 'G-42K2YBZVM0');
-</script>
+      gtag('config', 'G-42K2YBZVM0');
+    </script>
+</head>
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-gray-100">
         <x-layouts.partials.header />
