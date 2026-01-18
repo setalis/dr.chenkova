@@ -23,7 +23,7 @@
                                 <li>კოსმეტოლოგის როლი აკნეს თერაპიაში და კომბინაცია დერმატოლოგიურ მკურნალობასთან</li>
                                 <li>აკნეს მკურნალობის ახალი მეთოდები: რა მუშაობს ახლა და რა გამოჩნდება მალე</li>
                             </ul>
-                            <a href="https://t.me/acne_channel" target="_blank">
+                            <a href="https://t.me/Alina_Chenkova" target="_blank">
                                 <button class="bg-[#4BAE37] hover:bg-[#3c952a] text-white px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
                                     $150
                                 </button>
@@ -51,7 +51,7 @@
                                 <li>როგორ ამოვიცნოთ და შევასწოროთ ეპიგენეტიკური სინდრომები კოსმეტოლოგიაში</li>
                                 <li>რისგან შედგება სრულყოფილი სტრატეგია პაციენტის მართვისთვის: ანალიზები, ნუტრიენტები, მოვლა და პროცედურები</li>
                             </ul>
-                            <a href="https://t.me/acne_channel" target="_blank">
+                            <a href="https://t.me/Alina_Chenkova" target="_blank">
                                 <button class="bg-[#4BAE37] hover:bg-[#3c952a] text-white px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
                                     $150
                                 </button>

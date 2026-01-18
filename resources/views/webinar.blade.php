@@ -23,7 +23,7 @@
                                 <li>Роль косметолога в терапии акне и сочетание с дерматологическим лечением</li>
                                 <li>Новые методы в лечении акне: что работает уже сейчас и что скоро появится</li>
                             </ul>
-                            <a href="https://t.me/acne_channel" target="_blank">
+                            <a href="https://t.me/Alina_Chenkova" target="_blank">
                                 <button class="bg-[#4BAE37] hover:bg-[#3c952a] text-white px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
                                     $150
                                 </button>
@@ -51,7 +51,7 @@
                                 <li>Как распознать и корректировать эпигенетические синдромы в косметологии</li>
                                 <li>Из чего состоит полноценная стратегия ведения пациента: анализы, нутриенты, уход и процедуры</li>
                             </ul>
-                            <a href="https://t.me/acne_channel" target="_blank">
+                            <a href="https://t.me/Alina_Chenkova" target="_blank">
                                 <button class="bg-[#4BAE37] hover:bg-[#3c952a] text-white px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
                                     $150
                                 </button>
