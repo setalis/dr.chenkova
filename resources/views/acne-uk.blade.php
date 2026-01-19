@@ -49,7 +49,7 @@
                 </p>
             
                 <!-- Текст -->
-                <a href="https://t.me/acne_channel" target="_blank"><button class="bg-[#4BAE37] hover:bg-[#3c952a] text-white px-4 py-2 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">Підписатися</button></a>
+                <a href="https://t.me/acne_stop_chenkova" target="_blank"><button class="bg-[#4BAE37] hover:bg-[#3c952a] text-white px-4 py-2 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">Підписатися</button></a>
                 <div class="flex justify-center items-center mb-6">
                     <h4 class="text-xl text-center font-bold text-gray-700">Приєднуйтеся — нехай шлях до чистої шкіри буде зрозумілим та ефективним</h4>    
                 </div>
