@@ -30,7 +30,7 @@
                             </a>
                             <div class="flex flex-col justify-center items-center mb-6">
                                 <p class="text-md text-center text-gray-700"><span class="font-bold">Тривалість:</span> 240 хвилин.</p>
-                                <p class="text-md text-center text-gray-700"><a href="https://t.me/acne_channel" target="_blank" class="text-blue-500 hover:text-blue-700">Вебінар</a> включає <span class="font-bold">корисні матеріали:</span> схеми, таблиці та чек-листи для застосування в практиці.</p>    
+                                <p class="text-md text-center text-gray-700"><a href="https://t.me/Alina_Chenkova" target="_blank" class="text-blue-500 hover:text-blue-700">Вебінар</a> включає <span class="font-bold">корисні матеріали:</span> схеми, таблиці та чек-листи для застосування в практиці.</p>    
                             </div>
                         </div>
                     </div>
@@ -58,12 +58,49 @@
                             </a>
                             <div class="flex flex-col justify-center items-center mb-6">
                                 <p class="text-md text-center text-gray-700"><span class="font-bold">Тривалість:</span> 240 хвилин.</p>
-                                <p class="text-md text-center text-gray-700"><a href="https://t.me/acne_channel" target="_blank" class="text-blue-500 hover:text-blue-700">Вебінар</a> включає <span class="font-bold">корисні матеріали:</span> схеми, таблиці та чек-листи для застосування в практиці.</p>    
+                                <p class="text-md text-center text-gray-700"><a href="https://t.me/Alina_Chenkova" target="_blank" class="text-blue-500 hover:text-blue-700">Вебінар</a> включає <span class="font-bold">корисні матеріали:</span> схеми, таблиці та чек-листи для застосування в практиці.</p>    
                             </div>
                         </div>
                     </div>
                 </div>
-                
+                <div class="break-inside-avoid mb-8">
+                    <div class="bg-white rounded-lg p-6 shadow-sm">
+                        <img src="{{ asset('storage/images/webinar-1.png') }}" class="w-full h-auto object-cover rounded-lg mb-6" alt="Вебінар про розацею">
+                        <div class="md:px-10 px-2">
+                            <h1 class="text-xl font-bold uppercase text-center text-[#575757] mb-6">Розацея: як лікувати у 2026 році?</h1>
+                            <h3 class="text-base font-bold uppercase text-center text-[#575757] mb-6">📌 Що змінилося до 2026 року?</h3>
+                            <p class="text-base text-gray-700 mb-6">Чому це важливо:</p>
+                            <ul class="list-disc list-inside text-base text-gray-700 mb-6">
+                                <li>хронічний перебіг та виражений психоемоційний компонент</li>
+                                <li>високий ризик помилкової діагностики</li>
+                                <li>часті невдачі при симптоматичному підході</li>
+                            </ul>
+                            <p class="text-base text-gray-700 mb-6">На вебінарі ви дізнаєтеся:</p>
+                            <ul class="list-disc list-inside text-base text-gray-700 mb-6">
+                                <li>сучасні зміни в класифікації розацеї</li>
+                                <li>як точно розрізняти клінічні форми і уникати помилок</li>
+                                <li>нові ланки патогенезу: нейрозапалення, імунітет, бар'єр шкіри, мікробіом</li>
+                                <li>як вибудовувати дерматологічну та косметологічну стратегію</li>
+                                <li>як працювати зі шкірою, нервовою системою, імунітетом та тригерами</li>
+                            </ul>
+                            <ul class="list-disc list-inside text-base text-gray-700 mb-6">
+                                <li>✔️ дерматологи</li>
+                                <li>✔️ косметологи</li>
+                                <li>✔️ лікарі естетичної медицини</li>
+                                <li>✔️ фахівці з хронічних дерматозів</li>
+                            </ul>
+                            <a href="https://t.me/Alina_Chenkova" target="_blank">
+                                <button class="bg-[#4BAE37] hover:bg-[#3c952a] text-white px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
+                                    $150
+                                </button>
+                            </a>
+                            <div class="flex flex-col justify-center items-center mb-6">
+                                <p class="text-md text-center text-gray-700"><span class="font-bold">Тривалість:</span> 240 хвилин.</p>
+                                <p class="text-md text-center text-gray-700"><a href="https://t.me/Alina_Chenkova" target="_blank" class="text-blue-500 hover:text-blue-700">Вебінар</a> включає <span class="font-bold">корисні матеріали:</span> схеми, таблиці та чек-листи для застосування в практиці.</p>    
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>    
     </div>
