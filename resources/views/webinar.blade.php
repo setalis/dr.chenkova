@@ -65,7 +65,7 @@
                 </div>
                 <div class="break-inside-avoid mb-8">
                     <div class="bg-white rounded-lg p-6 shadow-sm">
-                        <img src="{{ asset('storage/images/webinar-1.png') }}" class="w-full h-auto object-cover rounded-lg mb-6" alt="Акне до и после">
+                        <img src="{{ asset('storage/images/webinar-3.jpg') }}" class="w-full h-auto object-cover rounded-lg mb-6" alt="Акне до и после">
                         <div class="md:px-10 px-2">
                             <h1 class="text-xl font-bold uppercase text-center text-[#575757] mb-6">Розацеа: как лечить в 2026 году?</h1>
                             <h3 class="text-base font-bold uppercase text-center text-[#575757] mb-6">📌 Что изменилось к 2026 году?</h3>

@@ -65,7 +65,7 @@
                 </div>
                 <div class="break-inside-avoid mb-8">
                     <div class="bg-white rounded-lg p-6 shadow-sm">
-                        <img src="{{ asset('storage/images/webinar-1.png') }}" class="w-full h-auto object-cover rounded-lg mb-6" alt="ვებინარი როზაცეას შესახებ">
+                        <img src="{{ asset('storage/images/webinar-3.jpg') }}" class="w-full h-auto object-cover rounded-lg mb-6" alt="ვებინარი როზაცეას შესახებ">
                         <div class="md:px-10 px-2">
                             <h1 class="text-xl font-bold uppercase text-center text-[#575757] mb-6">როზაცეა: როგორ ვკურნავოთ 2026 წელს?</h1>
                             <h3 class="text-base font-bold uppercase text-center text-[#575757] mb-6">📌 რა შეიცვალა 2026 წლისთვის?</h3>
