@@ -15,12 +15,12 @@
                             <h1 class="text-xl font-bold uppercase text-center text-[#575757] mb-6">სახე-სახე ტრენინგის პროგრამა №1</h1>
                             <p class="text-lg text-gray-700 mb-6">ამ კურსში შეისწავლით:</p>
                             <ul class="list-disc list-inside text-base text-gray-700 mb-6">
-                                <li>Особливості ботулінічного нейропротеїну в різних торгових марках. У чому їх відмінності, який краще?</li>
-                                <li>Біомеханіка мімічних м'язів обличчя.</li>
-                                <li>Створення індивідуального протоколу для кожного пацієнта. Відходимо від стандартних точок.
+                                <li>ბოტულინის ნეიროპროტეინის მახასიათებლები სხვადასხვა სავაჭრო ნიშნებში. რა განასხვავებს მათ, რომელია უკეთესი?</li>
+                                <li>სახის მიმიკური კუნთების ბიომექანიკა.</li>
+                                <li>ინდივიდუალური პროტოკოლის შექმნა თითოეული პაციენტისთვის. გავდივართ სტანდარტული წერტილებიდან.
                                 </li>
-                                <li>Розбір основних технік.</li>
-                                <li>Відпрацювання на моделях.</li>
+                                <li>ძირითადი ტექნიკების ანალიზი.</li>
+                                <li>მოდელებზე პრაქტიკა.</li>
                             </ul>
                             <div class="flex flex-row justify-start items-center mb-6 gap-4">
                                 <p class="text-lg font-bold text-gray-700 mb-6">კურსის ღირებულება:</p>
@@ -38,16 +38,16 @@
                             <h1 class="text-xl font-bold uppercase text-center text-[#575757] mb-6">სახე-სახე ტრენინგის პროგრამა №2</h1>
                             <p class="text-lg text-gray-700 mb-6">ამ კურსში გაიგებთ:</p>
                             <ul class="list-disc list-inside text-base text-gray-700 mb-6">
-                                <li>Анатомію та морфологію обличчя: шарова будова, іннервація та кровопостачання </li>
-                                <li>Вікові інволюційні зміни</li>
-                                <li>Показання та протипоказання до контурної пластики</li>
-                                <li>Заповнення карти пацієнта та інформованої згоди</li>
-                                <li>Асептику та антисептику в ін'єкційній практиці</li>
-                                <li>Техніки ін'єкцій: вибір підходу залежно від анатомії та віку пацієнта</li>
-                                <li>Класифікацію препаратів та інструментів</li>
-                                <li>Складання індивідуального протоколу корекції</li>
-                                <li>Характеристики препаратів та критерії їх вибору</li>
-                                <li>Небезпечні зони, ускладнення та тактика невідкладної допомоги</li>
+                                <li>სახის ანატომია და მორფოლოგია: შრეობრივი სტრუქტურა, ინერვაცია და სისხლმომარაგება</li>
+                                <li>ასაკობრივი ინვოლუციური ცვლილებები</li>
+                                <li>კონტურული პლასტიკის ჩვენებები და უკუჩვენებები</li>
+                                <li>პაციენტის ბარათის და ინფორმირებული თანხმობის შევსება</li>
+                                <li>ასეპტიკა და ანტისეპტიკა ინექციურ პრაქტიკაში</li>
+                                <li>ინექციის ტექნიკები: მიდგომის არჩევანი პაციენტის ანატომიისა და ასაკის მიხედვით</li>
+                                <li>პრეპარატებისა და ინსტრუმენტების კლასიფიკაცია</li>
+                                <li>ინდივიდუალური კორექციის პროტოკოლის შედგენა</li>
+                                <li>პრეპარატების მახასიათებლები და მათი არჩევის კრიტერიუმები</li>
+                                <li>საშიში ზონები, გართულებები და გადაუდებელი დახმარების ტაქტიკა</li>
                             </ul>
                             <div class="flex flex-row justify-start items-center mb-6 gap-4">
                                 <p class="text-lg font-bold text-gray-700 mb-6">კურსის ღირებულება:</p>
@@ -73,17 +73,17 @@
                                 <li>სამუშაო პროტოკოლები სხვადასხვა ფორმებთან (სპეც. პროტოკოლები სხვადასხვა მწარმოებლების მიხედვით)</li>
                                 <li>გართულებები</li>
                             </ul>
-                            <div class="flex flex-row justify-start items-center mb-6 gap-4">
-                                <div class="flex flex-col items-start">
-                                <p class="text-lg font-bold text-gray-700">1 დღის ღირებულება:</p>
-                                <p class="text-base font-normal text-gray-700 mb-6">თეორია + პრაქტიკა (1 მოდელი)</p>
+                            <div class="flex flex-col md:flex-row justify-start items-center mb-6 gap-4">
+                                <div class="flex flex-col md:items-start items-center text-center md:text-left">
+                                    <p class="text-lg font-bold text-gray-700">1 დღის ღირებულება:</p>
+                                    <p class="text-base font-normal text-gray-700 md:mb-6 mb-3">თეორია + პრაქტიკა (1 მოდელი)</p>
                                 </div>
                                 <button onclick="openModal()" class="bg-[#4BAE37] hover:bg-[#3c952a] text-white text-2xl px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
                                     $1300
                                 </button>
                             </div>
-                            <div class="flex flex-row justify-start items-center mb-6 gap-4">
-                                <div class="flex flex-col items-start">
+                            <div class="flex flex-col md:flex-row justify-start items-center mb-6 gap-4">
+                                <div class="flex flex-col md:items-start items-center md:text-left text-center">
                                     <p class="text-lg font-bold text-gray-700 mb-3">ღირებულება 2 დღისთვის:</p>
                                     <p class="text-base font-normal text-gray-700 mb-1">1 დღე - თეორია + კანულის ხელის დადგმა</p>
                                     <p class="text-base font-normal text-gray-700 mb-6">2 დღე - პრაქტიკა 3-4 მოდელზე</p>

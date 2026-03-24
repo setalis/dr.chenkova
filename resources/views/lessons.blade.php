@@ -74,17 +74,17 @@
                                 <li>Осложнения</li>
                             </ul>
                             
-                            <div class="flex flex-row justify-start items-center mb-6 gap-4">
-                                <div class="flex flex-col flex-1 items-start">
+                            <div class="flex flex-col md:flex-row justify-start items-center mb-6 gap-4">
+                                <div class="flex flex-col md:items-start items-center text-center md:text-left">
                                     <p class="text-lg font-bold text-gray-700">Стоимость 1 дня:</p>
-                                    <p class="text-base font-normal text-gray-700 mb-6">Теория + отработка (1 модель)</p>
+                                    <p class="text-base font-normal text-gray-700 md:mb-6 mb-3">Теория + отработка (1 модель)</p>
                                 </div>
                                 <button onclick="openModal()" class="bg-[#4BAE37] hover:bg-[#3c952a] text-white text-2xl px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
                                     $1300
                                 </button>
                             </div>
-                            <div class="flex flex-row justify-start items-center mb-6 gap-4">
-                                <div class="flex flex-col items-start">
+                            <div class="flex flex-col md:flex-row justify-start items-center mb-6 gap-4">
+                                <div class="flex flex-col md:items-start items-center md:text-left text-center">
                                     <p class="text-lg font-bold text-gray-700 mb-3">Стоимость 2 дней:</p>
                                     <p class="text-base font-normal text-gray-700 mb-1">1 день - теория + постановка руки канюля</p>
                                     <p class="text-base font-normal text-gray-700 mb-6">2 день - отработка 3-4 модели</p>
