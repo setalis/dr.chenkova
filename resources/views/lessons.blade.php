@@ -58,6 +58,33 @@
                         </div>
                     </div>
                 </div>
+                <div class="break-inside-avoid mb-8">
+                    <div class="bg-white rounded-lg p-6 shadow-sm text-gray-700">
+                        <img src="{{ asset('storage/images/lessons-2.png') }}" class="w-full h-auto object-cover rounded-lg mb-6" alt="Урок 2">
+                        <div class="md:px-10 px-2">
+                            <h1 class="text-xl font-bold uppercase text-center text-[#575757] mb-6">PLA - через призму диагностики механизма потери коллагена</h1>
+                            <p class="text-lg text-gray-700 mb-6">В этом курсе вы узнаете:</p>
+                            <ul class="list-disc list-inside text-base text-gray-700 mb-6">
+                                <li>Физиология старения </li>
+                                <li>Эпигенетика старения</li>
+                                <li>Диагноз</li>
+                                <li>Что такое полимолочная</li>
+                                <li>Классификация механизм работы PLA</li>
+                                <li>Протоколы работы с разными формами (спец протоколы по разным производителям)</li>
+                                <li>Осложнения</li>
+                            </ul>
+                            <div class="flex flex-row justify-start items-center mb-6 gap-4">
+                                <div class="flex flex-col items-start">
+                                <p class="text-lg font-bold text-gray-700">Стоимость 1 дня:</p>
+                                <p class="text-base font-normal text-gray-700 mb-6">Теория + отработка (1 модель)</p>
+                                </div>
+                                <button onclick="openModal()" class="bg-[#4BAE37] hover:bg-[#3c952a] text-white text-2xl px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
+                                    $1300
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 
             </div>
         </div>    
