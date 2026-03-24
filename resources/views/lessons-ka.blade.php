@@ -22,9 +22,9 @@
                                 <li>ძირითადი ტექნიკების ანალიზი.</li>
                                 <li>მოდელებზე პრაქტიკა.</li>
                             </ul>
-                            <div class="flex flex-row justify-start items-center mb-6 gap-4">
-                                <p class="text-lg font-bold text-gray-700 mb-6">კურსის ღირებულება:</p>
-                                <button onclick="openModal()" class="bg-[#4BAE37] hover:bg-[#3c952a] text-white text-2xl px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
+                            <div class="flex flex-col md:flex-row justify-start items-center mb-6 gap-4">
+                                <p class="text-lg font-bold text-gray-700">კურსის ღირებულება:</p>
+                                <button onclick="openModal()" class="bg-[#4BAE37] hover:bg-[#3c952a] text-white text-2xl px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer">
                                     $1000
                                 </button>
                             </div>                            
@@ -49,9 +49,9 @@
                                 <li>პრეპარატების მახასიათებლები და მათი არჩევის კრიტერიუმები</li>
                                 <li>საშიში ზონები, გართულებები და გადაუდებელი დახმარების ტაქტიკა</li>
                             </ul>
-                            <div class="flex flex-row justify-start items-center mb-6 gap-4">
-                                <p class="text-lg font-bold text-gray-700 mb-6">კურსის ღირებულება:</p>
-                                <button onclick="openModal()" class="bg-[#4BAE37] hover:bg-[#3c952a] text-white text-2xl px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
+                            <div class="flex flex-col md:flex-row justify-start items-center mb-6 gap-4">
+                                <p class="text-lg font-bold text-gray-700">კურსის ღირებულება:</p>
+                                <button onclick="openModal()" class="bg-[#4BAE37] hover:bg-[#3c952a] text-white text-2xl px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer">
                                     $1500
                                 </button>
                             </div>
