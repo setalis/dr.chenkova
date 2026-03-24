@@ -60,7 +60,7 @@
                 </div>
                 <div class="break-inside-avoid mb-8">
                     <div class="bg-white rounded-lg p-6 shadow-sm text-gray-700">
-                        <img src="{{ asset('storage/images/lessons-2.png') }}" class="w-full h-auto object-cover rounded-lg mb-6" alt="Урок 2">
+                        <img src="{{ asset('storage/images/lessons-3.jpg') }}" class="w-full h-auto object-cover rounded-lg mb-6" alt="Урок 2">
                         <div class="md:px-10 px-2">
                             <h1 class="text-xl font-bold uppercase text-center text-[#575757] mb-6">PLA — крізь призму діагностики механізму втрати колагену</h1>
                             <p class="text-lg text-gray-700 mb-6">У цьому курсі ви дізнаєтеся:</p>
@@ -80,6 +80,16 @@
                                 </div>
                                 <button onclick="openModal()" class="bg-[#4BAE37] hover:bg-[#3c952a] text-white text-2xl px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
                                     $1300
+                                </button>
+                            </div>
+                            <div class="flex flex-row justify-start items-center mb-6 gap-4">
+                                <div class="flex flex-col items-start">
+                                    <p class="text-lg font-bold text-gray-700 mb-3">Вартість 2 днів:</p>
+                                    <p class="text-base font-normal text-gray-700 mb-1">1 день - теорія + постановка руки канюля</p>
+                                    <p class="text-base font-normal text-gray-700 mb-6">2 день - відпрацювання 3-4 моделі</p>
+                                </div>
+                                <button onclick="openModal()" class="bg-[#4BAE37] hover:bg-[#3c952a] text-white text-2xl px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
+                                    $2500
                                 </button>
                             </div>
                         </div>

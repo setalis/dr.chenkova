@@ -60,7 +60,7 @@
                 </div>
                 <div class="break-inside-avoid mb-8">
                     <div class="bg-white rounded-lg p-6 shadow-sm text-gray-700">
-                        <img src="{{ asset('storage/images/lessons-2.png') }}" class="w-full h-auto object-cover rounded-lg mb-6" alt="Урок 2">
+                        <img src="{{ asset('storage/images/lessons-3.jpg') }}" class="w-full h-auto object-cover rounded-lg mb-6" alt="Урок 2">
                         <div class="md:px-10 px-2">
                             <h1 class="text-xl font-bold uppercase text-center text-[#575757] mb-6">PLA - через призму диагностики механизма потери коллагена</h1>
                             <p class="text-lg text-gray-700 mb-6">В этом курсе вы узнаете:</p>
@@ -73,13 +73,24 @@
                                 <li>Протоколы работы с разными формами (спец протоколы по разным производителям)</li>
                                 <li>Осложнения</li>
                             </ul>
+                            
                             <div class="flex flex-row justify-start items-center mb-6 gap-4">
-                                <div class="flex flex-col items-start">
-                                <p class="text-lg font-bold text-gray-700">Стоимость 1 дня:</p>
-                                <p class="text-base font-normal text-gray-700 mb-6">Теория + отработка (1 модель)</p>
+                                <div class="flex flex-col flex-1 items-start">
+                                    <p class="text-lg font-bold text-gray-700">Стоимость 1 дня:</p>
+                                    <p class="text-base font-normal text-gray-700 mb-6">Теория + отработка (1 модель)</p>
                                 </div>
                                 <button onclick="openModal()" class="bg-[#4BAE37] hover:bg-[#3c952a] text-white text-2xl px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
                                     $1300
+                                </button>
+                            </div>
+                            <div class="flex flex-row justify-start items-center mb-6 gap-4">
+                                <div class="flex flex-col items-start">
+                                    <p class="text-lg font-bold text-gray-700 mb-3">Стоимость 2 дней:</p>
+                                    <p class="text-base font-normal text-gray-700 mb-1">1 день - теория + постановка руки канюля</p>
+                                    <p class="text-base font-normal text-gray-700 mb-6">2 день - отработка 3-4 модели</p>
+                                </div>
+                                <button onclick="openModal()" class="bg-[#4BAE37] hover:bg-[#3c952a] text-white text-2xl px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
+                                    $2500
                                 </button>
                             </div>
                         </div>
