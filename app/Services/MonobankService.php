@@ -8,12 +8,13 @@ use Illuminate\Support\Facades\Log;
 class MonobankService
 {
     private readonly string $apiUrl;
+
     private readonly string $token;
 
     public function __construct()
     {
         $this->apiUrl = config('monobank.api_url', 'https://api.monobank.ua');
-        $this->token = config('monobank.token', env('MONOBANK_TOKEN'));
+        $this->token = config('monobank.token');
     }
 
     public function createInvoice(int $amount, string $redirectUrl, ?string $webhookUrl = null, ?string $productName = null, int $currency = 980): array
@@ -49,7 +50,7 @@ class MonobankService
                 'body' => $response->body(),
             ]);
 
-            throw new \RuntimeException('Ошибка при создании инвойса в Monobank: ' . $response->body());
+            throw new \RuntimeException('Ошибка при создании инвойса в Monobank: '.$response->body());
         } catch (\Exception $e) {
             Log::error('Monobank API exception', [
                 'message' => $e->getMessage(),
@@ -86,7 +87,7 @@ class MonobankService
                 'body' => $response->body(),
             ]);
 
-            throw new \RuntimeException('Ошибка при проверке статуса инвойса в Monobank: ' . $response->body());
+            throw new \RuntimeException('Ошибка при проверке статуса инвойса в Monobank: '.$response->body());
         } catch (\Exception $e) {
             Log::error('Monobank API exception - status check', [
                 'invoice_id' => $invoiceId,

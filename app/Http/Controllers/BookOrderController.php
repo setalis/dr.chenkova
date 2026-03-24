@@ -25,7 +25,45 @@ class BookOrderController extends Controller
      */
     private function getMonobankToken(): string
     {
-        return config('monobank.token', env('MONOBANK_TOKEN'));
+        return config('monobank.token');
+    }
+
+    private function verifyWebhookSignature(Request $request): bool
+    {
+        $sign = $request->header('X-Sign');
+
+        if (! $sign) {
+            return false;
+        }
+
+        try {
+            $pubKeyResponse = \Illuminate\Support\Facades\Http::get(
+                config('monobank.api_url', 'https://api.monobank.ua').'/api/merchant/pubkey'
+            );
+
+            if (! $pubKeyResponse->successful()) {
+                Log::error('Failed to fetch Monobank public key', ['status' => $pubKeyResponse->status()]);
+
+                return false;
+            }
+
+            $pubKey = $pubKeyResponse->json()['key'] ?? null;
+
+            if (! $pubKey) {
+                return false;
+            }
+
+            $body = $request->getContent();
+            $signature = base64_decode($sign);
+
+            $result = openssl_verify($body, $signature, $pubKey, OPENSSL_ALGO_SHA256);
+
+            return $result === 1;
+        } catch (\Exception $e) {
+            Log::error('Monobank webhook signature verification failed', ['error' => $e->getMessage()]);
+
+            return false;
+        }
     }
 
     /**
@@ -115,64 +153,9 @@ class BookOrderController extends Controller
         }
     }
 
-    public function create()
+    public function create(): \Illuminate\Contracts\View\View
     {
-        // ДИАГНОСТИЧЕСКИЙ РЕЖИМ - пошаговое тестирование
-        // Раскомментируйте нужный шаг для диагностики на продакшене
-
-        // ШАГ 1: Простейший тест - возвращаем текст
-        // Если это работает, значит контроллер и роут работают
-        // return response('TEST: BookOrderController работает!', 200);
-
-        // ШАГ 2: Простой view без компонентов (файл test-simple.blade.php уже создан)
-        // return view('test-simple');
-
-        // ШАГ 3: Проверка view с компонентом (текущий вариант)
-        try {
-            Log::info('BookOrderController::create called - START');
-
-            // Проверяем существование view файла
-            $viewPath = resource_path('views/book-order/create.blade.php');
-            if (! file_exists($viewPath)) {
-                Log::error('View file not found', ['path' => $viewPath]);
-
-                return response('Ошибка: файл представления не найден: '.$viewPath, 500);
-            }
-
-            Log::info('View file exists', ['path' => $viewPath, 'size' => filesize($viewPath)]);
-
-            // Проверяем существование компонента main
-            $componentPath = resource_path('views/components/layouts/main.blade.php');
-            if (! file_exists($componentPath)) {
-                Log::error('Component file not found', ['path' => $componentPath]);
-
-                return response('Ошибка: компонент main не найден: '.$componentPath, 500);
-            }
-
-            Log::info('Component file exists', ['path' => $componentPath]);
-
-            // Пробуем загрузить view с учетом локали
-            Log::info('Attempting to create view object', ['locale' => app()->getLocale()]);
-            $view = view_locale('book-order.create');
-            Log::info('View object created successfully');
-
-            return $view;
-        } catch (\Exception $e) {
-            Log::error('Error in BookOrderController::create', [
-                'message' => $e->getMessage(),
-                'file' => $e->getFile(),
-                'line' => $e->getLine(),
-                'trace' => $e->getTraceAsString(),
-                'previous' => $e->getPrevious() ? [
-                    'message' => $e->getPrevious()->getMessage(),
-                    'file' => $e->getPrevious()->getFile(),
-                    'line' => $e->getPrevious()->getLine(),
-                ] : null,
-            ]);
-
-            // Возвращаем ошибку в читаемом виде для диагностики
-            return response('Ошибка: '.$e->getMessage().' в файле '.$e->getFile().':'.$e->getLine(), 500);
-        }
+        return view_locale('book-order.create');
     }
 
     public function store(StoreBookOrderRequest $request): RedirectResponse
@@ -685,18 +668,21 @@ class BookOrderController extends Controller
         }
     }
 
-    public function ebookWebhook(Request $request): void
+    public function ebookWebhook(Request $request): \Illuminate\Http\Response
     {
-        // Обработка webhook от Monobank для электронной книги
+        if (! $this->verifyWebhookSignature($request)) {
+            Log::warning('Monobank ebook webhook: invalid signature', ['ip' => $request->ip()]);
+            abort(403);
+        }
+
         $data = $request->all();
 
         Log::info('Monobank ebook webhook received', [
-            'data' => $data,
             'status' => $data['status'] ?? 'unknown',
             'invoice_id' => $data['invoiceId'] ?? null,
         ]);
 
-        // Здесь можно сохранить статус платежа в БД для дальнейшей обработки
+        return response('OK', 200);
     }
 
     public function downloadEbook(Request $request)
@@ -956,20 +942,20 @@ class BookOrderController extends Controller
         ]);
     }
 
-    public function webhook(Request $request): void
+    public function webhook(Request $request): \Illuminate\Http\Response
     {
-        // Обработка webhook от Monobank
-        // Monobank отправляет данные о статусе платежа
+        if (! $this->verifyWebhookSignature($request)) {
+            Log::warning('Monobank webhook: invalid signature', ['ip' => $request->ip()]);
+            abort(403);
+        }
+
         $data = $request->all();
 
         Log::info('Monobank webhook received', [
-            'data' => $data,
             'status' => $data['status'] ?? 'unknown',
             'invoice_id' => $data['invoiceId'] ?? null,
         ]);
 
-        // Здесь можно сохранить статус платежа в БД для дальнейшей обработки
-        // Например, если платеж успешен - отправить уведомление клиенту
-        // Если платеж не прошел - отправить email с инструкциями
+        return response('OK', 200);
     }
 }

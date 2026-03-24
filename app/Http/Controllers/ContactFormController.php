@@ -11,7 +11,7 @@ class ContactFormController extends Controller
     public function send(Request $request)
     {
         try {
-            Log::info('Начало обработки формы', $request->all());
+            Log::info('Начало обработки формы контакта');
 
             $validated = $request->validate([
                 'name' => 'required|string|max:255',
@@ -21,19 +21,12 @@ class ContactFormController extends Controller
                 'privacy_agreement' => 'required|accepted',
             ]);
 
-            Log::info('Данные валидированы успешно', $validated);
-
             $data = [
                 'name' => $validated['name'],
                 'phone' => $validated['phone'],
                 'messenger' => $validated['messenger'],
                 'messengerContact' => $validated['messengerContact'],
             ];
-
-            Log::info('Попытка отправки письма', [
-                'to' => 'mail@dr-chenkova.com',
-                'data' => $data,
-            ]);
 
             Mail::send('emails.contact-form', $data, function ($message) {
                 $message->to('mail@dr-chenkova.com')
@@ -46,8 +39,6 @@ class ContactFormController extends Controller
         } catch (\Exception $e) {
             Log::error('Ошибка при отправке формы', [
                 'error' => $e->getMessage(),
-                'trace' => $e->getTraceAsString(),
-                'request_data' => $request->all(),
             ]);
 
             return response()->json([
