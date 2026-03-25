@@ -79,7 +79,7 @@
                                     <p class="text-base font-normal text-gray-700 md:mb-6 mb-3">თეორია + პრაქტიკა (1 მოდელი)</p>
                                 </div>
                                 <button onclick="openModal()" class="bg-[#4BAE37] hover:bg-[#3c952a] text-white text-2xl px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
-                                    $1300
+                                €1300
                                 </button>
                             </div>
                             <div class="flex flex-col md:flex-row justify-start items-center mb-6 gap-4">
@@ -89,7 +89,7 @@
                                     <p class="text-base font-normal text-gray-700 mb-6">2 დღე - პრაქტიკა 3-4 მოდელზე</p>
                                 </div>
                                 <button onclick="openModal()" class="bg-[#4BAE37] hover:bg-[#3c952a] text-white text-2xl px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
-                                    $2500
+                                €2500
                                 </button>
                             </div>
                         </div>
