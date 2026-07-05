@@ -5,10 +5,10 @@
             <a href="{{ route_locale('home') }}" class="text-xl font-semibold text-gray-900 drop-shadow-[0_0_15px_rgba(255,255,255,0.9)]"><span class="text-teal-600">Dr.</span>Chenkova</a>
         </div>
         <div class="flex items-center space-x-8 uppercase text-xs">
-            <a href="{{ route_locale('home') }}" class="text-gray-900 hover:text-gray-900 font-medium drop-shadow-[0_0_15px_rgba(255,255,255,0.9)] hover:drop-shadow-[0_0_25px_rgba(255,255,255,1)] transition-all">{{ app()->getLocale() === 'uk' ? 'Головна' : (app()->getLocale() === 'ka' ? 'მთავარი' : 'Главная') }}</a>
+            <a href="{{ route_locale('home') }}" class="text-gray-900 hover:text-gray-900 font-medium drop-shadow-[0_0_15px_rgba(255,255,255,0.9)] hover:drop-shadow-[0_0_25px_rgba(255,255,255,1)] transition-all">{{ app()->getLocale() === 'uk' ? 'Головна' : (app()->getLocale() === 'ka' ? 'მთავარი' : (app()->getLocale() === 'en' ? 'Home' : 'Главная')) }}</a>
             <div class="relative group">
             <a class="text-gray-900 hover:text-gray-900 font-medium drop-shadow-[0_0_15px_rgba(255,255,255,0.9)] hover:drop-shadow-[0_0_25px_rgba(255,255,255,1)] transition-all flex items-center uppercase cursor-pointer">
-                    {{ app()->getLocale() === 'uk' ? 'Лікарям' : (app()->getLocale() === 'ka' ? 'ექიმებისთვის' : 'Докторам') }}
+                    {{ app()->getLocale() === 'uk' ? 'Лікарям' : (app()->getLocale() === 'ka' ? 'ექიმებისთვის' : (app()->getLocale() === 'en' ? 'For Doctors' : 'Докторам')) }}
                     <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                     </svg>
@@ -22,15 +22,15 @@
                 </button> -->
                 <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                     <div class="py-1">
-                        <a href="{{ route_locale('lessons') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{{ app()->getLocale() === 'uk' ? 'Навчання' : (app()->getLocale() === 'ka' ? 'ტრენინგი' : 'Обучение') }}</a>
-                        <a href="{{ route_locale('webinar') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{{ app()->getLocale() === 'uk' ? 'Записи вебінарів' : (app()->getLocale() === 'ka' ? 'ვებინარების ჩანაწერები' : 'Запись вебинаров') }}</a>
+                        <a href="{{ route_locale('lessons') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{{ app()->getLocale() === 'uk' ? 'Навчання' : (app()->getLocale() === 'ka' ? 'ტრენინგი' : (app()->getLocale() === 'en' ? 'Training' : 'Обучение')) }}</a>
+                        <a href="{{ route_locale('webinar') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{{ app()->getLocale() === 'uk' ? 'Записи вебінарів' : (app()->getLocale() === 'ka' ? 'ვებინარების ჩანაწერები' : (app()->getLocale() === 'en' ? 'Webinar Recordings' : 'Запись вебинаров')) }}</a>
                     </div>
                 </div>
             </div>            
-            <a href="{{ route_locale('acne') }}" class="text-gray-900 hover:text-gray-900 font-medium drop-shadow-[0_0_15px_rgba(255,255,255,0.9)] hover:drop-shadow-[0_0_25px_rgba(255,255,255,1)] transition-all">{{ app()->getLocale() === 'uk' ? 'Про акне' : (app()->getLocale() === 'ka' ? 'აკნეს შესახებ' : 'Об акне') }}</a>
-            <a href="{{ route_locale('about') }}" class="text-gray-900 hover:text-gray-900 font-medium drop-shadow-[0_0_15px_rgba(255,255,255,0.9)] hover:drop-shadow-[0_0_25px_rgba(255,255,255,1)] transition-all">{{ app()->getLocale() === 'uk' ? 'Про мене' : (app()->getLocale() === 'ka' ? 'ჩემ შესახებ' : 'Обо мне') }}</a>
-            <a href="{{ route_locale('guide') }}" class="text-gray-900 hover:text-gray-900 font-medium drop-shadow-[0_0_15px_rgba(255,255,255,0.9)] hover:drop-shadow-[0_0_25px_rgba(255,255,255,1)] transition-all">{{ app()->getLocale() === 'uk' ? 'Гайди' : (app()->getLocale() === 'ka' ? 'გაიდები' : 'Гайды') }}</a>
-            <a href="{{ route_locale('book') }}" class="text-gray-900 hover:text-gray-900 font-medium drop-shadow-[0_0_15px_rgba(255,255,255,0.9)] hover:drop-shadow-[0_0_25px_rgba(255,255,255,1)] transition-all">{{ app()->getLocale() === 'uk' ? 'Книга' : (app()->getLocale() === 'ka' ? 'წიგნი' : 'Книга') }}</a>
+            <a href="{{ route_locale('acne') }}" class="text-gray-900 hover:text-gray-900 font-medium drop-shadow-[0_0_15px_rgba(255,255,255,0.9)] hover:drop-shadow-[0_0_25px_rgba(255,255,255,1)] transition-all">{{ app()->getLocale() === 'uk' ? 'Про акне' : (app()->getLocale() === 'ka' ? 'აკნეს შესახებ' : (app()->getLocale() === 'en' ? 'About Acne' : 'Об акне')) }}</a>
+            <a href="{{ route_locale('about') }}" class="text-gray-900 hover:text-gray-900 font-medium drop-shadow-[0_0_15px_rgba(255,255,255,0.9)] hover:drop-shadow-[0_0_25px_rgba(255,255,255,1)] transition-all">{{ app()->getLocale() === 'uk' ? 'Про мене' : (app()->getLocale() === 'ka' ? 'ჩემ შესახებ' : (app()->getLocale() === 'en' ? 'About Me' : 'Обо мне')) }}</a>
+            <a href="{{ route_locale('guide') }}" class="text-gray-900 hover:text-gray-900 font-medium drop-shadow-[0_0_15px_rgba(255,255,255,0.9)] hover:drop-shadow-[0_0_25px_rgba(255,255,255,1)] transition-all">{{ app()->getLocale() === 'uk' ? 'Гайди' : (app()->getLocale() === 'ka' ? 'გაიდები' : (app()->getLocale() === 'en' ? 'Guides' : 'Гайды')) }}</a>
+            <a href="{{ route_locale('book') }}" class="text-gray-900 hover:text-gray-900 font-medium drop-shadow-[0_0_15px_rgba(255,255,255,0.9)] hover:drop-shadow-[0_0_25px_rgba(255,255,255,1)] transition-all">{{ app()->getLocale() === 'uk' ? 'Книга' : (app()->getLocale() === 'ka' ? 'წიგნი' : (app()->getLocale() === 'en' ? 'Book' : 'Книга')) }}</a>
         </div>
         <div class="flex items-center space-x-4 text-gray-900">
             <!-- Переключатель языка -->
@@ -136,7 +136,7 @@
                 data-drawer-hide="drawer-right-example"
                 aria-controls="drawer-right-example"
                 class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 flex items-center justify-center"
-                aria-label="{{ app()->getLocale() === 'uk' ? 'Закрити меню' : (app()->getLocale() === 'ka' ? 'მენიუს დახურვა' : 'Закрыть меню') }}"
+                aria-label="{{ app()->getLocale() === 'uk' ? 'Закрити меню' : (app()->getLocale() === 'ka' ? 'მენიუს დახურვა' : (app()->getLocale() === 'en' ? 'Close menu' : 'Закрыть меню')) }}"
             >
                 <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
@@ -146,34 +146,34 @@
             <div class="flex flex-col space-y-4 mt-8">
                 <div class="relative">
                     <button class="text-gray-600 hover:text-gray-900 text-lg flex items-center justify-between w-full" onclick="this.nextElementSibling.classList.toggle('hidden')">
-                        {{ app()->getLocale() === 'uk' ? 'Лікарям' : (app()->getLocale() === 'ka' ? 'ექიმებისთვის' : 'Докторам') }}
+                        {{ app()->getLocale() === 'uk' ? 'Лікарям' : (app()->getLocale() === 'ka' ? 'ექიმებისთვის' : (app()->getLocale() === 'en' ? 'For Doctors' : 'Докторам')) }}
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </button>
                     <div class="hidden pl-4 space-y-2 mt-2">
-                        <a href="{{ route_locale('lessons') }}" class="block text-gray-600 hover:text-gray-900">{{ app()->getLocale() === 'uk' ? 'Навчання' : (app()->getLocale() === 'ka' ? 'ტრენინგი' : 'Обучение') }}</a>
-                        <a href="{{ route_locale('webinar') }}" class="block text-gray-600 hover:text-gray-900">{{ app()->getLocale() === 'uk' ? 'Записи вебінарів' : (app()->getLocale() === 'ka' ? 'ვებინარების ჩანაწერები' : 'Запись вебинаров') }}</a>
+                        <a href="{{ route_locale('lessons') }}" class="block text-gray-600 hover:text-gray-900">{{ app()->getLocale() === 'uk' ? 'Навчання' : (app()->getLocale() === 'ka' ? 'ტრენინგი' : (app()->getLocale() === 'en' ? 'Training' : 'Обучение')) }}</a>
+                        <a href="{{ route_locale('webinar') }}" class="block text-gray-600 hover:text-gray-900">{{ app()->getLocale() === 'uk' ? 'Записи вебінарів' : (app()->getLocale() === 'ka' ? 'ვებინარების ჩანაწერები' : (app()->getLocale() === 'en' ? 'Webinar Recordings' : 'Запись вебинаров')) }}</a>
                     </div>
                 </div>                
-                <a href="{{ route_locale('about') }}" class="text-gray-600 hover:text-gray-900 text-lg">{{ app()->getLocale() === 'uk' ? 'Про мене' : (app()->getLocale() === 'ka' ? 'ჩემ შესახებ' : 'Обо мне') }}</a>
-                <a href="{{ route_locale('acne') }}" class="text-gray-600 hover:text-gray-900 text-lg">{{ app()->getLocale() === 'uk' ? 'Про акне' : (app()->getLocale() === 'ka' ? 'აკნეს შესახებ' : 'Об акне') }}</a>
-                <a href="{{ route_locale('guide') }}" class="text-gray-600 hover:text-gray-900 text-lg">{{ app()->getLocale() === 'uk' ? 'Гайди' : (app()->getLocale() === 'ka' ? 'გაიდები' : 'Гайды') }}</a>
-                <a href="{{ route_locale('book') }}" class="text-gray-600 hover:text-gray-900 text-lg">{{ app()->getLocale() === 'uk' ? 'Книга' : (app()->getLocale() === 'ka' ? 'წიგნი' : 'Книга') }}</a>
+                <a href="{{ route_locale('about') }}" class="text-gray-600 hover:text-gray-900 text-lg">{{ app()->getLocale() === 'uk' ? 'Про мене' : (app()->getLocale() === 'ka' ? 'ჩემ შესახებ' : (app()->getLocale() === 'en' ? 'About Me' : 'Обо мне')) }}</a>
+                <a href="{{ route_locale('acne') }}" class="text-gray-600 hover:text-gray-900 text-lg">{{ app()->getLocale() === 'uk' ? 'Про акне' : (app()->getLocale() === 'ka' ? 'აკნეს შესახებ' : (app()->getLocale() === 'en' ? 'About Acne' : 'Об акне')) }}</a>
+                <a href="{{ route_locale('guide') }}" class="text-gray-600 hover:text-gray-900 text-lg">{{ app()->getLocale() === 'uk' ? 'Гайди' : (app()->getLocale() === 'ka' ? 'გაიდები' : (app()->getLocale() === 'en' ? 'Guides' : 'Гайды')) }}</a>
+                <a href="{{ route_locale('book') }}" class="text-gray-600 hover:text-gray-900 text-lg">{{ app()->getLocale() === 'uk' ? 'Книга' : (app()->getLocale() === 'ka' ? 'წიგნი' : (app()->getLocale() === 'en' ? 'Book' : 'Книга')) }}</a>
                 
                 <div class="pt-4 flex flex-col space-y-4 border-t">
                     <a href="tel:+995555954169" class="text-gray-600 hover:text-gray-900 flex items-center">
                         <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
                             </svg>
-                        {{ app()->getLocale() === 'uk' ? 'Зателефонувати' : (app()->getLocale() === 'ka' ? 'დარეკვა' : 'Позвонить') }}
+                        {{ app()->getLocale() === 'uk' ? 'Зателефонувати' : (app()->getLocale() === 'ka' ? 'დარეკვა' : (app()->getLocale() === 'en' ? 'Call' : 'Позвонить')) }}
                     </a>
                     <a href="https://t.me/Alina_Chenkova" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 flex items-center">
                         <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
                             <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
                             </svg>
-                        {{ app()->getLocale() === 'uk' ? 'Написати в Telegram' : (app()->getLocale() === 'ka' ? 'Telegram-ში დაწერა' : 'Написать в Telegram') }}
+                        {{ app()->getLocale() === 'uk' ? 'Написати в Telegram' : (app()->getLocale() === 'ka' ? 'Telegram-ში დაწერა' : (app()->getLocale() === 'en' ? 'Write on Telegram' : 'Написать в Telegram')) }}
                     </a>
                 </div>
             </div>

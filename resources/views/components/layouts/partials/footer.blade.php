@@ -3,15 +3,15 @@
         <!-- Ссылки на страницы -->
         <div class="flex flex-wrap justify-center gap-4 mb-4 text-sm">
             <a href="{{ route_locale('contact') }}" class="text-gray-600 hover:text-gray-900 transition-all">
-                {{ app()->getLocale() === 'uk' ? 'Контакти' : (app()->getLocale() === 'ka' ? 'კონტაქტები' : 'Контакты') }}
+                {{ app()->getLocale() === 'uk' ? 'Контакти' : (app()->getLocale() === 'ka' ? 'კონტაქტები' : (app()->getLocale() === 'en' ? 'Contacts' : 'Контакты')) }}
             </a>
             <span class="text-gray-400">|</span>
             <a href="{{ route_locale('privacy-policy') }}" class="text-gray-600 hover:text-gray-900 transition-all">
-                {{ app()->getLocale() === 'uk' ? 'Політика конфіденційності' : (app()->getLocale() === 'ka' ? 'კონფიდენციალურობის პოლიტიკა' : 'Политика конфиденциальности') }}
+                {{ app()->getLocale() === 'uk' ? 'Політика конфіденційності' : (app()->getLocale() === 'ka' ? 'კონფიდენციალურობის პოლიტიკა' : (app()->getLocale() === 'en' ? 'Privacy Policy' : 'Политика конфиденциальности')) }}
             </a>
             <span class="text-gray-400">|</span>
             <a href="{{ route_locale('legal-info') }}" class="text-gray-600 hover:text-gray-900 transition-all">
-                {{ app()->getLocale() === 'uk' ? 'Умови обміну та повернення' : (app()->getLocale() === 'ka' ? 'გაცვლისა და დაბრუნების პირობები' : 'Условия обмена и возврата') }}
+                {{ app()->getLocale() === 'uk' ? 'Умови обміну та повернення' : (app()->getLocale() === 'ka' ? 'გაცვლისა და დაბრუნების პირობები' : (app()->getLocale() === 'en' ? 'Exchange and Return Policy' : 'Условия обмена и возврата')) }}
             </a>
         </div>
         

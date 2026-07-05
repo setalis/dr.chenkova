@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 // Группа роутов с локализацией
-Route::prefix('{locale}')->where(['locale' => 'ru|uk|ka'])->middleware('locale')->group(function () {
+Route::prefix('{locale}')->where(['locale' => 'ru|uk|ka|en'])->middleware('locale')->group(function () {
 
     // Основные страницы
     Route::get('/', function ($locale) {
