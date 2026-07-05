@@ -48,7 +48,7 @@ if (!function_exists('route_locale')) {
         $locale = $locale ?? app()->getLocale() ?? 'ru';
         
         // Если локаль не валидна, используем 'ru'
-        if (!in_array($locale, ['ru', 'uk', 'ka'])) {
+        if (!in_array($locale, ['ru', 'uk', 'ka', 'en'])) {
             $locale = 'ru';
         }
         
