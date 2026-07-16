@@ -56,56 +56,83 @@
                         <h2 class="text-2xl font-bold text-gray-700">"Шкіра на все життя"</h2>
                         <p class="text-gray-700">«Шкіра на все життя» — це науково-популярна і водночас глибоко особиста книга лікаря-дерматолога, яка перевертає уявлення про догляд за шкірою. У ній поєднуються доказова медицина, особистий професійний досвід та людські історії — все для того, щоб відповісти на головне питання: як зберегти здоров'я та красу шкіри на довгі роки?</p>
                         @php
-                            // Цены в грузинских лари и долларах из конфига
                             $paperBookPriceGEL = config('monobank.paper_book.price_gel', 100);
                             $paperBookPriceUSD = config('monobank.paper_book.price_usd', 35);
                             $ebookPriceGEL = config('monobank.ebook.price_gel', 50);
                             $ebookPriceUSD = config('monobank.ebook.price_usd', 17);
+                            $ebookEnPriceGEL = config('monobank.ebook_en.price_gel', 50);
+                            $ebookEnPriceUSD = config('monobank.ebook_en.price_usd', 17);
                         @endphp
-                        <div class="flex flex-col md:flex-row gap-4 mb-2">
-                            <div class="flex-1 bg-gradient-to-br from-cyan-50 to-blue-50 border border-cyan-200 rounded-xl p-4 shadow-sm flex flex-col">
-                                <div class="flex items-center justify-between mb-2">
-                                    <span class="text-sm font-medium text-gray-600">Друкована версія</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-book text-cyan-600" viewBox="0 0 16 16">
-                                        <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783"/>
-                                    </svg>
+                        <div class="flex flex-col gap-4 mb-2">
+                            <div class="flex flex-col md:flex-row gap-4">
+                                <div class="flex-1 bg-gradient-to-br from-cyan-50 to-blue-50 border border-cyan-200 rounded-xl p-4 shadow-sm flex flex-col">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="text-sm font-medium text-gray-600">Друкована версія</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-book text-cyan-600" viewBox="0 0 16 16">
+                                            <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783"/>
+                                        </svg>
+                                    </div>
+                                    <div class="flex items-baseline gap-1 mb-4">
+                                        <span class="text-3xl font-bold text-gray-800">{{ number_format($paperBookPriceGEL, 0, ',', ' ') }} ₾</span>
+                                        <span class="text-lg font-semibold text-gray-600">/ ${{ number_format($paperBookPriceUSD, 0, ',', ' ') }}</span>
+                                    </div>
+                                    <a href="{{route_locale('book-order.create')}}" class="mt-auto">
+                                        <button class="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white px-4 py-2 rounded-full w-full uppercase font-bold cursor-pointer transition-all">
+                                            <div class="flex items-center justify-center gap-2 text-xs">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
+                                                    <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783"/>
+                                                </svg>
+                                                Купити друковану
+                                            </div>
+                                        </button>
+                                    </a>
                                 </div>
-                                <div class="flex items-baseline gap-1 mb-4">
-                                    <span class="text-3xl font-bold text-gray-800">{{ number_format($paperBookPriceGEL, 0, ',', ' ') }} ₾</span>
-                                    <span class="text-lg font-semibold text-gray-600">/ ${{ number_format($paperBookPriceUSD, 0, ',', ' ') }}</span>
+                                <div class="flex-1 bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-200 rounded-xl p-4 shadow-sm flex flex-col">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="text-sm font-medium text-gray-600">Електронна версія (рос.) — EPUB/PDF/MOBI/FB2</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-usb-drive text-purple-600" viewBox="0 0 16 16">
+                                            <path d="M6 .5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4H6zM7 1v1h1V1zm2 0v1h1V1zM6 5a1 1 0 0 0-1 1v8.5A1.5 1.5 0 0 0 6.5 16h4a1.5 1.5 0 0 0 1.5-1.5V6a1 1 0 0 0-1-1zm0 1h5v8.5a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="flex items-baseline gap-1 mb-4">
+                                        <span class="text-3xl font-bold text-gray-800">{{ number_format($ebookPriceGEL, 0, ',', ' ') }} ₾</span>
+                                        <span class="text-lg font-semibold text-gray-600">/ ${{ number_format($ebookPriceUSD, 0, ',', ' ') }}</span>
+                                    </div>
+                                    <a href="{{ route_locale('ebook-order.create') }}" class="mt-auto">
+                                        <button class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 py-2 rounded-full w-full uppercase font-bold cursor-pointer transition-all">
+                                            <div class="flex items-center justify-center gap-2 text-xs">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-usb-drive" viewBox="0 0 16 16">
+                                                    <path d="M6 .5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4H6zM7 1v1h1V1zm2 0v1h1V1zM6 5a1 1 0 0 0-1 1v8.5A1.5 1.5 0 0 0 6.5 16h4a1.5 1.5 0 0 0 1.5-1.5V6a1 1 0 0 0-1-1zm0 1h5v8.5a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5z"/>
+                                                </svg>
+                                                Купити електронну
+                                            </div>
+                                        </button>
+                                    </a>
                                 </div>
-                                <a href="{{route_locale('book-order.create')}}" class="mt-auto">
-                                    <button class="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white px-4 py-2 rounded-full w-full uppercase font-bold cursor-pointer transition-all">
-                                        <div class="flex items-center justify-center gap-2 text-xs">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
-                                                <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783"/>
-                                            </svg>
-                                            Купити друковану
-                                        </div>
-                                    </button>
-                                </a>
                             </div>
-                            <div class="flex-1 bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-200 rounded-xl p-4 shadow-sm flex flex-col">
-                                <div class="flex items-center justify-between mb-2">
-                                    <span class="text-sm font-medium text-gray-600">Електронна версія</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-usb-drive text-purple-600" viewBox="0 0 16 16">
-                                        <path d="M6 .5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4H6zM7 1v1h1V1zm2 0v1h1V1zM6 5a1 1 0 0 0-1 1v8.5A1.5 1.5 0 0 0 6.5 16h4a1.5 1.5 0 0 0 1.5-1.5V6a1 1 0 0 0-1-1zm0 1h5v8.5a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5z"/>
-                                    </svg>
+                            <div class="flex flex-col md:flex-row gap-4">
+                                <div class="flex-1 md:max-w-[calc(50%-0.5rem)] bg-gradient-to-br from-indigo-50 to-violet-50 border border-indigo-200 rounded-xl p-4 shadow-sm flex flex-col">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="text-sm font-medium text-gray-600">Електронна версія (English) — EPUB/KPF</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-usb-drive text-indigo-600" viewBox="0 0 16 16">
+                                            <path d="M6 .5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4H6zM7 1v1h1V1zm2 0v1h1V1zM6 5a1 1 0 0 0-1 1v8.5A1.5 1.5 0 0 0 6.5 16h4a1.5 1.5 0 0 0 1.5-1.5V6a1 1 0 0 0-1-1zm0 1h5v8.5a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="flex items-baseline gap-1 mb-4">
+                                        <span class="text-3xl font-bold text-gray-800">{{ number_format($ebookEnPriceGEL, 0, ',', ' ') }} ₾</span>
+                                        <span class="text-lg font-semibold text-gray-600">/ ${{ number_format($ebookEnPriceUSD, 0, ',', ' ') }}</span>
+                                    </div>
+                                    <a href="{{ route_locale('ebook-en-order.create') }}" class="mt-auto">
+                                        <button class="bg-gradient-to-r from-indigo-500 to-violet-500 hover:from-indigo-600 hover:to-violet-600 text-white px-4 py-2 rounded-full w-full uppercase font-bold cursor-pointer transition-all">
+                                            <div class="flex items-center justify-center gap-2 text-xs">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-usb-drive" viewBox="0 0 16 16">
+                                                    <path d="M6 .5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4H6zM7 1v1h1V1zm2 0v1h1V1zM6 5a1 1 0 0 0-1 1v8.5A1.5 1.5 0 0 0 6.5 16h4a1.5 1.5 0 0 0 1.5-1.5V6a1 1 0 0 0-1-1zm0 1h5v8.5a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5z"/>
+                                                </svg>
+                                                Купити англійську електронну
+                                            </div>
+                                        </button>
+                                    </a>
                                 </div>
-                                <div class="flex items-baseline gap-1 mb-4">
-                                    <span class="text-3xl font-bold text-gray-800">{{ number_format($ebookPriceGEL, 0, ',', ' ') }} ₾</span>
-                                    <span class="text-lg font-semibold text-gray-600">/ ${{ number_format($ebookPriceUSD, 0, ',', ' ') }}</span>
-                                </div>
-                                <a href="{{ route_locale('ebook-order.create') }}" class="mt-auto">
-                                    <button class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 py-2 rounded-full w-full uppercase font-bold cursor-pointer transition-all">
-                                        <div class="flex items-center justify-center gap-2 text-xs">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-usb-drive" viewBox="0 0 16 16">
-                                                <path d="M6 .5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4H6zM7 1v1h1V1zm2 0v1h1V1zM6 5a1 1 0 0 0-1 1v8.5A1.5 1.5 0 0 0 6.5 16h4a1.5 1.5 0 0 0 1.5-1.5V6a1 1 0 0 0-1-1zm0 1h5v8.5a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5z"/>
-                                            </svg>
-                                            Купити електронну
-                                        </div>
-                                    </button>
-                                </a>
                             </div>
                         </div>
                         <div class="">
@@ -140,44 +167,6 @@
                             <div class="flex items-center justify-center pt-4">
                                 <a href="{{ route_locale('book.return-policy') }}" class="text-gray-600 hover:text-[#4BAE37] text-sm underline transition-colors text-center">
                                     📘 Умови повернення книги
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex md:flex-row flex-col gap-4 mb-6">
-                <div class="flex flex-col md:flex-row gap-8 border border-gray-300 rounded-lg p-4 w-full">
-                    <div class="flex flex-col gap-4 w-full">
-                        <h3 class="text-xl">Книга (English)</h3>
-                        <h2 class="text-2xl font-bold text-gray-700">"Skin for Life"</h2>
-                        <p class="text-gray-700">Англійська електронна версія книги «Skin for Life» — науково-популярне видання лікаря-дерматолога про здоров'я та красу шкіри. Доступна у форматах EPUB та KPF.</p>
-                        @php
-                            $ebookEnPriceGEL = config('monobank.ebook_en.price_gel', config('monobank.ebook.price_gel', 50));
-                            $ebookEnPriceUSD = config('monobank.ebook_en.price_usd', config('monobank.ebook.price_usd', 17));
-                        @endphp
-                        <div class="flex flex-col md:flex-row gap-4 mb-2">
-                            <div class="flex-1 bg-gradient-to-br from-indigo-50 to-violet-50 border border-indigo-200 rounded-xl p-4 shadow-sm flex flex-col max-w-md">
-                                <div class="flex items-center justify-between mb-2">
-                                    <span class="text-sm font-medium text-gray-600">Електронна версія (EPUB + KPF)</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-usb-drive text-indigo-600" viewBox="0 0 16 16">
-                                        <path d="M6 .5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4H6zM7 1v1h1V1zm2 0v1h1V1zM6 5a1 1 0 0 0-1 1v8.5A1.5 1.5 0 0 0 6.5 16h4a1.5 1.5 0 0 0 1.5-1.5V6a1 1 0 0 0-1-1zm0 1h5v8.5a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5z"/>
-                                    </svg>
-                                </div>
-                                <div class="flex items-baseline gap-1 mb-4">
-                                    <span class="text-3xl font-bold text-gray-800">{{ number_format($ebookEnPriceGEL, 0, ',', ' ') }} ₾</span>
-                                    <span class="text-lg font-semibold text-gray-600">/ ${{ number_format($ebookEnPriceUSD, 0, ',', ' ') }}</span>
-                                </div>
-                                <a href="{{ route_locale('ebook-en-order.create') }}" class="mt-auto">
-                                    <button class="bg-gradient-to-r from-indigo-500 to-violet-500 hover:from-indigo-600 hover:to-violet-600 text-white px-4 py-2 rounded-full w-full uppercase font-bold cursor-pointer transition-all">
-                                        <div class="flex items-center justify-center gap-2 text-xs">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-usb-drive" viewBox="0 0 16 16">
-                                                <path d="M6 .5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4H6zM7 1v1h1V1zm2 0v1h1V1zM6 5a1 1 0 0 0-1 1v8.5A1.5 1.5 0 0 0 6.5 16h4a1.5 1.5 0 0 0 1.5-1.5V6a1 1 0 0 0-1-1zm0 1h5v8.5a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5z"/>
-                                            </svg>
-                                            Купити англійську електронну
-                                        </div>
-                                    </button>
                                 </a>
                             </div>
                         </div>

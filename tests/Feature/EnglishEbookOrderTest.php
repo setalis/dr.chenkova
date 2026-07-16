@@ -12,14 +12,14 @@ dataset('book_locales', [
     'en' => ['en'],
 ]);
 
-test('book pages show english ebook block with checkout link', function (string $locale) {
+test('book pages show english ebook card inside main book section', function (string $locale) {
     $response = $this->get("/{$locale}/book");
 
     $response->assertOk();
-    $response->assertSee('Skin for Life');
-    $response->assertSee('EPUB');
-    $response->assertSee('KPF');
+    $response->assertSee('EPUB/PDF/MOBI/FB2');
+    $response->assertSee('EPUB/KPF');
     $response->assertSee("/{$locale}/ebook-en-order/create");
+    $response->assertDontSee('Книга (English)', false);
 })->with('book_locales');
 
 test('english ebook order create page returns 200 for each locale', function (string $locale) {
