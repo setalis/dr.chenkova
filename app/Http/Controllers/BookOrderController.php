@@ -685,6 +685,328 @@ class BookOrderController extends Controller
         return response('OK', 200);
     }
 
+    public function showEbookEnForm(): View
+    {
+        return view_locale('ebook-en-order.create');
+    }
+
+    public function createEbookEn(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'email' => 'required|email|max:255',
+            'privacy_agreement' => 'required|accepted',
+        ], $this->ebookValidationMessages());
+
+        $currency = config('monobank.default_currency', 'UAH');
+        $amount = config('monobank.ebook_en.price', config('monobank.ebook.price', 1700));
+        $productName = config('monobank.ebook_en.name', 'Электронная книга (English)');
+        $currencyInfo = config("monobank.currencies.{$currency}");
+
+        if (! $currencyInfo) {
+            Log::error('Currency not found in config', [
+                'currency' => $currency,
+            ]);
+
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors(['payment' => $this->ebookLocalizedMessage(
+                    'Помилка конфігурації валюти. Будь ласка, зв\'яжіться з підтримкою.',
+                    'Currency configuration error. Please contact support.',
+                    'Ошибка конфигурации валюты. Пожалуйста, свяжитесь с поддержкой.',
+                    'ვალუტის კონფიგურაციის შეცდომა. გთხოვთ, დაუკავშირდეთ მხარდაჭერას.',
+                )]);
+        }
+
+        $redirectUrl = route_locale('ebook-en-order.payment-success');
+        $webhookUrl = route('ebook-en-order.webhook');
+
+        try {
+            $invoice = $this->createInvoice(
+                amount: (int) $amount,
+                redirectUrl: $redirectUrl,
+                webhookUrl: $webhookUrl,
+                productName: $productName,
+                currency: (int) $currencyInfo['code'],
+            );
+
+            session([
+                'ebook_en_order' => [
+                    'type' => 'ebook_en',
+                    'email' => $request->email,
+                    'invoice_id' => $invoice['invoiceId'] ?? null,
+                    'amount' => $amount,
+                    'currency' => $currency,
+                    'currency_info' => $currencyInfo,
+                    'product_name' => $productName,
+                ],
+            ]);
+
+            return redirect($invoice['pageUrl']);
+        } catch (\Exception $e) {
+            Log::error('Error creating English ebook invoice', [
+                'error' => $e->getMessage(),
+            ]);
+
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors(['payment' => $this->ebookLocalizedMessage(
+                    'Помилка при створенні платежу. Будь ласка, спробуйте пізніше.',
+                    'Error creating payment. Please try again later.',
+                    'Ошибка при создании платежа. Пожалуйста, попробуйте позже.',
+                    'გადახდის შექმნის შეცდომა. გთხოვთ, სცადოთ მოგვიანებით.',
+                )]);
+        }
+    }
+
+    public function ebookEnPaymentSuccess(Request $request): View
+    {
+        $orderData = session('ebook_en_order');
+
+        if (! $orderData || ! isset($orderData['invoice_id'])) {
+            return view_locale('book-order.error', [
+                'message' => $this->ebookLocalizedMessage(
+                    'Дані замовлення не знайдено.',
+                    'Order data not found.',
+                    'Данные заказа не найдены.',
+                    'შეკვეთის მონაცემები ვერ მოიძებნა.',
+                ),
+            ]);
+        }
+
+        try {
+            $invoiceStatus = $this->getInvoiceStatus($orderData['invoice_id']);
+
+            Log::info('English ebook invoice status response', [
+                'invoice_id' => $orderData['invoice_id'],
+                'full_response' => $invoiceStatus,
+            ]);
+
+            $status = $invoiceStatus['status'] ?? null;
+
+            session()->forget('ebook_en_order');
+
+            if ($status === 'success') {
+                if (isset($orderData['email'])) {
+                    try {
+                        $locale = app()->getLocale();
+                        $subject = match ($locale) {
+                            'uk' => 'Ваші файли англійської електронної книги',
+                            'en' => 'Your English e-book files',
+                            'ka' => 'თქვენი ინგლისური ელექტრონული წიგნის ფაილები',
+                            default => 'Ваши файлы английской электронной книги',
+                        };
+
+                        $emailView = 'emails.ebook-en-files';
+                        if ($locale !== 'ru' && view()->exists("emails.ebook-en-files-{$locale}")) {
+                            $emailView = "emails.ebook-en-files-{$locale}";
+                        }
+
+                        Mail::send($emailView, [
+                            'order' => $orderData,
+                            'locale' => $locale,
+                        ], function ($message) use ($orderData, $subject) {
+                            $message->to($orderData['email'])
+                                ->subject($subject);
+
+                            $filesDir = storage_path('app/public/files/');
+
+                            $epubFile = config('monobank.ebook_en.epub_file_name', 'Skin_for_Life_Alina_Chenkova.epub');
+                            $epubPath = $filesDir.$epubFile;
+                            if (file_exists($epubPath)) {
+                                $message->attach($epubPath, ['as' => $epubFile]);
+                            }
+
+                            $kpfFile = config('monobank.ebook_en.kpf_file_name', 'Skin_for_Life_Alina_Chenkova.kpf');
+                            $kpfPath = $filesDir.$kpfFile;
+                            if (file_exists($kpfPath)) {
+                                $message->attach($kpfPath, ['as' => $kpfFile]);
+                            }
+                        });
+
+                        Log::info('English ebook files email sent successfully', [
+                            'email' => $orderData['email'],
+                            'invoice_id' => $orderData['invoice_id'],
+                        ]);
+                    } catch (\Exception $e) {
+                        Log::error('Error sending English ebook files email', [
+                            'email' => $orderData['email'] ?? null,
+                            'invoice_id' => $orderData['invoice_id'],
+                            'error' => $e->getMessage(),
+                        ]);
+                    }
+                }
+
+                session(['ebook_en_order_download' => $orderData]);
+
+                return view_locale('ebook-en-order.success', [
+                    'order' => $orderData,
+                ]);
+            }
+
+            $errorMessage = $this->getErrorMessage($invoiceStatus);
+
+            return view_locale('book-order.error', [
+                'message' => $errorMessage,
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Error checking English ebook invoice status', [
+                'invoice_id' => $orderData['invoice_id'],
+                'error' => $e->getMessage(),
+            ]);
+
+            session()->forget('ebook_en_order');
+
+            return view_locale('book-order.error', [
+                'message' => $this->ebookLocalizedMessage(
+                    'Не вдалося перевірити статус платежу. Будь ласка, зв\'яжіться з підтримкою.',
+                    'Unable to verify payment status. Please contact support.',
+                    'Не удалось проверить статус платежа. Пожалуйста, свяжитесь с поддержкой.',
+                    'გადახდის სტატუსის შემოწმება ვერ მოხერხდა. გთხოვთ, დაუკავშირდეთ მხარდაჭერას.',
+                ),
+            ]);
+        }
+    }
+
+    public function ebookEnWebhook(Request $request): \Illuminate\Http\Response
+    {
+        if (! $this->verifyWebhookSignature($request)) {
+            Log::warning('Monobank English ebook webhook: invalid signature', ['ip' => $request->ip()]);
+            abort(403);
+        }
+
+        $data = $request->all();
+
+        Log::info('Monobank English ebook webhook received', [
+            'status' => $data['status'] ?? 'unknown',
+            'invoice_id' => $data['invoiceId'] ?? null,
+        ]);
+
+        return response('OK', 200);
+    }
+
+    public function downloadEbookEn(Request $request)
+    {
+        return $this->downloadEbookEnFile(
+            config('monobank.ebook_en.epub_file_name', 'Skin_for_Life_Alina_Chenkova.epub'),
+            'Ebook English EPUB file not found'
+        );
+    }
+
+    public function downloadEbookEnKpf(Request $request)
+    {
+        return $this->downloadEbookEnFile(
+            config('monobank.ebook_en.kpf_file_name', 'Skin_for_Life_Alina_Chenkova.kpf'),
+            'Ebook English KPF file not found'
+        );
+    }
+
+    private function downloadEbookEnFile(string $fileName, string $notFoundLogMessage)
+    {
+        $orderData = session('ebook_en_order_download');
+
+        if (! $orderData || ! isset($orderData['invoice_id'])) {
+            return redirect(route_locale('book'))
+                ->withErrors(['download' => $this->ebookLocalizedMessage(
+                    'Дані замовлення не знайдено. Будь ласка, переконайтеся, що оплата була успішною.',
+                    'Order data not found. Please make sure the payment was successful.',
+                    'Данные заказа не найдены. Пожалуйста, убедитесь, что оплата была успешной.',
+                    'შეკვეთის მონაცემები ვერ მოიძებნა. გთხოვთ, დარწმუნდით, რომ გადახდა წარმატებული იყო.',
+                )]);
+        }
+
+        try {
+            $invoiceStatus = $this->getInvoiceStatus($orderData['invoice_id']);
+
+            if (($invoiceStatus['status'] ?? null) !== 'success') {
+                return redirect(route_locale('book'))
+                    ->withErrors(['download' => $this->ebookLocalizedMessage(
+                        'Платіж не був завершений успішно.',
+                        'Payment was not completed successfully.',
+                        'Платеж не был завершен успешно.',
+                        'გადახდა წარმატებით არ დასრულებულა.',
+                    )]);
+            }
+        } catch (\Exception $e) {
+            Log::error('Error checking invoice status for English ebook download', [
+                'invoice_id' => $orderData['invoice_id'],
+                'error' => $e->getMessage(),
+            ]);
+
+            return redirect(route_locale('book'))
+                ->withErrors(['download' => $this->ebookLocalizedMessage(
+                    'Не вдалося перевірити статус платежу.',
+                    'Unable to verify payment status.',
+                    'Не удалось проверить статус платежа.',
+                    'გადახდის სტატუსის შემოწმება ვერ მოხერხდა.',
+                )]);
+        }
+
+        $filePath = storage_path('app/public/files/'.$fileName);
+
+        if (! file_exists($filePath)) {
+            Log::error($notFoundLogMessage, [
+                'path' => $filePath,
+            ]);
+
+            return redirect(route_locale('book'))
+                ->withErrors(['download' => $this->ebookLocalizedMessage(
+                    'Файл не знайдено. Будь ласка, зв\'яжіться з підтримкою.',
+                    'File not found. Please contact support.',
+                    'Файл не найден. Пожалуйста, свяжитесь с поддержкой.',
+                    'ფაილი ვერ მოიძებნა. გთხოვთ, დაუკავშირდეთ მხარდაჭერას.',
+                )]);
+        }
+
+        return response()->download($filePath, $fileName);
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    private function ebookValidationMessages(): array
+    {
+        $locale = app()->getLocale();
+
+        return [
+            'email.required' => match ($locale) {
+                'uk' => 'Email обов\'язковий для заповнення.',
+                'en' => 'Email is required.',
+                'ka' => 'ელფოსტა სავალდებულოა.',
+                default => 'Email обязателен для заполнения.',
+            },
+            'email.email' => match ($locale) {
+                'uk' => 'Будь ласка, введіть коректний email адрес.',
+                'en' => 'Please enter a valid email address.',
+                'ka' => 'გთხოვთ, შეიყვანოთ სწორი ელფოსტა.',
+                default => 'Пожалуйста, введите корректный email адрес.',
+            },
+            'privacy_agreement.required' => match ($locale) {
+                'uk' => 'Необхідна згода на обробку персональних даних.',
+                'en' => 'Consent to personal data processing is required.',
+                'ka' => 'საჭიროა თანხმობა პერსონალური მონაცემების დამუშავებაზე.',
+                default => 'Необходимо согласие на обработку персональных данных.',
+            },
+            'privacy_agreement.accepted' => match ($locale) {
+                'uk' => 'Необхідна згода на обробку персональних даних.',
+                'en' => 'Consent to personal data processing is required.',
+                'ka' => 'საჭიროა თანხმობა პერსონალური მონაცემების დამუშავებაზე.',
+                default => 'Необходимо согласие на обработку персональных данных.',
+            },
+        ];
+    }
+
+    private function ebookLocalizedMessage(string $uk, string $en, string $ru, string $ka): string
+    {
+        return match (app()->getLocale()) {
+            'uk' => $uk,
+            'en' => $en,
+            'ka' => $ka,
+            default => $ru,
+        };
+    }
+
     public function downloadEbook(Request $request)
     {
         $orderData = session('ebook_order_download');

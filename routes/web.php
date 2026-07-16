@@ -90,6 +90,15 @@ Route::prefix('{locale}')->where(['locale' => 'ru|uk|ka|en'])->middleware('local
         Route::get('/download-pdf-file', [BookOrderController::class, 'downloadEbookPdfFile'])->name('download-pdf-file');
     });
 
+    // Заказы английской электронной книги (EPUB + KPF)
+    Route::prefix('ebook-en-order')->name('ebook-en-order.')->group(function () {
+        Route::get('/create', [BookOrderController::class, 'showEbookEnForm'])->name('create');
+        Route::post('/store', [BookOrderController::class, 'createEbookEn'])->name('store');
+        Route::get('/payment-success', [BookOrderController::class, 'ebookEnPaymentSuccess'])->name('payment-success');
+        Route::get('/download', [BookOrderController::class, 'downloadEbookEn'])->name('download');
+        Route::get('/download-kpf', [BookOrderController::class, 'downloadEbookEnKpf'])->name('download-kpf');
+    });
+
     // Тест определения типа кожи
     Route::get('test', TestWizard::class)->name('test');
     Route::get('result/{session}', TestResult::class)->name('test.result');
@@ -106,6 +115,7 @@ Route::prefix('{locale}')->where(['locale' => 'ru|uk|ka|en'])->middleware('local
 // Webhook маршруты без локализации (вызываются внешними сервисами)
 Route::post('/book-order/webhook', [BookOrderController::class, 'webhook'])->name('book-order.webhook');
 Route::post('/ebook-order/webhook', [BookOrderController::class, 'ebookWebhook'])->name('ebook-order.webhook');
+Route::post('/ebook-en-order/webhook', [BookOrderController::class, 'ebookEnWebhook'])->name('ebook-en-order.webhook');
 
 // Роуты без локализации (для внутренних систем)
 Route::view('dashboard', 'dashboard')

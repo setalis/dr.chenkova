@@ -51,5 +51,13 @@ return [
         'mobi_file_name' => env('MONOBANK_EBOOK_MOBI_FILE_NAME', 'Kozha_na_vsiu_zhizn_Sovriemie_Alina_Valientinovna_Chienkova_1.mobi'),
         'fb2_file_name' => env('MONOBANK_EBOOK_FB2_FILE_NAME', 'Kozha_na_vsiu_zhizn_Sovriemie_Alina_Valientinovna_Chienkova_1.fb2'),
     ],
-];
 
+    'ebook_en' => [
+        'price' => env('MONOBANK_EBOOK_EN_PRICE', 1700),
+        'price_gel' => env('MONOBANK_EBOOK_EN_PRICE_GEL', 50),
+        'price_usd' => env('MONOBANK_EBOOK_EN_PRICE_USD', 17),
+        'name' => env('MONOBANK_EBOOK_EN_NAME', 'Электронная книга (English)'),
+        'epub_file_name' => env('MONOBANK_EBOOK_EN_EPUB_FILE_NAME', 'Skin_for_Life_Alina_Chenkova.epub'),
+        'kpf_file_name' => env('MONOBANK_EBOOK_EN_KPF_FILE_NAME', 'Skin_for_Life_Alina_Chenkova.kpf'),
+    ],
+];

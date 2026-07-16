@@ -142,10 +142,48 @@
                                     📘 Умови повернення книги
                                 </a>
                             </div>
-                        </div>                        
-                    </div>                    
-                </div>                 
-            </div>  
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex md:flex-row flex-col gap-4 mb-6">
+                <div class="flex flex-col md:flex-row gap-8 border border-gray-300 rounded-lg p-4 w-full">
+                    <div class="flex flex-col gap-4 w-full">
+                        <h3 class="text-xl">Книга (English)</h3>
+                        <h2 class="text-2xl font-bold text-gray-700">"Skin for Life"</h2>
+                        <p class="text-gray-700">Англійська електронна версія книги «Skin for Life» — науково-популярне видання лікаря-дерматолога про здоров'я та красу шкіри. Доступна у форматах EPUB та KPF.</p>
+                        @php
+                            $ebookEnPriceGEL = config('monobank.ebook_en.price_gel', config('monobank.ebook.price_gel', 50));
+                            $ebookEnPriceUSD = config('monobank.ebook_en.price_usd', config('monobank.ebook.price_usd', 17));
+                        @endphp
+                        <div class="flex flex-col md:flex-row gap-4 mb-2">
+                            <div class="flex-1 bg-gradient-to-br from-indigo-50 to-violet-50 border border-indigo-200 rounded-xl p-4 shadow-sm flex flex-col max-w-md">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-sm font-medium text-gray-600">Електронна версія (EPUB + KPF)</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-usb-drive text-indigo-600" viewBox="0 0 16 16">
+                                        <path d="M6 .5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4H6zM7 1v1h1V1zm2 0v1h1V1zM6 5a1 1 0 0 0-1 1v8.5A1.5 1.5 0 0 0 6.5 16h4a1.5 1.5 0 0 0 1.5-1.5V6a1 1 0 0 0-1-1zm0 1h5v8.5a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5z"/>
+                                    </svg>
+                                </div>
+                                <div class="flex items-baseline gap-1 mb-4">
+                                    <span class="text-3xl font-bold text-gray-800">{{ number_format($ebookEnPriceGEL, 0, ',', ' ') }} ₾</span>
+                                    <span class="text-lg font-semibold text-gray-600">/ ${{ number_format($ebookEnPriceUSD, 0, ',', ' ') }}</span>
+                                </div>
+                                <a href="{{ route_locale('ebook-en-order.create') }}" class="mt-auto">
+                                    <button class="bg-gradient-to-r from-indigo-500 to-violet-500 hover:from-indigo-600 hover:to-violet-600 text-white px-4 py-2 rounded-full w-full uppercase font-bold cursor-pointer transition-all">
+                                        <div class="flex items-center justify-center gap-2 text-xs">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-usb-drive" viewBox="0 0 16 16">
+                                                <path d="M6 .5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4H6zM7 1v1h1V1zm2 0v1h1V1zM6 5a1 1 0 0 0-1 1v8.5A1.5 1.5 0 0 0 6.5 16h4a1.5 1.5 0 0 0 1.5-1.5V6a1 1 0 0 0-1-1zm0 1h5v8.5a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5z"/>
+                                            </svg>
+                                            Купити англійську електронну
+                                        </div>
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

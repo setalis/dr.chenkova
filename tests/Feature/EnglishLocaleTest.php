@@ -50,6 +50,10 @@ test('en ebook order create page returns 200', function () {
     $this->get('/en/ebook-order/create')->assertOk();
 });
 
+test('en english ebook order create page returns 200', function () {
+    $this->get('/en/ebook-en-order/create')->assertOk();
+});
+
 test('language switcher contains Eng option', function () {
     $response = $this->get('/en/');
 
