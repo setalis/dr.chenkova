@@ -175,7 +175,7 @@
                             </p>
                             <p>
                                 <span class="font-semibold">Телефон:</span> 
-                                <a href="tel:+995555948217" class="text-[#4BAE37] hover:text-[#3c952a] hover:underline">+995 555 948 217</a>
+                                <a href="tel:+995555954169" class="text-[#4BAE37] hover:text-[#3c952a] hover:underline">+995 555 954 169</a>
                             </p>
                             <p>
                                 <span class="font-semibold">Адреса:</span> 26 травня 10/12
