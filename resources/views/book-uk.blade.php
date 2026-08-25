@@ -149,7 +149,7 @@
                                 <li class="mb-2">Для лікарів — щоб побачити медицину очима пацієнта, говорити простіше, надихати та зміцнювати довіру.</li>
                                 <li class="mb-2">Для всіх, хто цікавиться здоров'ям — щоб знайти відповіді, підтримку та натхнення в турботі про себе.</li>
                             </ul> -->
-                            <div class="flex flex-col md:flex-row gap-4 mt-6">
+                            <div class="flex flex-col md:flex-row gap-4 mt-6 mb-6">
                                 <div class="flex-1 bg-gradient-to-br from-emerald-50 to-green-50 border border-emerald-200 rounded-xl p-4 shadow-sm flex flex-col">
                                     <div class="flex items-center justify-between mb-2">
                                         <span class="text-sm font-medium text-gray-600">Уривок з книги</span>
@@ -173,7 +173,49 @@
                             </div>
                             <div class="flex flex-col gap-4">
                                 <h3 class="text-xl font-bold text-gray-700 text-center mb-4">Відгуки та рецензії</h3>
-                                
+                                <!-- ------------------------------------------------------------- -->
+
+                                <section>
+                                    <div class="grid gap-4 lg:grid-cols-2">
+                                        <figure class="flex flex-col p-6 bg-gray-50 border border-gray-200 rounded-xl text-left">
+                                            <blockquote class="text-gray-600">
+                                                <h3 class="text-lg font-semibold text-gray-900 mb-3">Книга – це гарний гайд</h3>
+                                                <p class="mb-3">Я теж у неділю дочитала! На презентації запам'яталася фраза, що «кілька разів доля намагалася роз'єднати з медициною», але завзятість та цілеспрямованість не дозволили цьому статися.</p>
+                                                <p class="mb-3">Я під враження звісно, які доводилося вирішувати проблеми і так у складній навчальній обстановці...</p>
+                                                <p>Книга – це гарний гайд. Я склала картку своєї шкіри, дуже не хотілося визнавати факт того, що я слабенько засмагаю</p>
+                                            </blockquote>
+                                        </figure>
+                                        <figure class="flex flex-col p-6 bg-gray-50 border border-gray-200 rounded-xl text-left">
+                                            <blockquote class="text-gray-600">
+                                                <h3 class="text-lg font-semibold text-gray-900 mb-3">Пряме захоплення</h3>
+                                                <p class="mb-3">Дочитала книжку, пряме захоплення. Дуже просто і доступно написана, особиста історія робить прочитання ще динамічнішим. Незважаючи на те, що я багато чого дізнаюся і на прийомах, і зі сторіс/постів, книжка всі ці знання не тільки систематизувала, а й поглибила, доповнила. Були моменти і на поплакати, і на посміхнутися, і на зрозуміти Аліну Ченкову краще, глибше.</p>
+                                                <p>Дякую, ідеальне доповнення до моєї відпустки вийшло</p>
+                                            </blockquote>
+                                        </figure>
+                                        <figure class="flex flex-col p-6 bg-gray-50 border border-gray-200 rounded-xl text-left">
+                                            <blockquote class="text-gray-600">
+                                                <h3 class="text-lg font-semibold text-gray-900 mb-3">Вам треба написати мемуари</h3>
+                                                <p>Я першого ж дня прочитала про все особисте))) на потім залишила наукове. Вам треба написати автобіографію, мемуари) хотілося б ще більше прочитати про особисте, про кар'єру (про злети і падіння, про плюси і мінуси, про помилки). Для початківців це теж буде корисно або для тих, хто думає чи варто йти в цю професію. Для простих читачів - мотивація не зупинятись і не падати духом, а продовжувати свій шлях навіть через невдачі</p>
+                                            </blockquote>
+                                        </figure>
+                                        <figure class="flex flex-col p-6 bg-gray-50 border border-gray-200 rounded-xl text-left">
+                                            <blockquote class="text-gray-600">
+                                                <h3 class="text-lg font-semibold text-gray-900 mb-3">Дуже красива книга</h3>
+                                                <p>Доброго дня, Аліна! Отримала вашу книгу. Дуже красива. Вже почала читати – дуже цікаво! Сподобалося, що описаний і ваш шлях, крім медичної частини! Окреме спасибі за закладку з вашим підписом – дуже стильно! І приємна турбота. Велике дякую</p>
+                                            </blockquote>
+                                        </figure>
+                                        <figure class="flex flex-col p-6 bg-gray-50 border border-gray-200 rounded-xl text-left lg:col-span-2">
+                                            <blockquote class="text-gray-600">
+                                                <h3 class="text-lg font-semibold text-gray-900 mb-3">Читається на одному подиху</h3>
+                                                <p class="mb-3">Доброго вечора. Сьогодні купила Вашу книгу Тільки починаю читати, але вже відчувається, що матеріал корисний та структурований, читається на одному подиху, дуже цікаво та доступно написано.</p>
+                                                <p class="mb-3">Хотіла відзначити роботу адміністратора — дуже уважне та дбайливе ставлення. Мені зробили приємний сюрприз у день народження, і це залишило чудове враження. Дякую!</p>
+                                                <p>З нетерпінням чекаю на зустріч у неділю.</p>
+                                            </blockquote>
+                                        </figure>
+                                    </div>
+                                </section>
+
+                                <!-- ------------------------------------------------------------- -->  
                             </div>
                             <div class="flex items-center justify-center pt-4">
                                 <a href="{{ route_locale('book.return-policy') }}" class="text-gray-600 hover:text-[#4BAE37] text-sm underline transition-colors text-center">
