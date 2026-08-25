@@ -36,9 +36,7 @@
             <div class="container max-w-5xl mx-auto px-4 justify-center items-center">
                 <h1 class="text-4xl font-black uppercase text-center text-[#4BAE37] mb-6">Книги</h1>
                 <p class="text-lg text-gray-700 mb-6 text-center">На сторінці можна купити та завантажити книги, які корисні та інформативні в різних питаннях, пов'язаних з красою та здоров'ям.</p>
-            </div>
-
-            
+            </div>            
 
             <!-- Книги -->
             <div id="hero-section" class="flex items-center justify-center mb-6 px-8 py-4 ">
@@ -54,7 +52,10 @@
                     <div class="flex flex-col gap-4">                        
                         <h3 class="text-xl">Книга</h2>
                         <h2 class="text-2xl font-bold text-gray-700">"Шкіра на все життя"</h2>
-                        <p class="text-gray-700">«Шкіра на все життя» — це науково-популярна і водночас глибоко особиста книга лікаря-дерматолога, яка перевертає уявлення про догляд за шкірою. У ній поєднуються доказова медицина, особистий професійний досвід та людські історії — все для того, щоб відповісти на головне питання: як зберегти здоров'я та красу шкіри на довгі роки?</p>
+                        <p class="text-gray-700">Ця книга — результат двох років кропітливої роботи і восьми років практичних спостережень, досліджень та клінічного досвіду.</p>
+                        <p class="text-gray-700">На її сторінках я ділюся не тільки науковими знаннями та реальними клінічними випадками, але й своєю особистою історією — шляхом професійного становлення, подолання труднощів та досвіду, який сформував мій підхід до медицини та роботи з пацієнтами.</p>
+                        <p class="text-gray-700">Сподіваюсь, ця книга стане надійним джерелом знань, підтримки та натхнення.</p>
+                        <!-- <p class="text-gray-700">«Шкіра на все життя» — це науково-популярна і водночас глибоко особиста книга лікаря-дерматолога, яка перевертає уявлення про догляд за шкірою. У ній поєднуються доказова медицина, особистий професійний досвід та людські історії — все для того, щоб відповісти на головне питання: як зберегти здоров'я та красу шкіри на довгі роки?</p> -->
                         @php
                             $paperBookPriceGEL = config('monobank.paper_book.price_gel', 100);
                             $paperBookPriceUSD = config('monobank.paper_book.price_usd', 35);
@@ -63,6 +64,7 @@
                             $ebookEnPriceGEL = config('monobank.ebook_en.price_gel', 50);
                             $ebookEnPriceUSD = config('monobank.ebook_en.price_usd', 17);
                         @endphp
+                        
                         <div class="flex flex-col gap-4 mb-2">
                             <div class="flex flex-col md:flex-row gap-4">
                                 <div class="flex-1 bg-gradient-to-br from-cyan-50 to-blue-50 border border-cyan-200 rounded-xl p-4 shadow-sm flex flex-col">
@@ -136,12 +138,17 @@
                             </div>
                         </div>
                         <div class="">
-                            <p class="text-gray-700 text-xl font-bold text-center mb-4">ДЛЯ КОГО ЦЯ КНИГА?</p>
+
+                            <p class="text-gray-700 text-xl font-bold text-center mb-4 uppercase">Наукова та практична цінність</p>
+                            <p class="text-gray-700 text-center mb-4">Книга поєднує клінічний досвід, сучасні наукові дані та авторські розробки, які допоможуть вам краще зрозуміти свою шкіру та навчитися піклуватися про неї усвідомлено.</p>
+                            <h3 class="text-xl font-bold text-gray-700 text-center mb-4">Авторская методика Beauty Code</h3>
+                            <p class="text-gray-700 text-center mb-4">У книзі вперше представлено авторську методику Beauty Code — комплексний підхід, розроблений на основі восьми років клінічної практики, досліджень та професійних спостережень. Методика поєднує наукові знання та практичний досвід, пропонуючи системний погляд на збереження здоров'я та краси.</p>
+                            <!-- <p class="text-gray-700 text-xl font-bold text-center mb-4">ДЛЯ КОГО ЦЯ КНИГА?</p>
                             <ul class="list-disc list-inside px-3 gap-2">
                                 <li class="mb-2">Для пацієнтів — щоб зрозуміти свою шкіру та навчитися піклуватися про неї усвідомлено.</li>
                                 <li class="mb-2">Для лікарів — щоб побачити медицину очима пацієнта, говорити простіше, надихати та зміцнювати довіру.</li>
                                 <li class="mb-2">Для всіх, хто цікавиться здоров'ям — щоб знайти відповіді, підтримку та натхнення в турботі про себе.</li>
-                            </ul>
+                            </ul> -->
                             <div class="flex flex-col md:flex-row gap-4 mt-6">
                                 <div class="flex-1 bg-gradient-to-br from-emerald-50 to-green-50 border border-emerald-200 rounded-xl p-4 shadow-sm flex flex-col">
                                     <div class="flex items-center justify-between mb-2">
@@ -163,6 +170,10 @@
                                         </div>
                                     </button>
                                 </div>
+                            </div>
+                            <div class="flex flex-col gap-4">
+                                <h3 class="text-xl font-bold text-gray-700 text-center mb-4">Відгуки та рецензії</h3>
+                                
                             </div>
                             <div class="flex items-center justify-center pt-4">
                                 <a href="{{ route_locale('book.return-policy') }}" class="text-gray-600 hover:text-[#4BAE37] text-sm underline transition-colors text-center">
