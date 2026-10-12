@@ -10,6 +10,36 @@
             <div class="columns-1 md:columns-2 gap-8 mb-12">
                 <div class="break-inside-avoid mb-8">
                     <div class="bg-white rounded-lg p-6 shadow-sm">
+                        <img src="{{ asset('storage/images/webinar-4.jpg') }}" class="w-full h-auto object-cover rounded-lg mb-6" alt="Вебінар про мелазму">
+                        <div class="md:px-10 px-2">
+                            <h1 class="text-xl font-bold uppercase text-center text-[#575757] mb-6">Мелазма: від патогенезу до ефективної терапії</h1>
+                            <p class="text-base text-gray-700 mb-6">Чому мелазма повертається після успішного лікування і чому пригнічення меланогенезу часто недостатньо?</p>
+                            <p class="text-base text-gray-700 mb-6">На вебінарі розберемо роль мікрооточення меланоцита та сучасні підходи до терапії з позиції доказової дерматології.</p>
+                            <p class="text-base text-gray-700 mb-6">У програмі:</p>
+                            <ul class="list-disc list-inside text-base text-gray-700 mb-6">
+                                <li>Патогенез: роль світла, гормонів, судинних та запальних механізмів.</li>
+                                <li>Діагностика, диференційна діагностика та оцінка за MASI/mMASI.</li>
+                                <li>Зовнішня та системна терапія: ефективність і безпека.</li>
+                                <li>Фотопротекція: видиме світло та оксиди заліза.</li>
+                                <li>Лазери, IPL, пілінги, мікронідлінг та ін'єкційні методи: можливості та обмеження.</li>
+                                <li>Клінічні випадки, алгоритми лікування та профілактика рецидивів.</li>
+                            </ul>
+                            <p class="text-base text-gray-700 mb-6">Для дерматологів, косметологів і лікарів естетичної медицини.</p>
+                            <p class="text-base text-gray-700 mb-6">Запис вебінару — дивіться у зручний час і повертайтеся до складних тем.</p>
+                            <a href="https://t.me/Alina_Chenkova" target="_blank">
+                                <button class="bg-[#4BAE37] hover:bg-[#3c952a] text-white px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
+                                    $150
+                                </button>
+                            </a>
+                            <div class="flex flex-col justify-center items-center mb-6">
+                                <p class="text-md text-center text-gray-700"><span class="font-bold">Тривалість:</span> 180 хвилин.</p>
+                                <p class="text-md text-center text-gray-700"><a href="https://t.me/Alina_Chenkova" target="_blank" class="text-blue-500 hover:text-blue-700">Вебінар</a> включає <span class="font-bold">корисні матеріали:</span> схеми, таблиці та чек-листи для застосування в практиці.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="break-inside-avoid mb-8">
+                    <div class="bg-white rounded-lg p-6 shadow-sm">
                         <img src="{{ asset('storage/images/webinar-1.png') }}" class="w-full h-auto object-cover rounded-lg mb-6" alt="Вебінар PRO Akne">
                         <div class="md:px-10 px-2">
                             <h1 class="text-xl font-bold uppercase text-center text-[#575757] mb-6">PRO Akne</h1>

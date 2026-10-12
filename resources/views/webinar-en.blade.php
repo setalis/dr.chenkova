@@ -10,6 +10,36 @@
             <div class="columns-1 md:columns-2 gap-8 mb-12">
                 <div class="break-inside-avoid mb-8">
                     <div class="bg-white rounded-lg p-6 shadow-sm">
+                        <img src="{{ asset('storage/images/webinar-4.jpg') }}" class="w-full h-auto object-cover rounded-lg mb-6" alt="Webinar on melasma">
+                        <div class="md:px-10 px-2">
+                            <h1 class="text-xl font-bold uppercase text-center text-[#575757] mb-6">Melasma: From Pathogenesis to Effective Therapy</h1>
+                            <p class="text-base text-gray-700 mb-6">Why does melasma return after successful treatment, and why is suppressing melanogenesis often not enough?</p>
+                            <p class="text-base text-gray-700 mb-6">In this webinar we will examine the role of the melanocyte microenvironment and modern approaches to therapy from the standpoint of evidence-based dermatology.</p>
+                            <p class="text-base text-gray-700 mb-6">In the program:</p>
+                            <ul class="list-disc list-inside text-base text-gray-700 mb-6">
+                                <li>Pathogenesis: the role of light, hormones, and vascular and inflammatory mechanisms.</li>
+                                <li>Diagnosis, differential diagnosis, and assessment using MASI/mMASI.</li>
+                                <li>Topical and systemic therapy: efficacy and safety.</li>
+                                <li>Photoprotection: visible light and iron oxides.</li>
+                                <li>Lasers, IPL, peels, microneedling, and injectable methods: possibilities and limitations.</li>
+                                <li>Clinical cases, treatment algorithms, and relapse prevention.</li>
+                            </ul>
+                            <p class="text-base text-gray-700 mb-6">For dermatologists, cosmetologists, and aesthetic medicine physicians.</p>
+                            <p class="text-base text-gray-700 mb-6">Webinar recording — watch at a convenient time and return to complex topics.</p>
+                            <a href="https://t.me/Alina_Chenkova" target="_blank">
+                                <button class="bg-[#4BAE37] hover:bg-[#3c952a] text-white px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
+                                    $150
+                                </button>
+                            </a>
+                            <div class="flex flex-col justify-center items-center mb-6">
+                                <p class="text-md text-center text-gray-700"><span class="font-bold">Duration:</span> 180 minutes.</p>
+                                <p class="text-md text-center text-gray-700">The <a href="https://t.me/Alina_Chenkova" target="_blank" class="text-blue-500 hover:text-blue-700">webinar</a> includes <span class="font-bold">useful materials:</span> schemes, tables, and checklists for practical use.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="break-inside-avoid mb-8">
+                    <div class="bg-white rounded-lg p-6 shadow-sm">
                         <img src="{{ asset('storage/images/webinar-1.png') }}" class="w-full h-auto object-cover rounded-lg mb-6" alt="Webinar PRO Akne">
                         <div class="md:px-10 px-2">
                             <h1 class="text-xl font-bold uppercase text-center text-[#575757] mb-6">PRO Acne</h1>

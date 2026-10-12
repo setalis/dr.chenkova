@@ -10,6 +10,36 @@
             <div class="columns-1 md:columns-2 gap-8 mb-12">
                 <div class="break-inside-avoid mb-8">
                     <div class="bg-white rounded-lg p-6 shadow-sm">
+                        <img src="{{ asset('storage/images/webinar-4.jpg') }}" class="w-full h-auto object-cover rounded-lg mb-6" alt="ვებინარი მელაზმის შესახებ">
+                        <div class="md:px-10 px-2">
+                            <h1 class="text-xl font-bold uppercase text-center text-[#575757] mb-6">მელაზმა: პათოგენეზიდან ეფექტურ თერაპიამდე</h1>
+                            <p class="text-base text-gray-700 mb-6">რატომ ბრუნდება მელაზმა წარმატებული მკურნალობის შემდეგ და რატომ არის მელანოგენეზის დათრგუნვა ხშირად არასაკმარისი?</p>
+                            <p class="text-base text-gray-700 mb-6">ვებინარზე განვიხილავთ მელანოციტის მიკროგარემოს როლს და თერაპიის თანამედროვე მიდგომებს მტკიცებულებითი დერმატოლოგიის პოზიციიდან.</p>
+                            <p class="text-base text-gray-700 mb-6">პროგრამაში:</p>
+                            <ul class="list-disc list-inside text-base text-gray-700 mb-6">
+                                <li>პათოგენეზი: სინათლის, ჰორმონების, სისხლძარღვოვანი და ანთებითი მექანიზმების როლი.</li>
+                                <li>დიაგნოსტიკა, დიფერენციალური დიაგნოსტიკა და შეფასება MASI/mMASI-ით.</li>
+                                <li>გარეგანი და სისტემური თერაპია: ეფექტურობა და უსაფრთხოება.</li>
+                                <li>ფოტოპროტექცია: ხილული სინათლე და რკინის ოქსიდები.</li>
+                                <li>ლაზერები, IPL, პილინგები, მიკრონიდლინგი და საინექციო მეთოდები: შესაძლებლობები და შეზღუდვები.</li>
+                                <li>კლინიკური შემთხვევები, მკურნალობის ალგორითმები და რეციდივების პროფილაქტიკა.</li>
+                            </ul>
+                            <p class="text-base text-gray-700 mb-6">დერმატოლოგებისთვის, კოსმეტოლოგებისთვის და ესთეტიკური მედიცინის ექიმებისთვის.</p>
+                            <p class="text-base text-gray-700 mb-6">ვებინარის ჩანაწერი — უყურეთ მოსახერხებელ დროს და დაუბრუნდით რთულ თემებს.</p>
+                            <a href="https://t.me/Alina_Chenkova" target="_blank">
+                                <button class="bg-[#4BAE37] hover:bg-[#3c952a] text-white px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
+                                    $150
+                                </button>
+                            </a>
+                            <div class="flex flex-col justify-center items-center mb-6">
+                                <p class="text-md text-center text-gray-700"><span class="font-bold">ხანგრძლივობა:</span> 180 წუთი.</p>
+                                <p class="text-md text-center text-gray-700"><a href="https://t.me/Alina_Chenkova" target="_blank" class="text-blue-500 hover:text-blue-700">ვებინარი</a> მოიცავს <span class="font-bold">სასარგებლო მასალებს:</span> სქემებს, ცხრილებსა და ჩეკ-ლისტებს პრაქტიკაში გამოსაყენებლად.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="break-inside-avoid mb-8">
+                    <div class="bg-white rounded-lg p-6 shadow-sm">
                         <img src="{{ asset('storage/images/webinar-1.png') }}" class="w-full h-auto object-cover rounded-lg mb-6" alt="ვებინარი PRO Akne">
                         <div class="md:px-10 px-2">
                             <h1 class="text-xl font-bold uppercase text-center text-[#575757] mb-6">PRO Akne</h1>
