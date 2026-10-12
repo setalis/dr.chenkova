@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-use Illuminate\Support\Facades\Http;
+use App\Enums\OrderType;
+use App\Enums\PaymentStatus;
+use App\Models\Order;
 use Illuminate\Support\Facades\Mail;
 
 dataset('book_locales', [
@@ -36,34 +38,29 @@ test('english ebook order store validates email', function () {
     $response->assertSessionHasErrors('email');
 });
 
-test('english ebook order store creates monobank invoice and redirects', function () {
-    config(['monobank.token' => 'test-token']);
-
-    Http::fake([
-        'https://api.monobank.ua/api/merchant/invoice/create' => Http::response([
-            'invoiceId' => 'inv-en-123',
-            'pageUrl' => 'https://pay.monobank.ua/test-en',
-        ], 200),
-    ]);
-
+test('english ebook order store creates pending order and redirects to the russian ebook button', function () {
     $response = $this->post('/ru/ebook-en-order/store', [
         'email' => 'buyer@example.com',
         'privacy_agreement' => '1',
     ]);
 
-    $response->assertRedirect('https://pay.monobank.ua/test-en');
-    expect(session('ebook_en_order.type'))->toBe('ebook_en');
-    expect(session('ebook_en_order.email'))->toBe('buyer@example.com');
-    expect(session('ebook_en_order.invoice_id'))->toBe('inv-en-123');
-    expect(session('ebook_en_order.amount'))->toBe(config('monobank.ebook_en.price'));
+    $ebookButton = config('wayforpay.buttons.ebook');
+
+    $response->assertRedirect($ebookButton);
+    expect(config('wayforpay.buttons.ebook_en'))->toBe($ebookButton);
+
+    $order = Order::first();
+
+    expect($order)->not->toBeNull()
+        ->and($order->type)->toBe(OrderType::EbookEn)
+        ->and($order->payment_status)->toBe(PaymentStatus::Pending)
+        ->and($order->email)->toBe('buyer@example.com')
+        ->and($order->locale)->toBe('ru')
+        ->and($order->amount)->toBe(config('monobank.ebook_en.price'))
+        ->and(session('checkout_order_id'))->toBe($order->id);
 });
 
-test('english ebook payment success sends email with epub and kpf attachments', function () {
-    config([
-        'monobank.token' => 'test-token',
-        'mail.default' => 'array',
-    ]);
-
+test('english ebook payment return sends email with epub and kpf attachments', function () {
     $filesDir = storage_path('app/public/files');
     if (! is_dir($filesDir)) {
         mkdir($filesDir, 0755, true);
@@ -77,26 +74,15 @@ test('english ebook payment success sends email with epub and kpf attachments', 
     file_put_contents($epubPath, 'epub-test');
     file_put_contents($kpfPath, 'kpf-test');
 
-    Http::fake([
-        'https://api.monobank.ua/api/merchant/invoice/status*' => Http::response([
-            'status' => 'success',
-            'invoiceId' => 'inv-en-success',
-        ], 200),
+    $order = Order::factory()->ebookEn()->create([
+        'email' => 'buyer@example.com',
+        'locale' => 'en',
+        'payment_status' => PaymentStatus::Pending,
     ]);
 
-    session([
-        'ebook_en_order' => [
-            'type' => 'ebook_en',
-            'email' => 'buyer@example.com',
-            'invoice_id' => 'inv-en-success',
-            'amount' => config('monobank.ebook_en.price'),
-            'currency' => 'UAH',
-            'currency_info' => config('monobank.currencies.UAH'),
-            'product_name' => config('monobank.ebook_en.name'),
-        ],
-    ]);
+    session(['checkout_order_id' => $order->id]);
 
-    $response = $this->get('/en/ebook-en-order/payment-success');
+    $response = $this->get('/payment/wayforpay/return');
 
     $response->assertOk();
     $response->assertSee('Payment successful');
@@ -116,7 +102,14 @@ test('english ebook payment success sends email with epub and kpf attachments', 
 
     expect($attachmentNames)->toContain($epubFile);
     expect($attachmentNames)->toContain($kpfFile);
-    expect(session('ebook_en_order_download.invoice_id'))->toBe('inv-en-success');
+
+    $order->refresh();
+    expect($order->payment_status)->toBe(PaymentStatus::Success)
+        ->and($order->email_sent)->toBeTrue()
+        ->and(session('ebook_en_order_download.invoice_id'))->toBe($order->invoice_id);
+
+    $this->get('/payment/wayforpay/return')->assertOk();
+    expect(Mail::mailer()->getSymfonyTransport()->messages())->toHaveCount(1);
 
     @unlink($epubPath);
     @unlink($kpfPath);

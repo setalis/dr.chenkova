@@ -5,7 +5,7 @@ use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 
 // Подключаем helper функции
-require_once __DIR__ . '/../app/helpers.php';
+require_once __DIR__.'/../app/helpers.php';
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -14,9 +14,13 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        // Регистрируем middleware для локализации
         $middleware->alias([
             'locale' => \App\Http\Middleware\SetLocale::class,
+        ]);
+
+        $middleware->validateCsrfTokens(except: [
+            'payment/wayforpay/return',
+            'payment/wayforpay/declined',
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

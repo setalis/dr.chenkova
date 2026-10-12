@@ -2,12 +2,20 @@
 
 namespace App\Models;
 
+use App\Enums\OrderType;
+use App\Enums\PaymentStatus;
+use Database\Factories\OrderFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+    /** @use HasFactory<OrderFactory> */
+    use HasFactory;
+
     protected $fillable = [
         'type',
+        'locale',
         'invoice_id',
         'name',
         'messenger',
@@ -29,44 +37,64 @@ class Order extends Model
         'email_sent_at',
     ];
 
-    protected $casts = [
-        'currency_info' => 'array',
-        'email_sent' => 'boolean',
-        'email_sent_at' => 'datetime',
-        'amount' => 'integer',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'type' => OrderType::class,
+            'currency_info' => 'array',
+            'payment_status' => PaymentStatus::class,
+            'email_sent' => 'boolean',
+            'email_sent_at' => 'datetime',
+            'amount' => 'integer',
+        ];
+    }
 
-    /**
-     * Проверка, является ли заказ заказом бумажной книги
-     */
     public function isPaperBook(): bool
     {
-        return $this->type === 'paper';
+        return $this->type === OrderType::Paper;
     }
 
-    /**
-     * Проверка, является ли заказ заказом электронной книги
-     */
     public function isEbook(): bool
     {
-        return $this->type === 'ebook';
+        return $this->type === OrderType::Ebook;
     }
 
-    /**
-     * Проверка, был ли платеж успешным
-     */
+    public function isEnglishEbook(): bool
+    {
+        return $this->type === OrderType::EbookEn;
+    }
+
     public function isPaymentSuccessful(): bool
     {
-        return $this->payment_status === 'success';
+        return $this->payment_status === PaymentStatus::Success;
+    }
+
+    public function customerDisplay(): string
+    {
+        if ($this->isPaperBook()) {
+            return $this->name ?: '—';
+        }
+
+        return $this->email ?: '—';
+    }
+
+    public function formattedAmount(): string
+    {
+        $symbol = is_array($this->currency_info)
+            ? ($this->currency_info['symbol'] ?? $this->currency)
+            : $this->currency;
+
+        return number_format($this->amount / 100, 2).' '.$symbol;
     }
 
     /**
-     * Получить данные заказа в формате массива (для совместимости с текущим кодом)
+     * @return array<string, mixed>
      */
     public function toOrderArray(): array
     {
         return [
-            'type' => $this->type,
+            'id' => $this->id,
+            'type' => $this->type->value,
             'invoice_id' => $this->invoice_id,
             'name' => $this->name,
             'messenger' => $this->messenger,
@@ -86,12 +114,3 @@ class Order extends Model
         ];
     }
 }
-
-
-
-
-
-
-
-
-

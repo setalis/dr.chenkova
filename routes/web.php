@@ -112,10 +112,10 @@ Route::prefix('{locale}')->where(['locale' => 'ru|uk|ka|en'])->middleware('local
     Route::post('/send-contact-form', [ContactFormController::class, 'send'])->name('contact.send');
 });
 
-// Webhook маршруты без локализации (вызываются внешними сервисами)
-Route::post('/book-order/webhook', [BookOrderController::class, 'webhook'])->name('book-order.webhook');
-Route::post('/ebook-order/webhook', [BookOrderController::class, 'ebookWebhook'])->name('ebook-order.webhook');
-Route::post('/ebook-en-order/webhook', [BookOrderController::class, 'ebookEnWebhook'])->name('ebook-en-order.webhook');
+Route::match(['get', 'post'], '/payment/wayforpay/return', [BookOrderController::class, 'returnFromPayment'])
+    ->name('wayforpay.return');
+Route::match(['get', 'post'], '/payment/wayforpay/declined', [BookOrderController::class, 'declinedPayment'])
+    ->name('wayforpay.declined');
 
 // Роуты без локализации (для внутренних систем)
 Route::view('dashboard', 'dashboard')

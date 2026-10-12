@@ -1,0 +1,31 @@
+<?php
+
+use App\Enums\PaymentStatus;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::table('orders', function (Blueprint $table) {
+            $table->string('locale', 8)->default('ru')->after('type');
+        });
+
+        Schema::table('orders', function (Blueprint $table) {
+            $table->string('payment_status')->nullable()->default(PaymentStatus::Pending->value)->change();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::table('orders', function (Blueprint $table) {
+            $table->dropColumn('locale');
+        });
+
+        Schema::table('orders', function (Blueprint $table) {
+            $table->string('payment_status')->nullable()->change();
+        });
+    }
+};
