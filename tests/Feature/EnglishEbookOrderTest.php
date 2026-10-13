@@ -65,7 +65,12 @@ test('english ebook order store creates pending order and redirects to monobank'
         ->and($order->email)->toBe('buyer@example.com')
         ->and($order->locale)->toBe('ru')
         ->and($order->amount)->toBe(config('monobank.ebook_en.price'))
+        ->and($order->email_sent)->toBeFalse()
         ->and(session('checkout_order_id'))->toBe($order->id);
+
+    $email = Mail::mailer()->getSymfonyTransport()->messages()->first()->getOriginalMessage();
+    expect($email->getTo()[0]->getAddress())->toBe('mail@dr-chenkova.com');
+    expect($email->getSubject())->toBe('Заказ книги: Ожидает оплаты');
 });
 
 test('english ebook payment success sends email with epub and kpf attachments', function () {
@@ -105,13 +110,16 @@ test('english ebook payment success sends email with epub and kpf attachments', 
     $response->assertSee('KPF');
 
     $messages = Mail::mailer()->getSymfonyTransport()->messages();
-    expect($messages)->toHaveCount(1);
+    expect($messages)->toHaveCount(2);
 
-    $email = $messages->first()->getOriginalMessage();
-    expect($email->getTo()[0]->getAddress())->toBe('buyer@example.com');
-    expect($email->getSubject())->toBe('Your English e-book files');
+    $buyerEmail = $messages->first(fn ($message) => $message->getOriginalMessage()->getTo()[0]->getAddress() === 'buyer@example.com')->getOriginalMessage();
+    expect($buyerEmail->getSubject())->toBe('Your English e-book files');
 
-    $attachmentNames = collect($email->getAttachments())
+    $adminEmail = $messages->first(fn ($message) => $message->getOriginalMessage()->getTo()[0]->getAddress() === 'mail@dr-chenkova.com')->getOriginalMessage();
+    expect($adminEmail->getSubject())->toBe('Заказ книги: Оплачено');
+    expect($adminEmail->getHtmlBody())->toContain('Оплачено');
+
+    $attachmentNames = collect($buyerEmail->getAttachments())
         ->map(fn ($attachment) => $attachment->getName())
         ->all();
 
@@ -124,7 +132,7 @@ test('english ebook payment success sends email with epub and kpf attachments', 
         ->and(session('ebook_en_order_download.invoice_id'))->toBe($order->invoice_id);
 
     $this->get('/en/ebook-en-order/payment-success')->assertOk();
-    expect(Mail::mailer()->getSymfonyTransport()->messages())->toHaveCount(1);
+    expect(Mail::mailer()->getSymfonyTransport()->messages())->toHaveCount(2);
 
     @unlink($epubPath);
     @unlink($kpfPath);

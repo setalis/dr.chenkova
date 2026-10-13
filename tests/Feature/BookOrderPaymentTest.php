@@ -33,6 +33,14 @@ test('paper book order store creates pending order and redirects to monobank', f
         ->and($order->name)->toBe('Anna Chenkova')
         ->and($order->email_sent)->toBeFalse()
         ->and(session('checkout_order_id'))->toBe($order->id);
+
+    $messages = Mail::mailer()->getSymfonyTransport()->messages();
+    expect($messages)->toHaveCount(1);
+
+    $email = $messages->first()->getOriginalMessage();
+    expect($email->getTo()[0]->getAddress())->toBe('mail@dr-chenkova.com');
+    expect($email->getSubject())->toBe('Заказ книги: Ожидает оплаты');
+    expect($email->getHtmlBody())->toContain('Ожидает оплаты');
 });
 
 test('russian ebook order store creates pending order and redirects to monobank', function () {
@@ -59,7 +67,13 @@ test('russian ebook order store creates pending order and redirects to monobank'
         ->and($order->payment_status)->toBe(PaymentStatus::Pending)
         ->and($order->invoice_id)->toBe('inv-ebook-1')
         ->and($order->email)->toBe('buyer@example.com')
+        ->and($order->email_sent)->toBeFalse()
         ->and(session('checkout_order_id'))->toBe($order->id);
+
+    $email = Mail::mailer()->getSymfonyTransport()->messages()->first()->getOriginalMessage();
+    expect($email->getTo()[0]->getAddress())->toBe('mail@dr-chenkova.com');
+    expect($email->getSubject())->toBe('Заказ книги: Ожидает оплаты');
+    expect($email->getHtmlBody())->toContain('buyer@example.com');
 });
 
 test('monobank payment success marks order paid and sends paper book email once', function () {
@@ -90,9 +104,11 @@ test('monobank payment success marks order paid and sends paper book email once'
         ->and($order->email_sent)->toBeTrue()
         ->and($order->email_sent_at)->not->toBeNull();
 
+    $paidEmail = Mail::mailer()->getSymfonyTransport()->messages()->first()->getOriginalMessage();
     expect(Mail::mailer()->getSymfonyTransport()->messages())->toHaveCount(1);
-    expect(Mail::mailer()->getSymfonyTransport()->messages()->first()->getOriginalMessage()->getTo()[0]->getAddress())
-        ->toBe('mail@dr-chenkova.com');
+    expect($paidEmail->getTo()[0]->getAddress())->toBe('mail@dr-chenkova.com');
+    expect($paidEmail->getSubject())->toBe('Заказ книги: Оплачено');
+    expect($paidEmail->getHtmlBody())->toContain('Оплачено');
 
     $this->get('/ru/book-order/payment-success')->assertOk();
 
@@ -175,11 +191,18 @@ test('russian ebook payment success sends files email and is idempotent', functi
         ->assertOk()
         ->assertSee('Оплата успешна');
 
-    $email = Mail::mailer()->getSymfonyTransport()->messages()->first()->getOriginalMessage();
-    expect($email->getTo()[0]->getAddress())->toBe('buyer@example.com');
+    $messages = Mail::mailer()->getSymfonyTransport()->messages();
+    expect($messages)->toHaveCount(2);
+
+    $recipients = $messages->map(fn ($message) => $message->getOriginalMessage()->getTo()[0]->getAddress())->all();
+    expect($recipients)->toContain('buyer@example.com');
+    expect($recipients)->toContain('mail@dr-chenkova.com');
+
+    $adminEmail = $messages->first(fn ($message) => $message->getOriginalMessage()->getTo()[0]->getAddress() === 'mail@dr-chenkova.com')->getOriginalMessage();
+    expect($adminEmail->getSubject())->toBe('Заказ книги: Оплачено');
 
     $this->get('/ru/ebook-order/payment-success')->assertOk();
-    expect(Mail::mailer()->getSymfonyTransport()->messages())->toHaveCount(1);
+    expect(Mail::mailer()->getSymfonyTransport()->messages())->toHaveCount(2);
 
     @unlink($epubPath);
 });

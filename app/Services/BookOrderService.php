@@ -34,7 +34,7 @@ class BookOrderService
     {
         $quote = $this->quote($type);
 
-        return Order::create([
+        $order = Order::create([
             ...$attributes,
             'type' => $type,
             'invoice_id' => $invoiceId,
@@ -46,6 +46,10 @@ class BookOrderService
             'payment_status' => PaymentStatus::Pending,
             'email_sent' => false,
         ]);
+
+        $this->notifyAdmin($order);
+
+        return $order;
     }
 
     public function fulfill(Order $order): Order
@@ -57,6 +61,7 @@ class BookOrderService
         if ($order->payment_status === PaymentStatus::Pending) {
             $order->payment_status = PaymentStatus::Success;
             $order->save();
+            $this->notifyAdmin($order);
         }
 
         if (! $order->email_sent) {
@@ -118,8 +123,14 @@ class BookOrderService
 
         try {
             if ($order->isPaperBook()) {
-                $this->sendPaperOrderEmail($order);
-            } elseif ($order->isEbook()) {
+                $order->email_sent = true;
+                $order->email_sent_at = now();
+                $order->save();
+
+                return;
+            }
+
+            if ($order->isEbook()) {
                 $this->sendEbookEmail($order, $locale);
             } elseif ($order->isEnglishEbook()) {
                 $this->sendEnglishEbookEmail($order, $locale);
@@ -139,15 +150,29 @@ class BookOrderService
         }
     }
 
-    private function sendPaperOrderEmail(Order $order): void
+    private function notifyAdmin(Order $order): void
     {
-        Mail::send('emails.book-order', [
-            'order' => $order->toOrderArray(),
-            'status' => 'success',
-        ], function ($message) {
-            $message->to('mail@dr-chenkova.com')
-                ->subject('Новый заказ бумажной книги');
-        });
+        $status = $order->payment_status === PaymentStatus::Success ? 'success' : 'pending';
+        $subject = $status === 'success'
+            ? 'Заказ книги: Оплачено'
+            : 'Заказ книги: Ожидает оплаты';
+
+        try {
+            Mail::send('emails.book-order', [
+                'order' => $order->toOrderArray(),
+                'status' => $status,
+            ], function ($message) use ($subject) {
+                $message->to('mail@dr-chenkova.com')
+                    ->subject($subject);
+            });
+        } catch (\Exception $e) {
+            Log::error('Error sending admin order email', [
+                'order_id' => $order->id,
+                'invoice_id' => $order->invoice_id,
+                'status' => $status,
+                'error' => $e->getMessage(),
+            ]);
+        }
     }
 
     private function sendEbookEmail(Order $order, string $locale): void

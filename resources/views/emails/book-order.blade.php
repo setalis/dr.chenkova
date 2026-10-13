@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Новый заказ бумажной книги</title>
+    <title>Заказ книги</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -59,7 +59,7 @@
 </head>
 <body>
     <div class="header">
-        <h1>Новый заказ бумажной книги</h1>
+        <h1>Заказ книги</h1>
         <div class="status">Статус: {{ $status === 'success' ? 'Оплачено' : 'Ожидает оплаты' }}</div>
     </div>
     
@@ -71,6 +71,12 @@
                     <span class="field-label">Имя:</span>
                     <span class="field-value">{{ $order['name'] ?? 'Не указано' }}</span>
                 </div>
+                @if(!empty($order['email']))
+                <div class="field">
+                    <span class="field-label">Email:</span>
+                    <span class="field-value">{{ $order['email'] }}</span>
+                </div>
+                @endif
                 <div class="field">
                     <span class="field-label">Номер телефона:</span>
                     <span class="field-value">{{ $order['phone'] ?? 'Не указано' }}</span>
