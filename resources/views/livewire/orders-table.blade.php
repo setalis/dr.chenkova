@@ -1,7 +1,7 @@
 <div class="flex flex-col gap-6">
     <div>
         <flux:heading size="xl">Заказы</flux:heading>
-        <flux:text class="mt-1">Оплаты книги через WayForPay</flux:text>
+        <flux:text class="mt-1">Оплаты книги через Monobank</flux:text>
     </div>
 
     <div class="grid gap-4 md:grid-cols-3">

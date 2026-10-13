@@ -7,28 +7,42 @@ use App\Enums\PaymentStatus;
 use App\Models\Order;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Str;
 use RuntimeException;
 
 class BookOrderService
 {
     /**
-     * @param  array<string, mixed>  $attributes
+     * @return array{amount: int, currency: string, currency_code: int, product_name: string}
      */
-    public function createPendingOrder(OrderType $type, array $attributes): Order
+    public function quote(OrderType $type): array
     {
         [$currency, $currencyInfo] = $this->currency();
         $product = $this->product($type);
 
+        return [
+            'amount' => (int) $product['price'],
+            'currency' => $currency,
+            'currency_code' => (int) $currencyInfo['code'],
+            'product_name' => $product['name'],
+        ];
+    }
+
+    /**
+     * @param  array<string, mixed>  $attributes
+     */
+    public function createPendingOrder(OrderType $type, array $attributes, string $invoiceId): Order
+    {
+        $quote = $this->quote($type);
+
         return Order::create([
             ...$attributes,
             'type' => $type,
-            'invoice_id' => (string) Str::uuid(),
+            'invoice_id' => $invoiceId,
             'locale' => app()->getLocale(),
-            'amount' => (int) $product['price'],
-            'currency' => $currency,
-            'currency_info' => $currencyInfo,
-            'product_name' => $product['name'],
+            'amount' => $quote['amount'],
+            'currency' => $quote['currency'],
+            'currency_info' => config('monobank.currencies.'.$quote['currency']),
+            'product_name' => $quote['product_name'],
             'payment_status' => PaymentStatus::Pending,
             'email_sent' => false,
         ]);

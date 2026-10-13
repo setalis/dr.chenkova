@@ -19,8 +19,9 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
 
         $middleware->validateCsrfTokens(except: [
-            'payment/wayforpay/return',
-            'payment/wayforpay/declined',
+            'book-order/webhook',
+            'ebook-order/webhook',
+            'ebook-en-order/webhook',
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Enums\OrderType;
 use App\Enums\PaymentStatus;
 use App\Models\Order;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 
 dataset('book_locales', [
@@ -38,29 +39,43 @@ test('english ebook order store validates email', function () {
     $response->assertSessionHasErrors('email');
 });
 
-test('english ebook order store creates pending order and redirects to the russian ebook button', function () {
+test('english ebook order store creates pending order and redirects to monobank', function () {
+    config(['monobank.token' => 'test-token']);
+
+    Http::fake([
+        'https://api.monobank.ua/api/merchant/invoice/create' => Http::response([
+            'invoiceId' => 'inv-en-123',
+            'pageUrl' => 'https://pay.monobank.ua/ebook-en',
+        ], 200),
+    ]);
+
     $response = $this->post('/ru/ebook-en-order/store', [
         'email' => 'buyer@example.com',
         'privacy_agreement' => '1',
     ]);
 
-    $ebookButton = config('wayforpay.buttons.ebook');
-
-    $response->assertRedirect($ebookButton);
-    expect(config('wayforpay.buttons.ebook_en'))->toBe($ebookButton);
+    $response->assertRedirect('https://pay.monobank.ua/ebook-en');
 
     $order = Order::first();
 
     expect($order)->not->toBeNull()
         ->and($order->type)->toBe(OrderType::EbookEn)
         ->and($order->payment_status)->toBe(PaymentStatus::Pending)
+        ->and($order->invoice_id)->toBe('inv-en-123')
         ->and($order->email)->toBe('buyer@example.com')
         ->and($order->locale)->toBe('ru')
         ->and($order->amount)->toBe(config('monobank.ebook_en.price'))
         ->and(session('checkout_order_id'))->toBe($order->id);
 });
 
-test('english ebook payment return sends email with epub and kpf attachments', function () {
+test('english ebook payment success sends email with epub and kpf attachments', function () {
+    config(['monobank.token' => 'test-token']);
+
+    Http::fake([
+        'https://api.monobank.ua/api/merchant/invoice/status*' => Http::response([
+            'status' => 'success',
+        ], 200),
+    ]);
     $filesDir = storage_path('app/public/files');
     if (! is_dir($filesDir)) {
         mkdir($filesDir, 0755, true);
@@ -82,7 +97,7 @@ test('english ebook payment return sends email with epub and kpf attachments', f
 
     session(['checkout_order_id' => $order->id]);
 
-    $response = $this->get('/payment/wayforpay/return');
+    $response = $this->get('/en/ebook-en-order/payment-success');
 
     $response->assertOk();
     $response->assertSee('Payment successful');
@@ -108,7 +123,7 @@ test('english ebook payment return sends email with epub and kpf attachments', f
         ->and($order->email_sent)->toBeTrue()
         ->and(session('ebook_en_order_download.invoice_id'))->toBe($order->invoice_id);
 
-    $this->get('/payment/wayforpay/return')->assertOk();
+    $this->get('/en/ebook-en-order/payment-success')->assertOk();
     expect(Mail::mailer()->getSymfonyTransport()->messages())->toHaveCount(1);
 
     @unlink($epubPath);

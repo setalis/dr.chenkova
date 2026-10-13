@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Enums\OrderType;
-use App\Enums\PaymentStatus;
 use App\Http\Requests\StoreBookOrderRequest;
 use App\Models\Order;
 use App\Services\BookOrderService;
-use App\Services\WayForPayService;
+use App\Services\MonobankService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -20,7 +19,7 @@ class BookOrderController extends Controller
 {
     public function __construct(
         private BookOrderService $bookOrders,
-        private WayForPayService $wayForPay,
+        private MonobankService $monobank,
     ) {}
 
     public function create(): View
@@ -30,23 +29,14 @@ class BookOrderController extends Controller
 
     public function store(StoreBookOrderRequest $request): RedirectResponse
     {
-        try {
-            $order = $this->bookOrders->createPendingOrder(
-                OrderType::Paper,
-                $request->safe()->except('privacy_agreement'),
-            );
-        } catch (RuntimeException $e) {
-            Log::error('Failed to create paper book order', ['error' => $e->getMessage()]);
-
-            return redirect()
-                ->back()
-                ->withInput()
-                ->withErrors(['payment' => 'Ошибка конфигурации валюты. Пожалуйста, свяжитесь с поддержкой.']);
-        }
-
-        session(['checkout_order_id' => $order->id]);
-
-        return redirect($this->wayForPay->buttonUrl(OrderType::Paper));
+        return $this->startCheckout(
+            OrderType::Paper,
+            $request->safe()->except('privacy_agreement'),
+            'book-order.payment-success',
+            'book-order.webhook',
+            'Ошибка при создании платежа. Пожалуйста, попробуйте позже.',
+            'Ошибка конфигурации валюты. Пожалуйста, свяжитесь с поддержкой.',
+        );
     }
 
     public function showEbookForm(): View
@@ -61,27 +51,24 @@ class BookOrderController extends Controller
             'privacy_agreement' => 'required|accepted',
         ], $this->ebookValidationMessages());
 
-        try {
-            $order = $this->bookOrders->createPendingOrder(OrderType::Ebook, [
-                'email' => $request->string('email')->toString(),
-            ]);
-        } catch (RuntimeException $e) {
-            Log::error('Failed to create ebook order', ['error' => $e->getMessage()]);
-
-            return redirect()
-                ->back()
-                ->withInput()
-                ->withErrors(['payment' => $this->ebookLocalizedMessage(
-                    'Помилка конфігурації валюти. Будь ласка, зв\'яжіться з підтримкою.',
-                    'Currency configuration error. Please contact support.',
-                    'Ошибка конфигурации валюты. Пожалуйста, свяжитесь с поддержкой.',
-                    'ვალუტის კონფიგურაციის შეცდომა. გთხოვთ, დაუკავშირდეთ მხარდაჭერას.',
-                )]);
-        }
-
-        session(['checkout_order_id' => $order->id]);
-
-        return redirect($this->wayForPay->buttonUrl(OrderType::Ebook));
+        return $this->startCheckout(
+            OrderType::Ebook,
+            ['email' => $request->string('email')->toString()],
+            'ebook-order.payment-success',
+            'ebook-order.webhook',
+            $this->ebookLocalizedMessage(
+                'Помилка при створенні платежу. Будь ласка, спробуйте пізніше.',
+                'Error creating payment. Please try again later.',
+                'Ошибка при создании платежа. Пожалуйста, попробуйте позже.',
+                'გადახდის შექმნის შეცდომა. გთხოვთ, სცადოთ მოგვიანებით.',
+            ),
+            $this->ebookLocalizedMessage(
+                'Помилка конфігурації валюти. Будь ласка, зв\'яжіться з підтримкою.',
+                'Currency configuration error. Please contact support.',
+                'Ошибка конфигурации валюты. Пожалуйста, свяжитесь с поддержкой.',
+                'ვალუტის კონფიგურაციის შეცდომა. გთხოვთ, დაუკავშირდეთ მხარდაჭერას.',
+            ),
+        );
     }
 
     public function showEbookEnForm(): View
@@ -96,89 +83,66 @@ class BookOrderController extends Controller
             'privacy_agreement' => 'required|accepted',
         ], $this->ebookValidationMessages());
 
-        try {
-            $order = $this->bookOrders->createPendingOrder(OrderType::EbookEn, [
-                'email' => $request->string('email')->toString(),
-            ]);
-        } catch (RuntimeException $e) {
-            Log::error('Failed to create English ebook order', ['error' => $e->getMessage()]);
-
-            return redirect()
-                ->back()
-                ->withInput()
-                ->withErrors(['payment' => $this->ebookLocalizedMessage(
-                    'Помилка конфігурації валюти. Будь ласка, зв\'яжіться з підтримкою.',
-                    'Currency configuration error. Please contact support.',
-                    'Ошибка конфигурации валюты. Пожалуйста, свяжитесь с поддержкой.',
-                    'ვალუტის კონფიგურაციის შეცდომა. გთხოვთ, დაუკავშირდეთ მხარდაჭერას.',
-                )]);
-        }
-
-        session(['checkout_order_id' => $order->id]);
-
-        return redirect($this->wayForPay->buttonUrl(OrderType::EbookEn));
+        return $this->startCheckout(
+            OrderType::EbookEn,
+            ['email' => $request->string('email')->toString()],
+            'ebook-en-order.payment-success',
+            'ebook-en-order.webhook',
+            $this->ebookLocalizedMessage(
+                'Помилка при створенні платежу. Будь ласка, спробуйте пізніше.',
+                'Error creating payment. Please try again later.',
+                'Ошибка при создании платежа. Пожалуйста, попробуйте позже.',
+                'გადახდის შექმნის შეცდომა. გთხოვთ, სცადოთ მოგვიანებით.',
+            ),
+            $this->ebookLocalizedMessage(
+                'Помилка конфігурації валюти. Будь ласка, зв\'яжіться з підтримкою.',
+                'Currency configuration error. Please contact support.',
+                'Ошибка конфигурации валюты. Пожалуйста, свяжитесь с поддержкой.',
+                'ვალუტის კონფიგურაციის შეცდომა. გთხოვთ, დაუკავშირდეთ მხარდაჭერას.',
+            ),
+        );
     }
 
     public function paymentSuccess(Request $request): View
     {
-        return $this->returnFromPayment($request);
+        return $this->completePayment($request);
     }
 
     public function ebookPaymentSuccess(Request $request): View
     {
-        return $this->returnFromPayment($request);
+        return $this->completePayment($request);
     }
 
     public function ebookEnPaymentSuccess(Request $request): View
     {
-        return $this->returnFromPayment($request);
+        return $this->completePayment($request);
     }
 
-    public function returnFromPayment(Request $request): View
+    public function webhook(Request $request): Response
     {
-        if ($this->wayForPay->hasSecret() && $request->filled('merchantSignature') && ! $this->wayForPay->signatureIsValid($request->all())) {
+        if (! $this->monobank->verifyWebhookSignature($request)) {
+            Log::warning('Monobank webhook: invalid signature', ['ip' => $request->ip()]);
             abort(403);
         }
 
-        $order = $this->orderFromSession();
+        $invoiceId = $request->input('invoiceId');
+        $status = $request->input('status');
+        $order = is_string($invoiceId)
+            ? Order::query()->where('invoice_id', $invoiceId)->first()
+            : null;
 
-        if (! $order) {
-            return view_locale('book-order.error', [
-                'message' => $this->ebookLocalizedMessage(
-                    'Дані замовлення не знайдено. Якщо оплата була успішною, ми зв\'яжемося з вами найближчим часом.',
-                    'Order data not found. If the payment was successful, we will contact you shortly.',
-                    'Данные заказа не найдены. Если оплата была успешной, мы свяжемся с вами в ближайшее время.',
-                    'შეკვეთის მონაცემები ვერ მოიძებნა. თუ გადახდა წარმატებული იყო, მალე დაგიკავშირდებით.',
-                ),
-            ]);
-        }
-
-        $this->setLocaleFromOrder($order);
-
-        if ($order->payment_status === PaymentStatus::Failure) {
-            return view_locale('book-order.error', [
-                'message' => $this->paymentFailedMessage(),
-            ]);
-        }
-
-        $order = $this->bookOrders->fulfill($order);
-        $this->storeDownloadSession($order);
-
-        return $this->successView($order);
-    }
-
-    public function declinedPayment(): View
-    {
-        $order = $this->orderFromSession();
-
-        if ($order) {
-            $this->setLocaleFromOrder($order);
+        if ($order instanceof Order && $status === 'success') {
+            $this->bookOrders->fulfill($order);
+        } elseif ($order instanceof Order && in_array($status, ['failure', 'expired', 'reversed'], true)) {
             $this->bookOrders->markFailed($order);
         }
 
-        return view_locale('book-order.error', [
-            'message' => $this->paymentFailedMessage(),
+        Log::info('Monobank webhook received', [
+            'status' => $status ?? 'unknown',
+            'invoice_id' => $invoiceId,
         ]);
+
+        return response('OK', 200);
     }
 
     public function downloadEbook(Request $request): BinaryFileResponse|RedirectResponse
@@ -414,6 +378,121 @@ class BookOrderController extends Controller
         return response()->download($filePath, $fileName);
     }
 
+    /**
+     * @param  array<string, mixed>  $attributes
+     */
+    private function startCheckout(
+        OrderType $type,
+        array $attributes,
+        string $redirectRoute,
+        string $webhookRoute,
+        string $paymentError,
+        string $currencyError,
+    ): RedirectResponse {
+        try {
+            $quote = $this->bookOrders->quote($type);
+        } catch (RuntimeException $e) {
+            Log::error('Failed to quote book order', ['error' => $e->getMessage()]);
+
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors(['payment' => $currencyError]);
+        }
+
+        try {
+            $invoice = $this->monobank->createInvoice(
+                amount: $quote['amount'],
+                redirectUrl: route_locale($redirectRoute),
+                webhookUrl: route($webhookRoute),
+                productName: $quote['product_name'],
+                currency: $quote['currency_code'],
+            );
+
+            $invoiceId = $invoice['invoiceId'] ?? null;
+            $pageUrl = $invoice['pageUrl'] ?? null;
+
+            if (! is_string($invoiceId) || $invoiceId === '' || ! is_string($pageUrl) || $pageUrl === '') {
+                throw new RuntimeException('Monobank invoice response is incomplete.');
+            }
+
+            $order = $this->bookOrders->createPendingOrder($type, $attributes, $invoiceId);
+        } catch (\Exception $e) {
+            Log::error('Failed to create Monobank invoice', ['error' => $e->getMessage()]);
+
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors(['payment' => $paymentError]);
+        }
+
+        session(['checkout_order_id' => $order->id]);
+
+        return redirect($pageUrl);
+    }
+
+    private function completePayment(Request $request): View
+    {
+        $order = $this->orderFromSession() ?? $this->orderFromRequest($request);
+
+        if (! $order) {
+            return view_locale('book-order.error', [
+                'message' => $this->ebookLocalizedMessage(
+                    'Дані замовлення не знайдено. Якщо оплата була успішною, ми зв\'яжемося з вами найближчим часом.',
+                    'Order data not found. If the payment was successful, we will contact you shortly.',
+                    'Данные заказа не найдены. Если оплата была успешной, мы свяжемся с вами в ближайшее время.',
+                    'შეკვეთის მონაცემები ვერ მოიძებნა. თუ გადახდა წარმატებული იყო, მალე დაგიკავშირდებით.',
+                ),
+            ]);
+        }
+
+        $this->setLocaleFromOrder($order);
+
+        try {
+            $invoiceStatus = $this->monobank->getInvoiceStatus($order->invoice_id);
+        } catch (\Exception $e) {
+            Log::error('Error checking invoice status', [
+                'invoice_id' => $order->invoice_id,
+                'error' => $e->getMessage(),
+            ]);
+
+            return view_locale('book-order.error', [
+                'message' => $this->ebookLocalizedMessage(
+                    'Не вдалося перевірити статус платежу. Будь ласка, зв\'яжіться з підтримкою.',
+                    'Unable to verify payment status. Please contact support.',
+                    'Не удалось проверить статус платежа. Пожалуйста, свяжитесь с поддержкой.',
+                    'გადახდის სტატუსის შემოწმება ვერ მოხერხდა. გთხოვთ, დაუკავშირდეთ მხარდაჭერას.',
+                ),
+            ]);
+        }
+
+        $status = $invoiceStatus['status'] ?? null;
+
+        if ($status === 'success') {
+            $order = $this->bookOrders->fulfill($order);
+            $this->storeDownloadSession($order);
+
+            return $this->successView($order);
+        }
+
+        if (in_array($status, ['failure', 'expired', 'reversed'], true)) {
+            $this->bookOrders->markFailed($order);
+
+            return view_locale('book-order.error', [
+                'message' => $this->paymentFailedMessage(),
+            ]);
+        }
+
+        return view_locale('book-order.error', [
+            'message' => $this->ebookLocalizedMessage(
+                'Платіж обробляється. Будь ласка, зачекайте або зв\'яжіться з підтримкою.',
+                'Payment is still processing. Please wait or contact support.',
+                'Платеж обрабатывается. Пожалуйста, подождите или свяжитесь с поддержкой.',
+                'გადახდა მუშავდება. გთხოვთ, დაელოდოთ ან დაუკავშირდეთ მხარდაჭერას.',
+            ),
+        ]);
+    }
+
     private function orderFromSession(): ?Order
     {
         $orderId = session('checkout_order_id');
@@ -423,6 +502,17 @@ class BookOrderController extends Controller
         }
 
         return Order::find($orderId);
+    }
+
+    private function orderFromRequest(Request $request): ?Order
+    {
+        $invoiceId = $request->input('invoiceId') ?? $request->input('invoice_id');
+
+        if (! is_string($invoiceId) || $invoiceId === '') {
+            return null;
+        }
+
+        return Order::query()->where('invoice_id', $invoiceId)->first();
     }
 
     private function setLocaleFromOrder(Order $order): void
