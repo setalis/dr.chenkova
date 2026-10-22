@@ -12,6 +12,7 @@ return [
 
     'api_url' => env('MONOBANK_API_URL', 'https://api.monobank.ua'),
     'token' => env('MONOBANK_TOKEN'),
+    'payments_enabled' => filter_var(env('MONOBANK_PAYMENTS_ENABLED', false), FILTER_VALIDATE_BOOLEAN),
 
     'default_currency' => env('MONOBANK_DEFAULT_CURRENCY', 'UAH'),
 

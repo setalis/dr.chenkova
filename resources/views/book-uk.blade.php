@@ -78,6 +78,7 @@
                                         <span class="text-3xl font-bold text-gray-800">{{ number_format($paperBookPriceGEL, 0, ',', ' ') }} ₾</span>
                                         <span class="text-lg font-semibold text-gray-600">/ ${{ number_format($paperBookPriceUSD, 0, ',', ' ') }}</span>
                                     </div>
+                                    @if (config('monobank.payments_enabled'))
                                     <a href="{{route_locale('book-order.create')}}" class="mt-auto">
                                         <button class="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white px-4 py-2 rounded-full w-full uppercase font-bold cursor-pointer transition-all">
                                             <div class="flex items-center justify-center gap-2 text-xs">
@@ -88,6 +89,9 @@
                                             </div>
                                         </button>
                                     </a>
+                                    @else
+                                    <x-telegram-channel-button :price="$paperBookPriceUSD" />
+                                    @endif
                                 </div>
                                 <div class="flex-1 bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-200 rounded-xl p-4 shadow-sm flex flex-col">
                                     <div class="flex items-center justify-between mb-2">
@@ -100,6 +104,7 @@
                                         <span class="text-3xl font-bold text-gray-800">{{ number_format($ebookPriceGEL, 0, ',', ' ') }} ₾</span>
                                         <span class="text-lg font-semibold text-gray-600">/ ${{ number_format($ebookPriceUSD, 0, ',', ' ') }}</span>
                                     </div>
+                                    @if (config('monobank.payments_enabled'))
                                     <a href="{{ route_locale('ebook-order.create') }}" class="mt-auto">
                                         <button class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 py-2 rounded-full w-full uppercase font-bold cursor-pointer transition-all">
                                             <div class="flex items-center justify-center gap-2 text-xs">
@@ -110,6 +115,9 @@
                                             </div>
                                         </button>
                                     </a>
+                                    @else
+                                    <x-telegram-channel-button :price="$ebookPriceUSD" color="blue" />
+                                    @endif
                                 </div>
                             </div>
                             <div class="flex flex-col md:flex-row gap-4">
@@ -124,6 +132,7 @@
                                         <span class="text-3xl font-bold text-gray-800">{{ number_format($ebookEnPriceGEL, 0, ',', ' ') }} ₾</span>
                                         <span class="text-lg font-semibold text-gray-600">/ ${{ number_format($ebookEnPriceUSD, 0, ',', ' ') }}</span>
                                     </div>
+                                    @if (config('monobank.payments_enabled'))
                                     <a href="{{ route_locale('ebook-en-order.create') }}" class="mt-auto">
                                         <button class="bg-gradient-to-r from-indigo-500 to-violet-500 hover:from-indigo-600 hover:to-violet-600 text-white px-4 py-2 rounded-full w-full uppercase font-bold cursor-pointer transition-all">
                                             <div class="flex items-center justify-center gap-2 text-xs">
@@ -134,6 +143,9 @@
                                             </div>
                                         </button>
                                     </a>
+                                    @else
+                                    <x-telegram-channel-button :price="$ebookEnPriceUSD" />
+                                    @endif
                                 </div>
                             </div>
                         </div>

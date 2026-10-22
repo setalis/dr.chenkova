@@ -22,16 +22,28 @@ class BookOrderController extends Controller
         private MonobankService $monobank,
     ) {}
 
-    public function create(): View
+    public function create(): View|RedirectResponse
     {
+        if ($redirect = $this->redirectToTelegramIfPaymentsDisabled()) {
+            return $redirect;
+        }
+
         return view_locale('book-order.create');
     }
 
-    public function store(StoreBookOrderRequest $request): RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
+        if ($redirect = $this->redirectToTelegramIfPaymentsDisabled()) {
+            return $redirect;
+        }
+
+        $formRequest = StoreBookOrderRequest::createFrom($request);
+        $formRequest->setContainer(app())->setRedirector(app('redirect'));
+        $formRequest->validateResolved();
+
         return $this->startCheckout(
             OrderType::Paper,
-            $request->safe()->except('privacy_agreement'),
+            $formRequest->safe()->except('privacy_agreement'),
             'book-order.payment-success',
             'book-order.webhook',
             'Ошибка при создании платежа. Пожалуйста, попробуйте позже.',
@@ -39,13 +51,21 @@ class BookOrderController extends Controller
         );
     }
 
-    public function showEbookForm(): View
+    public function showEbookForm(): View|RedirectResponse
     {
+        if ($redirect = $this->redirectToTelegramIfPaymentsDisabled()) {
+            return $redirect;
+        }
+
         return view_locale('ebook-order.create');
     }
 
     public function createEbook(Request $request): RedirectResponse
     {
+        if ($redirect = $this->redirectToTelegramIfPaymentsDisabled()) {
+            return $redirect;
+        }
+
         $request->validate([
             'email' => 'required|email|max:255',
             'privacy_agreement' => 'required|accepted',
@@ -71,13 +91,21 @@ class BookOrderController extends Controller
         );
     }
 
-    public function showEbookEnForm(): View
+    public function showEbookEnForm(): View|RedirectResponse
     {
+        if ($redirect = $this->redirectToTelegramIfPaymentsDisabled()) {
+            return $redirect;
+        }
+
         return view_locale('ebook-en-order.create');
     }
 
     public function createEbookEn(Request $request): RedirectResponse
     {
+        if ($redirect = $this->redirectToTelegramIfPaymentsDisabled()) {
+            return $redirect;
+        }
+
         $request->validate([
             'email' => 'required|email|max:255',
             'privacy_agreement' => 'required|accepted',
@@ -625,5 +653,14 @@ class BookOrderController extends Controller
             'ka' => $ka,
             default => $ru,
         };
+    }
+
+    private function redirectToTelegramIfPaymentsDisabled(): ?RedirectResponse
+    {
+        if (config('monobank.payments_enabled')) {
+            return null;
+        }
+
+        return redirect()->away('https://t.me/Alina_Chenkova');
     }
 }

@@ -9,6 +9,10 @@ use App\Services\MonobankService;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 
+beforeEach(function () {
+    config(['monobank.payments_enabled' => true]);
+});
+
 test('paper book order store creates pending order and redirects to monobank', function () {
     config(['monobank.token' => 'test-token']);
 

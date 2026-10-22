@@ -8,6 +8,10 @@ use App\Models\Order;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 
+beforeEach(function () {
+    config(['monobank.payments_enabled' => true]);
+});
+
 dataset('book_locales', [
     'ru' => ['ru'],
     'uk' => ['uk'],

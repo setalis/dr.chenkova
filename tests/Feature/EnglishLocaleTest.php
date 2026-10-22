@@ -43,14 +43,20 @@ test('en privacy-policy page returns 200', function () {
 });
 
 test('en book order create page returns 200', function () {
+    config(['monobank.payments_enabled' => true]);
+
     $this->get('/en/book-order/create')->assertOk();
 });
 
 test('en ebook order create page returns 200', function () {
+    config(['monobank.payments_enabled' => true]);
+
     $this->get('/en/ebook-order/create')->assertOk();
 });
 
 test('en english ebook order create page returns 200', function () {
+    config(['monobank.payments_enabled' => true]);
+
     $this->get('/en/ebook-en-order/create')->assertOk();
 });
 
