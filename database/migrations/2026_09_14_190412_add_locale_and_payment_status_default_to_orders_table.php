@@ -9,9 +9,11 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->string('locale', 8)->default('ru')->after('type');
-        });
+        if (! Schema::hasColumn('orders', 'locale')) {
+            Schema::table('orders', function (Blueprint $table) {
+                $table->string('locale', 8)->default('ru')->after('type');
+            });
+        }
 
         Schema::table('orders', function (Blueprint $table) {
             $table->string('payment_status')->nullable()->default(PaymentStatus::Pending->value)->change();
