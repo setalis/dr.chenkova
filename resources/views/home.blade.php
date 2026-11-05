@@ -29,7 +29,7 @@
                         <p class="text-gray-600 max-w-lg text-lg mt-8 mb-8">Разберем типы и состояние кожи и получите рекомендации по образу жизни. Объясню механизм формирования заболевания (если есть). Составим карту по лечению или бьюти протокол. Дам письменные рекомендации по наружному лечению, протокол процедур и прием внутрь препаратов (при необходимости). </p>
                     </div>
                     <div class="mt-auto relative z-10">
-                        <a href="https://t.me/Alina_Chenkova" target="_blank" class="bg-teal-600 text-white px-8 py-4 rounded-full hover:bg-teal-700 transition-all text-lg">
+                        <a href="https://t.me/drChenkova_Assist" target="_blank" class="bg-teal-600 text-white px-8 py-4 rounded-full hover:bg-teal-700 transition-all text-lg">
                             Записаться
                         </a>
                     </div>
@@ -38,11 +38,11 @@
                 <div class="text-right bg-white/80 backdrop-blur-xs rounded-2xl p-10 flex flex-col h-auto md:h-[550px] relative overflow-hidden">
                     <div class="relative z-10">
                         <h1 class="text-6xl md:text-7xl xl:text-8xl font-bold text-[#214992] leading-tight">Off Line</h1>
-                        <h2 class="text-2xl md:text-4xl xl:text-5xl text-gray-700 -mt-3">прием</h2>
-                        <p class="text-[#214992] max-w-lg ml-auto text-lg mt-8 mb-8">На приеме вы можете получить космологическую и дерматологическую консультацию, а также при необходимости проводим дерматоскопию и ультразвуковое исследование кожи. Запись возможно только через администратора в клиники.</p>
+                        <h2 class="text-2xl md:text-4xl xl:text-5xl text-gray-700 -mt-3">консультация</h2>
+                        <p class="text-[#214992] max-w-lg ml-auto text-lg mt-8 mb-8">После записи вы сможете получить косметологическую консультацию, а также, при необходимости, провести дерматоскопию и ультразвуковое исследование кожи. Запись возможна только через администратора.</p>
                     </div>
                     <div class="mt-auto relative z-10">
-                        <a href="https://t.me/+995557673280" target="_blank" class="bg-[#214992] text-white px-8 py-4 rounded-full hover:bg-[#214992]/80 transition-all text-lg">
+                        <a href="https://t.me/drChenkova_Assist" target="_blank" class="bg-[#214992] text-white px-8 py-4 rounded-full hover:bg-[#214992]/80 transition-all text-lg">
                             Записаться
 </a>
                     </div>

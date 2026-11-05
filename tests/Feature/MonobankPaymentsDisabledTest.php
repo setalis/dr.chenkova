@@ -11,7 +11,7 @@ test('book pages link to telegram instead of monobank checkout when payments are
     $response = $this->get($path);
 
     $response->assertOk();
-    $response->assertSee('https://t.me/Alina_Chenkova', false);
+    $response->assertSee('https://t.me/drChenkova_Assist', false);
     $response->assertSee('bg-teal-600', false);
     $response->assertSee('bg-[#214992]', false);
     $response->assertSee('rounded-full', false);
@@ -44,7 +44,7 @@ test('book page order button uses the locale label', function (string $locale, s
 test('order forms redirect to telegram when monobank payments are disabled', function (string $uri) {
     config(['monobank.payments_enabled' => false]);
 
-    $this->get($uri)->assertRedirect('https://t.me/Alina_Chenkova');
+    $this->get($uri)->assertRedirect('https://t.me/drChenkova_Assist');
 })->with([
     'paper' => ['/ru/book-order/create'],
     'ebook' => ['/ru/ebook-order/create'],
@@ -56,7 +56,7 @@ test('order store redirects to telegram without calling monobank when payments a
 
     Http::fake();
 
-    $this->post($uri)->assertRedirect('https://t.me/Alina_Chenkova');
+    $this->post($uri)->assertRedirect('https://t.me/drChenkova_Assist');
 
     expect(Order::query()->count())->toBe(0);
     Http::assertNothingSent();

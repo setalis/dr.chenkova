@@ -10,6 +10,31 @@
             <div class="columns-1 md:columns-2 gap-8 mb-12">
                 <div class="break-inside-avoid mb-8">
                     <div class="bg-white rounded-lg p-6 shadow-sm">
+                        <img src="{{ asset('storage/images/webinar-5.jpg') }}" class="w-full h-auto object-cover rounded-lg mb-6" alt="Webinar RE: Lips">
+                        <div class="md:px-10 px-2">
+                            <h1 class="text-xl font-bold uppercase text-center text-[#575757] mb-6">RE: Lips — Dissolution and Restoration</h1>
+                            <p class="text-base text-gray-700 mb-6">From lip anatomy to proper restoration of the lips after filler.</p>
+                            <p class="text-base text-gray-700 mb-6">A webinar for aesthetic medicine specialists on a comprehensive approach to diagnosis, filler dissolution, and restoration of lip aesthetics.</p>
+                            <p class="text-base text-gray-700 mb-6">We will examine the causes of filler migration, edema, indurations, and late changes after injections. You will learn to assess tissue condition, determine indications for dissolution, and choose the optimal tactic for further correction.</p>
+                            <p class="text-base text-gray-700 mb-6">In the program:</p>
+                            <ul class="list-disc list-inside text-base text-gray-700 mb-6">
+                                <li>Lip anatomy and tissue assessment.</li>
+                                <li>Filler properties that manufacturers stay silent about.</li>
+                                <li>Late changes and complications after injections.</li>
+                                <li>Lip ultrasound in clinical practice.</li>
+                                <li>Filler dissolution: hyaluronidase, indications, and result assessment.</li>
+                                <li>Lip restoration and planning of further correction.</li>
+                            </ul>
+                            <a href="https://t.me/drChenkova_Assist" target="_blank">
+                                <button class="bg-[#4BAE37] hover:bg-[#3c952a] text-white px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
+                                    $100
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="break-inside-avoid mb-8">
+                    <div class="bg-white rounded-lg p-6 shadow-sm">
                         <img src="{{ asset('storage/images/webinar-4.jpg') }}" class="w-full h-auto object-cover rounded-lg mb-6" alt="Webinar on melasma">
                         <div class="md:px-10 px-2">
                             <h1 class="text-xl font-bold uppercase text-center text-[#575757] mb-6">Melasma: From Pathogenesis to Effective Therapy</h1>
@@ -26,14 +51,14 @@
                             </ul>
                             <p class="text-base text-gray-700 mb-6">For dermatologists, cosmetologists, and aesthetic medicine physicians.</p>
                             <p class="text-base text-gray-700 mb-6">Webinar recording — watch at a convenient time and return to complex topics.</p>
-                            <a href="https://t.me/Alina_Chenkova" target="_blank">
+                            <a href="https://t.me/drChenkova_Assist" target="_blank">
                                 <button class="bg-[#4BAE37] hover:bg-[#3c952a] text-white px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
                                     $150
                                 </button>
                             </a>
                             <div class="flex flex-col justify-center items-center mb-6">
                                 <p class="text-md text-center text-gray-700"><span class="font-bold">Duration:</span> 180 minutes.</p>
-                                <p class="text-md text-center text-gray-700">The <a href="https://t.me/Alina_Chenkova" target="_blank" class="text-blue-500 hover:text-blue-700">webinar</a> includes <span class="font-bold">useful materials:</span> schemes, tables, and checklists for practical use.</p>
+                                <p class="text-md text-center text-gray-700">The <a href="https://t.me/drChenkova_Assist" target="_blank" class="text-blue-500 hover:text-blue-700">webinar</a> includes <span class="font-bold">useful materials:</span> schemes, tables, and checklists for practical use.</p>
                             </div>
                         </div>
                     </div>
@@ -53,14 +78,14 @@
                                 <li>The cosmetologist's role in acne therapy and combination with dermatological treatment</li>
                                 <li>New acne treatment methods: what works now and what's coming soon</li>
                             </ul>
-                            <a href="https://t.me/Alina_Chenkova" target="_blank">
+                            <a href="https://t.me/drChenkova_Assist" target="_blank">
                                 <button class="bg-[#4BAE37] hover:bg-[#3c952a] text-white px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
                                     $150
                                 </button>
                             </a>
                             <div class="flex flex-col justify-center items-center mb-6">
                                 <p class="text-md text-center text-gray-700"><span class="font-bold">Duration:</span> 240 minutes.</p>
-                                <p class="text-md text-center text-gray-700">The <a href="https://t.me/Alina_Chenkova" target="_blank" class="text-blue-500 hover:text-blue-700">webinar</a> includes <span class="font-bold">useful materials:</span> schemes, tables, and checklists for practical use.</p>    
+                                <p class="text-md text-center text-gray-700">The <a href="https://t.me/drChenkova_Assist" target="_blank" class="text-blue-500 hover:text-blue-700">webinar</a> includes <span class="font-bold">useful materials:</span> schemes, tables, and checklists for practical use.</p>    
                             </div>
                         </div>
                     </div>
@@ -81,14 +106,14 @@
                                 <li>How to identify and correct epigenetic syndromes in cosmetology</li>
                                 <li>What a complete patient management strategy consists of: tests, nutrients, care, and procedures</li>
                             </ul>
-                            <a href="https://t.me/Alina_Chenkova" target="_blank">
+                            <a href="https://t.me/drChenkova_Assist" target="_blank">
                                 <button class="bg-[#4BAE37] hover:bg-[#3c952a] text-white px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
                                     $150
                                 </button>
                             </a>
                             <div class="flex flex-col justify-center items-center mb-6">
                                 <p class="text-md text-center text-gray-700"><span class="font-bold">Duration:</span> 240 minutes.</p>
-                                <p class="text-md text-center text-gray-700">The <a href="https://t.me/Alina_Chenkova" target="_blank" class="text-blue-500 hover:text-blue-700">webinar</a> includes <span class="font-bold">useful materials:</span> schemes, tables, and checklists for practical use.</p>    
+                                <p class="text-md text-center text-gray-700">The <a href="https://t.me/drChenkova_Assist" target="_blank" class="text-blue-500 hover:text-blue-700">webinar</a> includes <span class="font-bold">useful materials:</span> schemes, tables, and checklists for practical use.</p>    
                             </div>
                         </div>
                     </div>
@@ -119,14 +144,14 @@
                                 <li>✔️ Aesthetic medicine doctors</li>
                                 <li>✔️ Chronic dermatosis specialists</li>
                             </ul>
-                            <a href="https://t.me/Alina_Chenkova" target="_blank">
+                            <a href="https://t.me/drChenkova_Assist" target="_blank">
                                 <button class="bg-[#4BAE37] hover:bg-[#3c952a] text-white px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
                                     $150
                                 </button>
                             </a>
                             <div class="flex flex-col justify-center items-center mb-6">
                                 <p class="text-md text-center text-gray-700"><span class="font-bold">Duration:</span> 240 minutes.</p>
-                                <p class="text-md text-center text-gray-700">The <a href="https://t.me/Alina_Chenkova" target="_blank" class="text-blue-500 hover:text-blue-700">webinar</a> includes <span class="font-bold">useful materials:</span> schemes, tables, and checklists for practical use.</p>    
+                                <p class="text-md text-center text-gray-700">The <a href="https://t.me/drChenkova_Assist" target="_blank" class="text-blue-500 hover:text-blue-700">webinar</a> includes <span class="font-bold">useful materials:</span> schemes, tables, and checklists for practical use.</p>    
                             </div>
                         </div>
                     </div>

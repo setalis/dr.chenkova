@@ -10,6 +10,31 @@
             <div class="columns-1 md:columns-2 gap-8 mb-12">
                 <div class="break-inside-avoid mb-8">
                     <div class="bg-white rounded-lg p-6 shadow-sm">
+                        <img src="{{ asset('storage/images/webinar-5.jpg') }}" class="w-full h-auto object-cover rounded-lg mb-6" alt="ვებინარი RE: Lips">
+                        <div class="md:px-10 px-2">
+                            <h1 class="text-xl font-bold uppercase text-center text-[#575757] mb-6">RE: Lips — დაშლა და აღდგენა</h1>
+                            <p class="text-base text-gray-700 mb-6">ტუჩების ანატომიიდან ფილერის შემდეგ ტუჩების სწორ აღდგენამდე.</p>
+                            <p class="text-base text-gray-700 mb-6">ვებინარი ესთეტიკური მედიცინის სპეციალისტებისთვის, რომელიც ეძღვნება დიაგნოსტიკის, ფილერების დაშლისა და ტუჩების ესთეტიკის აღდგენის კომპლექსურ მიდგომას.</p>
+                            <p class="text-base text-gray-700 mb-6">განვიხილავთ ფილერის მიგრაციის, შეშუპების, დატკეპნებისა და ინექციების შემდეგ გვიანი ცვლილებების მიზეზებს. ვისწავლით ქსოვილების მდგომარეობის შეფასებას, დაშლის ჩვენებების განსაზღვრას და შემდგომი კორექციის ოპტიმალური ტაქტიკის არჩევას.</p>
+                            <p class="text-base text-gray-700 mb-6">პროგრამაში:</p>
+                            <ul class="list-disc list-inside text-base text-gray-700 mb-6">
+                                <li>ტუჩების ანატომია და ქსოვილების მდგომარეობის შეფასება.</li>
+                                <li>ფილერების თვისებები, რომლებზეც მწარმოებლები დუმან.</li>
+                                <li>გვიანი ცვლილებები და გართულებები ინექციების შემდეგ.</li>
+                                <li>ტუჩების ულტრაბგერითი კვლევა კლინიკურ პრაქტიკაში.</li>
+                                <li>ფილერების დაშლა: ჰიალურონიდაზა, ჩვენებები და შედეგის შეფასება.</li>
+                                <li>ტუჩების აღდგენა და შემდგომი კორექციის დაგეგმვა.</li>
+                            </ul>
+                            <a href="https://t.me/drChenkova_Assist" target="_blank">
+                                <button class="bg-[#4BAE37] hover:bg-[#3c952a] text-white px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
+                                    $100
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="break-inside-avoid mb-8">
+                    <div class="bg-white rounded-lg p-6 shadow-sm">
                         <img src="{{ asset('storage/images/webinar-4.jpg') }}" class="w-full h-auto object-cover rounded-lg mb-6" alt="ვებინარი მელაზმის შესახებ">
                         <div class="md:px-10 px-2">
                             <h1 class="text-xl font-bold uppercase text-center text-[#575757] mb-6">მელაზმა: პათოგენეზიდან ეფექტურ თერაპიამდე</h1>
@@ -26,14 +51,14 @@
                             </ul>
                             <p class="text-base text-gray-700 mb-6">დერმატოლოგებისთვის, კოსმეტოლოგებისთვის და ესთეტიკური მედიცინის ექიმებისთვის.</p>
                             <p class="text-base text-gray-700 mb-6">ვებინარის ჩანაწერი — უყურეთ მოსახერხებელ დროს და დაუბრუნდით რთულ თემებს.</p>
-                            <a href="https://t.me/Alina_Chenkova" target="_blank">
+                            <a href="https://t.me/drChenkova_Assist" target="_blank">
                                 <button class="bg-[#4BAE37] hover:bg-[#3c952a] text-white px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
                                     $150
                                 </button>
                             </a>
                             <div class="flex flex-col justify-center items-center mb-6">
                                 <p class="text-md text-center text-gray-700"><span class="font-bold">ხანგრძლივობა:</span> 180 წუთი.</p>
-                                <p class="text-md text-center text-gray-700"><a href="https://t.me/Alina_Chenkova" target="_blank" class="text-blue-500 hover:text-blue-700">ვებინარი</a> მოიცავს <span class="font-bold">სასარგებლო მასალებს:</span> სქემებს, ცხრილებსა და ჩეკ-ლისტებს პრაქტიკაში გამოსაყენებლად.</p>
+                                <p class="text-md text-center text-gray-700"><a href="https://t.me/drChenkova_Assist" target="_blank" class="text-blue-500 hover:text-blue-700">ვებინარი</a> მოიცავს <span class="font-bold">სასარგებლო მასალებს:</span> სქემებს, ცხრილებსა და ჩეკ-ლისტებს პრაქტიკაში გამოსაყენებლად.</p>
                             </div>
                         </div>
                     </div>
@@ -53,14 +78,14 @@
                                 <li>კოსმეტოლოგის როლი აკნეს თერაპიაში და კომბინაცია დერმატოლოგიურ მკურნალობასთან</li>
                                 <li>აკნეს მკურნალობის ახალი მეთოდები: რა მუშაობს ახლა და რა გამოჩნდება მალე</li>
                             </ul>
-                            <a href="https://t.me/Alina_Chenkova" target="_blank">
+                            <a href="https://t.me/drChenkova_Assist" target="_blank">
                                 <button class="bg-[#4BAE37] hover:bg-[#3c952a] text-white px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
                                     $150
                                 </button>
                             </a>
                             <div class="flex flex-col justify-center items-center mb-6">
                                 <p class="text-md text-center text-gray-700"><span class="font-bold">ხანგრძლივობა:</span> 240 წუთი.</p>
-                                <p class="text-md text-center text-gray-700"><a href="https://t.me/Alina_Chenkova" target="_blank" class="text-blue-500 hover:text-blue-700">ვებინარი</a> მოიცავს <span class="font-bold">სასარგებლო მასალებს:</span> სქემებს, ცხრილებსა და ჩეკ-ლისტებს პრაქტიკაში გამოსაყენებლად.</p>    
+                                <p class="text-md text-center text-gray-700"><a href="https://t.me/drChenkova_Assist" target="_blank" class="text-blue-500 hover:text-blue-700">ვებინარი</a> მოიცავს <span class="font-bold">სასარგებლო მასალებს:</span> სქემებს, ცხრილებსა და ჩეკ-ლისტებს პრაქტიკაში გამოსაყენებლად.</p>    
                             </div>
                         </div>
                     </div>
@@ -81,14 +106,14 @@
                                 <li>როგორ ამოვიცნოთ და შევასწოროთ ეპიგენეტიკური სინდრომები კოსმეტოლოგიაში</li>
                                 <li>რისგან შედგება სრულყოფილი სტრატეგია პაციენტის მართვისთვის: ანალიზები, ნუტრიენტები, მოვლა და პროცედურები</li>
                             </ul>
-                            <a href="https://t.me/Alina_Chenkova" target="_blank">
+                            <a href="https://t.me/drChenkova_Assist" target="_blank">
                                 <button class="bg-[#4BAE37] hover:bg-[#3c952a] text-white px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
                                     $150
                                 </button>
                             </a>
                             <div class="flex flex-col justify-center items-center mb-6">
                                 <p class="text-md text-center text-gray-700"><span class="font-bold">ხანგრძლივობა:</span> 240 წუთი.</p>
-                                <p class="text-md text-center text-gray-700"><a href="https://t.me/Alina_Chenkova" target="_blank" class="text-blue-500 hover:text-blue-700">ვებინარი</a> მოიცავს <span class="font-bold">სასარგებლო მასალებს:</span> სქემებს, ცხრილებსა და ჩეკ-ლისტებს პრაქტიკაში გამოსაყენებლად.</p>    
+                                <p class="text-md text-center text-gray-700"><a href="https://t.me/drChenkova_Assist" target="_blank" class="text-blue-500 hover:text-blue-700">ვებინარი</a> მოიცავს <span class="font-bold">სასარგებლო მასალებს:</span> სქემებს, ცხრილებსა და ჩეკ-ლისტებს პრაქტიკაში გამოსაყენებლად.</p>    
                             </div>
                         </div>
                     </div>
@@ -119,14 +144,14 @@
                                 <li>✔️ ესთეტიკური მედიცინის ექიმები</li>
                                 <li>✔️ ქრონიკული დერმატოზების სპეციალისტები</li>
                             </ul>
-                            <a href="https://t.me/Alina_Chenkova" target="_blank">
+                            <a href="https://t.me/drChenkova_Assist" target="_blank">
                                 <button class="bg-[#4BAE37] hover:bg-[#3c952a] text-white px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
                                     $150
                                 </button>
                             </a>
                             <div class="flex flex-col justify-center items-center mb-6">
                                 <p class="text-md text-center text-gray-700"><span class="font-bold">ხანგრძლივობა:</span> 240 წუთი.</p>
-                                <p class="text-md text-center text-gray-700"><a href="https://t.me/Alina_Chenkova" target="_blank" class="text-blue-500 hover:text-blue-700">ვებინარი</a> მოიცავს <span class="font-bold">სასარგებლო მასალებს:</span> სქემებს, ცხრილებსა და ჩეკ-ლისტებს პრაქტიკაში გამოსაყენებლად.</p>    
+                                <p class="text-md text-center text-gray-700"><a href="https://t.me/drChenkova_Assist" target="_blank" class="text-blue-500 hover:text-blue-700">ვებინარი</a> მოიცავს <span class="font-bold">სასარგებლო მასალებს:</span> სქემებს, ცხრილებსა და ჩეკ-ლისტებს პრაქტიკაში გამოსაყენებლად.</p>    
                             </div>
                         </div>
                     </div>

@@ -661,6 +661,6 @@ class BookOrderController extends Controller
             return null;
         }
 
-        return redirect()->away('https://t.me/Alina_Chenkova');
+        return redirect()->away('https://t.me/drChenkova_Assist');
     }
 }

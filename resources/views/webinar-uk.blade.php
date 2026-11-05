@@ -10,6 +10,31 @@
             <div class="columns-1 md:columns-2 gap-8 mb-12">
                 <div class="break-inside-avoid mb-8">
                     <div class="bg-white rounded-lg p-6 shadow-sm">
+                        <img src="{{ asset('storage/images/webinar-5.jpg') }}" class="w-full h-auto object-cover rounded-lg mb-6" alt="Вебінар RE: Lips">
+                        <div class="md:px-10 px-2">
+                            <h1 class="text-xl font-bold uppercase text-center text-[#575757] mb-6">RE: Lips — Розчинення та відновлення</h1>
+                            <p class="text-base text-gray-700 mb-6">Від анатомії губ до грамотного відновлення губ після філера.</p>
+                            <p class="text-base text-gray-700 mb-6">Вебінар для фахівців естетичної медицини, присвячений комплексному підходу до діагностики, розчинення філерів і відновлення естетики губ.</p>
+                            <p class="text-base text-gray-700 mb-6">Розберемо причини міграції філера, набряків, ущільнень і пізніх змін після ін'єкцій. Навчимося оцінювати стан тканин, визначати показання до розчинення та обирати оптимальну тактику подальшої корекції.</p>
+                            <p class="text-base text-gray-700 mb-6">У програмі:</p>
+                            <ul class="list-disc list-inside text-base text-gray-700 mb-6">
+                                <li>Анатомія губ і оцінка стану тканин.</li>
+                                <li>Властивості філерів, про які мовчать виробники.</li>
+                                <li>Пізні зміни та ускладнення після ін'єкцій.</li>
+                                <li>УЗД губ у клінічній практиці.</li>
+                                <li>Розчинення філерів: гіалуронідаза, показання та оцінка результату.</li>
+                                <li>Відновлення губ і планування подальшої корекції.</li>
+                            </ul>
+                            <a href="https://t.me/drChenkova_Assist" target="_blank">
+                                <button class="bg-[#4BAE37] hover:bg-[#3c952a] text-white px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
+                                    $100
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="break-inside-avoid mb-8">
+                    <div class="bg-white rounded-lg p-6 shadow-sm">
                         <img src="{{ asset('storage/images/webinar-4.jpg') }}" class="w-full h-auto object-cover rounded-lg mb-6" alt="Вебінар про мелазму">
                         <div class="md:px-10 px-2">
                             <h1 class="text-xl font-bold uppercase text-center text-[#575757] mb-6">Мелазма: від патогенезу до ефективної терапії</h1>
@@ -26,14 +51,14 @@
                             </ul>
                             <p class="text-base text-gray-700 mb-6">Для дерматологів, косметологів і лікарів естетичної медицини.</p>
                             <p class="text-base text-gray-700 mb-6">Запис вебінару — дивіться у зручний час і повертайтеся до складних тем.</p>
-                            <a href="https://t.me/Alina_Chenkova" target="_blank">
+                            <a href="https://t.me/drChenkova_Assist" target="_blank">
                                 <button class="bg-[#4BAE37] hover:bg-[#3c952a] text-white px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
                                     $150
                                 </button>
                             </a>
                             <div class="flex flex-col justify-center items-center mb-6">
                                 <p class="text-md text-center text-gray-700"><span class="font-bold">Тривалість:</span> 180 хвилин.</p>
-                                <p class="text-md text-center text-gray-700"><a href="https://t.me/Alina_Chenkova" target="_blank" class="text-blue-500 hover:text-blue-700">Вебінар</a> включає <span class="font-bold">корисні матеріали:</span> схеми, таблиці та чек-листи для застосування в практиці.</p>
+                                <p class="text-md text-center text-gray-700"><a href="https://t.me/drChenkova_Assist" target="_blank" class="text-blue-500 hover:text-blue-700">Вебінар</a> включає <span class="font-bold">корисні матеріали:</span> схеми, таблиці та чек-листи для застосування в практиці.</p>
                             </div>
                         </div>
                     </div>
@@ -53,14 +78,14 @@
                                 <li>Роль косметолога в терапії акне та поєднання з дерматологічним лікуванням</li>
                                 <li>Нові методи в лікуванні акне: що працює вже зараз і що незабаром з'явиться</li>
                             </ul>
-                            <a href="https://t.me/Alina_Chenkova" target="_blank">
+                            <a href="https://t.me/drChenkova_Assist" target="_blank">
                                 <button class="bg-[#4BAE37] hover:bg-[#3c952a] text-white px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
                                     $150
                                 </button>
                             </a>
                             <div class="flex flex-col justify-center items-center mb-6">
                                 <p class="text-md text-center text-gray-700"><span class="font-bold">Тривалість:</span> 240 хвилин.</p>
-                                <p class="text-md text-center text-gray-700"><a href="https://t.me/Alina_Chenkova" target="_blank" class="text-blue-500 hover:text-blue-700">Вебінар</a> включає <span class="font-bold">корисні матеріали:</span> схеми, таблиці та чек-листи для застосування в практиці.</p>    
+                                <p class="text-md text-center text-gray-700"><a href="https://t.me/drChenkova_Assist" target="_blank" class="text-blue-500 hover:text-blue-700">Вебінар</a> включає <span class="font-bold">корисні матеріали:</span> схеми, таблиці та чек-листи для застосування в практиці.</p>    
                             </div>
                         </div>
                     </div>
@@ -81,14 +106,14 @@
                                 <li>Як розпізнати та корегувати епігенетичні синдроми в косметології</li>
                                 <li>З чого складається повноцінна стратегія ведення пацієнта: аналізи, нутрієнти, догляд та процедури</li>
                             </ul>
-                            <a href="https://t.me/Alina_Chenkova" target="_blank">
+                            <a href="https://t.me/drChenkova_Assist" target="_blank">
                                 <button class="bg-[#4BAE37] hover:bg-[#3c952a] text-white px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
                                     $150
                                 </button>
                             </a>
                             <div class="flex flex-col justify-center items-center mb-6">
                                 <p class="text-md text-center text-gray-700"><span class="font-bold">Тривалість:</span> 240 хвилин.</p>
-                                <p class="text-md text-center text-gray-700"><a href="https://t.me/Alina_Chenkova" target="_blank" class="text-blue-500 hover:text-blue-700">Вебінар</a> включає <span class="font-bold">корисні матеріали:</span> схеми, таблиці та чек-листи для застосування в практиці.</p>    
+                                <p class="text-md text-center text-gray-700"><a href="https://t.me/drChenkova_Assist" target="_blank" class="text-blue-500 hover:text-blue-700">Вебінар</a> включає <span class="font-bold">корисні матеріали:</span> схеми, таблиці та чек-листи для застосування в практиці.</p>    
                             </div>
                         </div>
                     </div>
@@ -119,14 +144,14 @@
                                 <li>✔️ лікарі естетичної медицини</li>
                                 <li>✔️ фахівці з хронічних дерматозів</li>
                             </ul>
-                            <a href="https://t.me/Alina_Chenkova" target="_blank">
+                            <a href="https://t.me/drChenkova_Assist" target="_blank">
                                 <button class="bg-[#4BAE37] hover:bg-[#3c952a] text-white px-16 py-3 rounded-md mx-auto block uppercase font-bold cursor-pointer mb-6">
                                     $150
                                 </button>
                             </a>
                             <div class="flex flex-col justify-center items-center mb-6">
                                 <p class="text-md text-center text-gray-700"><span class="font-bold">Тривалість:</span> 240 хвилин.</p>
-                                <p class="text-md text-center text-gray-700"><a href="https://t.me/Alina_Chenkova" target="_blank" class="text-blue-500 hover:text-blue-700">Вебінар</a> включає <span class="font-bold">корисні матеріали:</span> схеми, таблиці та чек-листи для застосування в практиці.</p>    
+                                <p class="text-md text-center text-gray-700"><a href="https://t.me/drChenkova_Assist" target="_blank" class="text-blue-500 hover:text-blue-700">Вебінар</a> включає <span class="font-bold">корисні матеріали:</span> схеми, таблиці та чек-листи для застосування в практиці.</p>    
                             </div>
                         </div>
                     </div>

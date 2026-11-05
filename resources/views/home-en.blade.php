@@ -26,7 +26,7 @@
                         <p class="text-gray-600 max-w-lg text-lg mt-8 mb-8">We will analyse your skin type and condition and you will receive lifestyle recommendations. I will explain the mechanism behind any skin condition (if present). We will create a treatment map or beauty protocol. I will provide written recommendations for external treatment, a procedure protocol, and internal medication intake (if needed).</p>
                     </div>
                     <div class="mt-auto relative z-10">
-                        <a href="https://t.me/Alina_Chenkova" target="_blank" class="bg-teal-600 text-white px-8 py-4 rounded-full hover:bg-teal-700 transition-all text-lg">
+                        <a href="https://t.me/drChenkova_Assist" target="_blank" class="bg-teal-600 text-white px-8 py-4 rounded-full hover:bg-teal-700 transition-all text-lg">
                             Book appointment
                         </a>
                     </div>
@@ -35,11 +35,11 @@
                 <div class="text-right bg-white/80 backdrop-blur-xs rounded-2xl p-10 flex flex-col h-auto md:h-[550px] relative overflow-hidden">
                     <div class="relative z-10">
                         <h1 class="text-6xl md:text-7xl xl:text-8xl font-bold text-[#214992] leading-tight">Off Line</h1>
-                        <h2 class="text-2xl md:text-4xl xl:text-5xl text-gray-700 -mt-3">in-person visit</h2>
-                        <p class="text-[#214992] max-w-lg ml-auto text-lg mt-8 mb-8">At the in-person visit you can receive cosmetological and dermatological consultation. Dermoscopy and ultrasound skin examination are also available if needed. Appointments are only possible through the clinic administrator.</p>
+                        <h2 class="text-2xl md:text-4xl xl:text-5xl text-gray-700 -mt-3">consultation</h2>
+                        <p class="text-[#214992] max-w-lg ml-auto text-lg mt-8 mb-8">After booking, you will be able to receive a cosmetological consultation and, if needed, undergo dermoscopy and an ultrasound examination of the skin. Appointments are only possible through the administrator.</p>
                     </div>
                     <div class="mt-auto relative z-10">
-                        <a href="https://t.me/+995557673280" target="_blank" class="bg-[#214992] text-white px-8 py-4 rounded-full hover:bg-[#214992]/80 transition-all text-lg">
+                        <a href="https://t.me/drChenkova_Assist" target="_blank" class="bg-[#214992] text-white px-8 py-4 rounded-full hover:bg-[#214992]/80 transition-all text-lg">
                             Book appointment
 </a>
                     </div>

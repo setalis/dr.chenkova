@@ -16,6 +16,6 @@
     };
 @endphp
 
-<a href="https://t.me/Alina_Chenkova" target="_blank" class="mt-auto block w-full {{ $colorClass }} text-white px-8 py-4 rounded-full transition-all text-lg text-center">
+<a href="https://t.me/drChenkova_Assist" target="_blank" class="mt-auto block w-full {{ $colorClass }} text-white px-8 py-4 rounded-full transition-all text-lg text-center">
     {{ $label }}
 </a>

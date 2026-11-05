@@ -29,7 +29,7 @@
                         <p class="text-gray-600 max-w-lg text-lg mt-8 mb-8">გავაანალიზებთ კანის ტიპებსა და მდგომარეობას და მიიღებთ რეკომენდაციებს ცხოვრების წესის შესახებ. ავხსნი დაავადების ფორმირების მექანიზმს (თუ არსებობს). შევადგენთ სამკურნალო ან ბიუტი პროტოკოლის რუკას. მოგაწოდებთ წერილობით რეკომენდაციებს გარე მკურნალობის, პროცედურების პროტოკოლისა და პრეპარატების შიდა მიღების შესახებ (საჭიროების შემთხვევაში).</p>
                     </div>
                     <div class="mt-auto relative z-10">
-                        <a href="https://t.me/Alina_Chenkova" target="_blank" class="bg-teal-600 text-white px-8 py-4 rounded-full hover:bg-teal-700 transition-all text-lg">
+                        <a href="https://t.me/drChenkova_Assist" target="_blank" class="bg-teal-600 text-white px-8 py-4 rounded-full hover:bg-teal-700 transition-all text-lg">
                             ჩაწერა
                         </a>
                     </div>
@@ -38,11 +38,11 @@
                 <div class="text-right bg-white/80 backdrop-blur-xs rounded-2xl p-10 flex flex-col h-auto md:h-[550px] relative overflow-hidden">
                     <div class="relative z-10">
                         <h1 class="text-6xl md:text-7xl xl:text-8xl font-bold text-[#214992] leading-tight">Off Line</h1>
-                        <h2 class="text-2xl md:text-4xl xl:text-5xl text-gray-700 -mt-3">რეცეპცია</h2>
-                        <p class="text-[#214992] max-w-lg ml-auto text-lg mt-8 mb-8">რეცეპციაზე შეგიძლიათ მიიღოთ კოსმეტოლოგიური და დერმატოლოგიური კონსულტაცია, ასევე საჭიროების შემთხვევაში ვატარებთ დერმატოსკოპიასა და კანის ულტრაბგერით გამოკვლევას. ჩაწერა შესაძლებელია მხოლოდ კლინიკის ადმინისტრატორის მეშვეობით.</p>
+                        <h2 class="text-2xl md:text-4xl xl:text-5xl text-gray-700 -mt-3">კონსულტაცია</h2>
+                        <p class="text-[#214992] max-w-lg ml-auto text-lg mt-8 mb-8">ჩაწერის შემდეგ შეძლებთ მიიღოთ კოსმეტოლოგიური კონსულტაცია და, საჭიროების შემთხვევაში, ჩაიტაროთ დერმატოსკოპია და კანის ულტრაბგერითი გამოკვლევა. ჩაწერა შესაძლებელია მხოლოდ ადმინისტრატორის მეშვეობით.</p>
                     </div>
                     <div class="mt-auto relative z-10">
-                        <a href="https://t.me/+995557673280" target="_blank" class="bg-[#214992] text-white px-8 py-4 rounded-full hover:bg-[#214992]/80 transition-all text-lg">
+                        <a href="https://t.me/drChenkova_Assist" target="_blank" class="bg-[#214992] text-white px-8 py-4 rounded-full hover:bg-[#214992]/80 transition-all text-lg">
                             ჩაწერა
 </a>
                     </div>
